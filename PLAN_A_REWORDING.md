@@ -22,13 +22,22 @@ The only perturbation is **rewording**: the same facts said in different
 words. Meaning does not change, so the true game and the optimal plan do not
 change. Any change in the advice is error caused by wording.
 
+The `K` readings are also used as `K` plausible versions of the same game:
+plans from all readings are pooled and re-scored across every reading, and
+where readings disagree about the opponent, the planner builds a contingent
+strategy that probes and then branches (§6.6). This adds strategies without
+adding information, so it stays within rewording-only scope.
+
 **Research question.**
 > When a package's facts are reworded without changing their meaning,
 > (a) how much do the suggested strategies change, at which pipeline stage
 > does the change enter, and does it track the embedding-space distance
 > between original and reworded facts? (b) Does aggregating over rewordings
 > produce better and more stable strategies than one reading, at equal
-> compute — and better than simply resampling the same text?
+> compute — and better than simply resampling the same text? (c) Does
+> pooling plans across rewordings give a larger menu of robust, near-optimal
+> strategies, including contingent ones, than resampling or sampling the
+> opponent's column directly?
 
 ---
 
@@ -75,8 +84,8 @@ names, red lines) are unchanged. A 5% sample is checked by a human.
 | Test | Live exercise package, unseen | 12 min prep (brief in ≤ 6 min), 12–15 min negotiation |
 
 Frozen artifacts carried to the test: rewording operators and thresholds,
-the game builder prompts, the aggregation rule and `K`, advisor and ethics
-prompts.
+the game builder prompts, the aggregation rule and `K`, the menu settings
+(`α`, number of types `m`, tree depth), advisor and ethics prompts.
 
 ### 1.5 Open decisions
 - **[DECIDE]** Is a deal preferred over no deal? Parameter `deal_bonus`;
@@ -151,6 +160,18 @@ point, ethics flags, and a margin per offer (Prop. A4).
 **true** game. Brittleness is any dependence of `σ` or `U(σ)` on which
 `P′ ∈ [P]` was read.
 
+**Cross-reading score** (used when the true game is unknown).
+`Ū(σ) = (1/K) Σ_k r_us(σ; Ĝ_k)`, with the worst case `min_k r_us(σ; Ĝ_k)`
+reported alongside. On generated games, selection uses `Ū` and reporting uses
+the true `U`.
+
+**Opponent types from readings.** Cluster the `K` estimates `Ĝ_opp,k` into
+`m ≤ 3` types `θ_1..θ_m` with weights `w_j` (share of readings in each).
+A **contingent strategy** `τ` is a depth-limited decision tree: an opening
+offer, then a branch for each response, each branch optimal for the types
+consistent with that response. Its value is
+`V(τ) = Σ_j w_j r_us(τ; θ_j)`.
+
 ---
 
 ## 4. Package → commitment game
@@ -222,15 +243,30 @@ every offer (Prop. A4).
 ### 6.5 Strategic advisor and ethics advisor (LLM)
 Review the plan for things `G` leaves out; ethics flags (humanitarian
 principles, do-no-harm) with veto. Write the brief.
-### 6.6 Aggregator
-Combine `K` readings:
-- **Game-level:** average `Ĝ` over rewordings (when structure matches), then
-  plan once.
-- **Plan-level:** majority over plan archetypes; report agreement rate.
-- **Stability label:** the plan is "stable" if Prop. A4's certificate holds
-  for all `K` readings.
-- **Menu:** 3–5 plans maximising diversity subject to
-  `U(σ_i) ≥ α · max U` (Braun et al. constrained diversity).
+### 6.6 Aggregator and candidate generation
+Combine `K` readings, then build the menu:
+1. **Game-level:** average `Ĝ` over rewordings (when structure matches),
+   then plan once. This plan is always a candidate.
+2. **Pool:** add each reading's own optimal plan `σ_k`.
+3. **Structural alternatives:** where readings disagree on actions or goal
+   requirements, plan on each structure; label the plan with the ambiguous
+   passage.
+4. **Contingent strategy:** if the readings' `Ĝ_opp` split into more than
+   one type (§3), the planner builds the contingent tree `τ` with a probing
+   opening offer.
+5. **Advisor ideas:** advisors on different rewordings propose extra
+   options. A new action enters only with a quote from the package; it goes
+   back through the game builder and is scored by the planner. Ideas needing
+   new facts are Plan B.
+6. **Re-score** every candidate on every reading (`Ū` and worst case); drop
+   candidates that only win on their own reading.
+7. **Menu:** 3–5 candidates maximising diversity subject to
+   `Ū(σ_i) ≥ α · max Ū` (Braun et al. constrained diversity), plus the
+   contingent tree if it beats the best single plan.
+8. **Fresh re-scoring:** the menu's scores are recomputed on a fresh set of
+   rewordings and episodes before they are shown or reported (Prop. A5).
+- **Stability label:** a plan is "stable" if Prop. A4's certificate holds
+  for all `K` readings. Report the agreement rate across readings.
 ### 6.7 Opponent simulators and executor
 Planner opponents and LLM opponents (≥ 2 model families) play the plan in
 the turn-based game, for scoring.
@@ -247,7 +283,9 @@ judge for unscored packs, order-swapped, calibrated against human ratings.
                                       │
                    strategic + ethics advisors ──► reviewed plans
                                       │
-                                 aggregator ──► brief + menu + stability label
+                 aggregator: pool → re-score → contingent tree
+                                      │
+                         brief + menu + stability label
 ```
 
 ---
@@ -308,6 +346,14 @@ episodes per strategy separate a true gap `Δ` with probability `1 − δ`
 (Hoeffding + union bound). `Δ = 0.1, δ = 0.05 → n ≈ 876`; paired designs
 need fewer.
 
+**Remark A7 (Pooling and contingency never lower the selection score).**
+The pool contains the single-reading and averaged-game plans, so its best
+`Ū` is at least theirs. A plan that ignores the opponent's response is a
+contingent tree with identical branches, so the best tree's `V` is at least
+the best plan's. *Use and limit:* both are scores on estimated games, and the
+larger pool raises the winner's-curse bias (A5 with larger `N`); gains are
+claimed only on fresh re-scoring and on true `U`.
+
 **Measure (not a theorem): embedding effect.**
 `L̂ = max_{P′} D(σ(P), σ(P′)) / d_emb(P, P′)` and `corr(D, d_emb)`. Ideal:
 `D ≡ 0`. Report per stage (game, plan, advisor).
@@ -328,6 +374,10 @@ need fewer.
   (Prop. A2).
 - **S4 Certificate validity.** How often Corollary A4′ holds, and whether
   certified plans are in fact stable on fresh rewordings.
+- **S5 Strategy menu.** On generated games: number of distinct plans with
+  true `U ≥ α · U*`; coverage of the Pareto-efficient deals; true `U` of the
+  best menu item and of the contingent tree, for rewording × K versus B2 and
+  B9 at equal compute.
 
 ### 8.2 Hypotheses
 - **H1 (brittleness exists):** a single-reading pipeline changes its plan
@@ -341,6 +391,10 @@ need fewer.
   single reading, and versus same-text resampling × K.
 - **H5 (planner helps):** the planner pipeline is less brittle than an
   LLM-only advisor.
+- **H6 (menu):** pooling across rewordings yields more distinct near-optimal
+  plans than same-text resampling × K (B2) or sampling `G_opp` directly
+  (B9), with equal or better true utility; the contingent tree beats the best
+  single plan when readings split into types.
 
 ### 8.3 Baselines (compute-matched)
 | ID | Condition |
@@ -352,12 +406,18 @@ need fewer.
 | B4 | Random-noise perturbation × K (matched `d_emb`) |
 | B7 | Planner on single-reading `Ĝ`, no LLM advisors |
 | B8 | LLM advisors only, no planner |
+| B9 | Planner over `K` samples of `G_opp` drawn from the single-reading `π(G_opp)`, with the same pooling and contingent tree; no rewording |
 | **A** | Rewording × K + planner + advisors + aggregator |
+
+B9 is the hardest control for H4 and H6. If rewording helps only because it
+widens the estimate of the opponent's column, sampling that column directly
+should do as well.
 
 ### 8.4 Metrics
 Plan-change rate; archetype flip rate; `L̂`; L1 in `G`; Benac goal/action
 similarity; our utility and regret on generated games; agreement rate;
-walk-aways below BATNA; certificate coverage; ethics-flag stability.
+walk-aways below BATNA; certificate coverage; ethics-flag stability;
+menu size at `α`; Pareto coverage; contingent-tree gain over best plan.
 
 ### 8.5 Statistics
 Paired designs, mixed-effects (condition fixed; pack, opponent random),
@@ -371,6 +431,8 @@ bootstrap 95% CIs, Holm–Bonferroni, ≥ 3 seeds.
 | Rewordings secretly change meaning (Assumption M fails) | NLI both ways + hard-fact freeze + 5% human check; report as upper bound |
 | Rewording changes game *structure* (new/missing goals) | Report structure stability separately; A4′ applies only when structure matches |
 | Aggregation helps only as much as resampling | That is a valid finding (H4 false); report it |
+| Larger candidate pool inflates scores (winner's curse) | Select on `Ū`, report on fresh rewordings/episodes and true `U` (A5, A7) |
+| Probing offer is binding and costs value | Planner prices it: the tree is used only if `V(τ)` beats the best single plan |
 | Judge bias | Programmatic scoring on generated games; cross-family judge |
 | Cost | Prompt-hash cache; small `K` pilots |
 
@@ -383,9 +445,9 @@ bootstrap 95% CIs, Holm–Bonferroni, ≥ 3 seeds.
 | 1 | Repo skeleton, schemas, LLM client + cache, extractor + atomiser | Sim 1/2 extract; quotes 100% verified |
 | 2 | Game builder; Sim 2 game; Benac generator + game→text renderer | Rendered package round-trips to same `G` |
 | 3 | Planner (exact) + trade-off table + margins; rewording engine + filter | ≥ 95% of accepted rewordings human-judged meaning-preserving |
-| 4 | Advisors, aggregator, opponents, judge | Full episode runs end to end |
+| 4 | Advisors, aggregator with pooling + contingent tree, opponents, judge | Full episode runs end to end; contingent tree matches brute force on a small game |
 | 5 | S1 + S2 | Brittleness-by-stage table, `D` vs `d_emb` plots |
-| 6 | S3 + S4 | Aggregation vs resampling with CIs; certificate coverage |
+| 6 | S3 + S4 + S5 | Aggregation vs resampling with CIs; certificate coverage; menu vs B2/B9 |
 | 7 | Freeze + exercise pipeline (brief ≤ 6 min) | 10/10 timed dry runs |
 | 8 | Write-up | Reproduce headline numbers |
 
@@ -394,7 +456,9 @@ bootstrap 95% CIs, Holm–Bonferroni, ≥ 3 seeds.
 ## 11. What this plan can and cannot claim
 - **Can:** quantify wording brittleness at each stage; give a provable
   stability certificate in `G` space; show whether aggregating rewordings
-  beats resampling.
+  beats resampling; produce a larger menu of robust plans and contingent
+  strategies for the package as written.
 - **Cannot:** say whether advice responds correctly when facts *really*
-  change, or discover strategies for situations not in the package. That is
-  Plan B.
+  change, or discover strategies for situations not in the package. New
+  plans in Plan A come from search over readings, not from new information.
+  That is Plan B.

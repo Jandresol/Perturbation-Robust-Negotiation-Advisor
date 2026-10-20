@@ -63,6 +63,18 @@ plan do not change either. **Any change in the advice is therefore an error
 caused by wording.** This gives us a clean test that needs no ground-truth
 labels: the right answer is always "no change".
 
+**The readings also generate strategies.** Each rewording yields a slightly
+different estimate of the game, so the `K` readings act as `K` plausible
+versions of the same negotiation. We:
+- pool the best plan from every reading and keep those that score well
+  across *all* readings;
+- where readings disagree about what the opponent values, build a
+  **contingent strategy**: a probing first offer, then a different plan
+  depending on whether they accept.
+
+This adds strategies without adding information, so it stays within the
+rewording-only scope.
+
 > **Why rewording first?** It fits the ~8-week timeline, it needs no
 > ground truth on real packages, and every piece of it is reused later when we
 > move to fact-changing (counterfactual) perturbations in Plan B (§15).
@@ -72,8 +84,9 @@ flowchart TD
     P["Package P<br/>shared docs + our role card"] --> R["Rewording engine<br/>K accepted rewordings P'₁..P'ₖ"]
     R --> X["Extractor + game builder (LLM)<br/>Ĝ₁..Ĝₖ"]
     X --> PL["Planner (non-LLM)<br/>plans σ₁..σₖ + acceptance margins"]
-    PL --> ADV["Strategic + ethics advisors (LLM)<br/>review, flag, veto"]
-    ADV --> AGG["Aggregator<br/>brief + strategy menu + stability label"]
+    PL --> ADV["Strategic + ethics advisors (LLM)<br/>review, flag, veto, propose grounded options"]
+    ADV --> AGG["Aggregator<br/>pool plans → re-score on all readings → contingent tree"]
+    AGG --> OUT["Brief<br/>strategy menu + stability label"]
     AGG -. scored in simulation .-> SIM["Opponent simulators + judge"]
 ```
 
@@ -88,6 +101,9 @@ flowchart TD
 > **(b)** Does aggregating over rewordings produce better and more stable
 > strategies than a single reading at equal compute, and better than simply
 > resampling the same text?
+> **(c)** Does pooling plans across rewordings give a larger menu of robust,
+> near-optimal strategies, including contingent ones, than resampling or
+> sampling the opponent's values directly?
 
 | ID | Hypothesis | Why we expect it |
 |---|---|---|
@@ -96,6 +112,7 @@ flowchart TD
 | **H3** Where it enters | Most plan changes come from errors in the opponent's column `Ĝ_opp` near acceptance thresholds. | Predicted by Props. A3–A4 (§8): errors in our own column have bounded cost; errors in theirs can flip an accept into a reject. |
 | **H4** Aggregation helps | Rewording × K lowers regret and instability versus a single reading **and** versus same-text resampling × K. | Prop. A2: averaging removes variance, and it removes more when the readings are less correlated. |
 | **H5** The planner helps | The planner pipeline is less brittle than an LLM-only advisor. | The planner is deterministic given `Ĝ`, so wording can only enter through the game, not through free-form reasoning. |
+| **H6** A better menu | Pooling across rewordings yields more distinct near-optimal plans than same-text resampling (B2) or sampling `G_opp` directly (B9), with equal or better true utility. When readings split into opponent types, the contingent strategy beats the best single plan. | Different readings misread different parts of the game, so their plans cover more of the good deals; re-scoring across readings filters out plans that only win on one misreading. |
 
 A negative result on any of these is still reportable. For example, if
 rewording helps no more than resampling (H4 false), that is a useful finding
@@ -208,6 +225,26 @@ U(\sigma) = r_{\mathrm{us}}(\sigma;\, \mathfrak{G}^*)
 **Brittleness** is any dependence of `σ` or `U(σ)` on which `P′ ∈ [P]` was
 read.
 
+**Cross-reading score.** When the true game is unknown, a plan is scored on
+every reading's game. The worst case `min_k r_us(σ; Ĝ_k)` is reported
+alongside it.
+
+```math
+\bar U(\sigma) = \frac{1}{K}\sum_{k=1}^{K} r_{\mathrm{us}}(\sigma;\, \hat G_k)
+```
+
+On generated games we *select* with `Ū` and *report* the true `U`.
+
+**Opponent types from readings.** Cluster the `K` estimates `Ĝ_opp,k` into
+`m ≤ 3` types `θ_1..θ_m`, with weights `w_j` equal to the share of readings
+in each type. A **contingent strategy** `τ` is a short decision tree: an
+opening offer, then one branch per response, each branch planned for the
+types consistent with that response. Its value is:
+
+```math
+V(\tau) = \sum_{j=1}^{m} w_j\, r_{\mathrm{us}}(\tau;\, \theta_j)
+```
+
 ---
 
 ## 5. From package to game
@@ -284,19 +321,39 @@ of non-zero-sum trade the system is meant to find.
 | Planner | non-LLM | Exact search over commitment sequences for small games; MCTS with Benac value estimates for larger ones. Outputs the plan, the trade-off table, and the margin of every offer (Prop. A4). |
 | Strategic advisor | LLM | Reviews the plan for things `G` leaves out (relationships, reputation, context). Writes the brief. |
 | Ethics advisor | LLM | Flags moves against humanitarian principles and do-no-harm; can veto. |
-| Aggregator | non-LLM | Combines the `K` readings (below). |
+| Aggregator | non-LLM | Combines the `K` readings and generates the strategy menu (below). |
 | Opponent simulators + executor | planner and LLM | Planner opponents and LLM opponents from at least 2 model families play the plan turn by turn, for scoring. |
 | Judge | code, then LLM | Scores programmatically from the true `G` where we have it. For unscored packs, an LLM judge from a different model family than the advisors, run with the order swapped and calibrated against human ratings. |
 
-**How the aggregator combines `K` readings.**
-- **Game level:** average `Ĝ` over rewordings (when their structure matches),
-  then plan once.
-- **Plan level:** majority vote over plan archetypes, reporting the agreement
-  rate.
-- **Stability label:** the plan is labelled "stable" if Corollary A4′'s
-  certificate holds for all `K` readings.
-- **Menu:** 3–5 plans chosen to be as different as possible while each scores
-  at least `α · max U` (constrained diversity, Braun et al. 2026).
+**How the aggregator builds the strategy menu.**
+
+1. **Averaged game.** Average `Ĝ` over rewordings (when their structure
+   matches), then plan once. This plan is always a candidate.
+2. **Pool.** Add each reading's own best plan `σ_k`.
+3. **Structural alternatives.** Where readings disagree on the actions or on
+   what a goal requires, plan on each version. Label the plan with the
+   ambiguous passage, e.g. *"if 'joint distribution' means co-signing
+   manifests rather than co-staffing, a cheaper deal exists."*
+4. **Contingent strategy.** If the readings' `Ĝ_opp` split into more than one
+   opponent type (§4), the planner builds the decision tree `τ`: a probing
+   opening offer whose accept or reject tells us which type we face, then
+   the best plan for that type.
+5. **Advisor ideas.** Advisors reading different rewordings propose extra
+   options (sequencing, packaging, side guarantees). A new action is
+   accepted only with a quote from the package. It then goes back through
+   the game builder and is scored by the planner. Ideas that need new facts
+   belong to Plan B.
+6. **Re-score.** Score every candidate on every reading (`Ū` and worst
+   case). Drop candidates that only win on their own reading.
+7. **Menu.** Choose 3–5 candidates that are as different as possible while
+   each scores at least `α · max Ū` (constrained diversity, Braun et al.
+   2026). Add the contingent tree if it beats the best single plan.
+8. **Fresh re-scoring.** Recompute the menu's scores on a fresh set of
+   rewordings and episodes before showing or reporting them (Prop. A5).
+
+Each plan also gets a **stability label**: "stable" if Corollary A4′'s
+certificate holds for all `K` readings, with the agreement rate across
+readings.
 
 > **Why a menu and not one answer?** Frontline humanitarian negotiators
 > said they want tools that help them explore options and their risks, not
@@ -419,6 +476,18 @@ episodes separates a true gap `Δ` with probability `1 − δ` (Hoeffding plus a
 union bound). For `Δ = 0.1` and `δ = 0.05`, `n ≈ 876`. Paired designs need
 fewer.
 
+### Remark A7: pooling and contingency never lower the selection score
+
+- The pool contains the single-reading and averaged-game plans, so the best
+  `Ū` in the pool is at least as high as theirs.
+- A plan that ignores the opponent's response is a contingent tree whose
+  branches are identical, so the best tree's `V` is at least the best plan's.
+
+**Use and limit.** Both statements are about scores on *estimated* games,
+and a larger pool increases the winner's-curse bias (A5 with a larger `N`).
+So we claim a gain only after fresh re-scoring, and only on the true `U` of
+generated games.
+
 ### Measure (not a theorem): embedding effect
 
 ```math
@@ -448,6 +517,11 @@ separately for each stage: game, plan and advisor.
   rewording × K. Estimate `ρ` (Prop. A2).
 - **S4 Certificate validity.** How often Corollary A4′ holds, and whether
   certified plans really are stable on fresh rewordings.
+- **S5 Strategy menu.** On generated games, compare rewording × K with B2
+  and B9 at equal compute:
+  - the number of distinct plans with true `U ≥ α · U*`;
+  - their coverage of the Pareto-efficient deals;
+  - the true `U` of the best menu item and of the contingent tree.
 
 ### 9.2 Baselines (all matched on compute)
 
@@ -460,10 +534,16 @@ separately for each stage: game, plan and advisor.
 | B4 | Random-noise perturbation × K at matched `d_emb` |
 | B7 | Planner on a single-reading `Ĝ`, no LLM advisors |
 | B8 | LLM advisors only, no planner |
+| B9 | Planner over `K` samples of `G_opp` drawn from the single-reading `π(G_opp)`, with the same pooling and contingent tree; no rewording (**hardest control**) |
 | **A** | Rewording × K + planner + advisors + aggregator |
 
-IDs are kept from the original combined plan so results stay comparable. B5,
-B6 and B9 belong to Plan B.
+> **Why B9 matters.** If rewording helps only because it widens our estimate
+> of the opponent's values, then sampling those values directly should do
+> just as well. Rewording earns credit for H4 and H6 only if it beats B9,
+> for example by also catching misread game structure.
+
+IDs are kept from the original combined plan so results stay comparable. B5
+and B6 belong to Plan B.
 
 ### 9.3 Metrics
 - **Stability:** plan-change rate; archetype flip rate; `L̂`; L1 distance in
@@ -471,6 +551,9 @@ B6 and B9 belong to Plan B.
   stability.
 - **Outcomes:** our utility and regret on generated games; agreement rate;
   walk-aways below BATNA (should be 0).
+- **Menu:** number of distinct plans within `α` of the best; coverage of
+  Pareto-efficient deals; gain of the contingent tree over the best single
+  plan.
 
 ### 9.4 Statistics
 - Paired designs.
@@ -497,6 +580,7 @@ offline with no time limit.
 - the rewording operators and thresholds;
 - the game builder prompts;
 - the aggregation rule and `K`;
+- the menu settings (`α`, number of opponent types `m`, tree depth);
 - the advisor and ethics prompts.
 
 Nothing is tuned on the test package. The live result is reported as a case
@@ -530,7 +614,7 @@ Final Build/
 │   ├── extract/               ← wraps ../pipeline + atomiser
 │   ├── reword/                ← embedder, operators, acceptance filter, noise control
 │   ├── game/                  ← commitment game, text→game builder, game→text renderer
-│   ├── planner/               ← exact search, MCTS, trade-off table, margins, certificate
+│   ├── planner/               ← exact search, MCTS, trade-off table, margins, certificate, contingent tree
 │   ├── agents/                ← advisors, ethics, opponents, executor, judge, aggregator
 │   ├── eval/                  ← metrics, statistics
 │   └── prompts/               ← all prompts as .md files
@@ -569,9 +653,9 @@ before moving on.
 | 1 | Repo skeleton, schemas, LLM client + cache, extractor + atomiser | Simulations 1 and 2 extract end to end; quotes 100% verified |
 | 2 | Game builder; Simulation 2 game; Benac generator + game→text renderer | A rendered package round-trips to the same `G` |
 | 3 | Planner (exact) + trade-off table + margins; rewording engine + filter | At least 95% of accepted rewordings judged meaning-preserving by a human |
-| 4 | Advisors, aggregator, opponents, judge | A full episode runs end to end |
+| 4 | Advisors, aggregator with pooling + contingent tree, opponents, judge | A full episode runs end to end; the contingent tree matches brute force on a small game |
 | 5 | Studies S1 + S2 | Brittleness-by-stage table; `D` vs `d_emb` plots |
-| 6 | Studies S3 + S4 | Aggregation vs resampling with CIs; certificate coverage |
+| 6 | Studies S3 + S4 + S5 | Aggregation vs resampling with CIs; certificate coverage; menu vs B2 and B9 |
 | 7 | Freeze + exercise pipeline (brief within 6 min) | 10 out of 10 timed dry runs succeed |
 | 8 | Write-up | Headline numbers reproduce |
 
@@ -584,6 +668,8 @@ before moving on.
 | Rewordings secretly change meaning (Assumption M fails) | Two-way NLI + frozen hard facts + 5% human check; report brittleness as an upper bound |
 | Rewording changes the game's *structure* (new or missing goals) | Report structure stability separately; A4′ applies only when structure matches |
 | Aggregation helps only as much as resampling | That is a valid finding (H4 false); report it |
+| A larger candidate pool inflates scores (winner's curse) | Select on `Ū`; report on fresh rewordings and episodes, and on true `U` (A5, A7) |
+| The probing offer is binding and costs value | The planner prices it in: the tree is used only if `V(τ)` beats the best single plan |
 | Judge bias | Programmatic scoring on generated games; judge from a different model family |
 | Cost | Prompt-hash cache; small-`K` pilots first |
 
@@ -594,13 +680,16 @@ before moving on.
 **Can:**
 - quantify wording brittleness at each stage of the pipeline;
 - give a provable stability certificate in `G` space;
-- show whether aggregating over rewordings beats resampling.
+- show whether aggregating over rewordings beats resampling;
+- produce a larger menu of robust plans, including contingent strategies, for
+  the package as written.
 
 **Cannot:**
 - say whether the advice responds *correctly* when facts really change;
 - discover strategies for situations that are not in the package.
 
-Both of those are Plan B.
+New plans in Plan A come from searching across readings, not from new
+information. Strategies for changed facts are Plan B.
 
 ---
 
