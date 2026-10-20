@@ -1106,13 +1106,3 @@ The feature scaling and kernel bandwidth are selected on development data and fr
 
 Match end-to-end calls, tokens, solver evaluations, and wall-time limits; equal budget does not mean every resource is numerically identical, so report each resource. Match menu size and independent quality thresholds. Maintain separate search, shortlist-validation, and held-out evaluation samples. Failure-discovery rate and strategy quality are separate outcomes.
 
-### 24.7 Relationship to CMA-ES
-
-CMA-ES is a continuous black-box optimizer; it is not required for this discrete plan archive. MAP-Elites can use discrete or language-based mutations directly. A later continuous parameterization could use a CMA-based emitter, but would require an explicit vector-to-valid-plan mapping and an evaluation against the simpler mutator. The initial method is quality-diversity search with structured and language mutations, with no CMA-ES dependency.
-
-### References
-
-- Mouret, J.-B., and Clune, J. (2015). *Illuminating search spaces by mapping elites.* https://arxiv.org/abs/1504.04909
-- Samvelyan, M., et al. (2024). *Rainbow Teaming: Open-Ended Generation of Diverse Adversarial Prompts.* https://arxiv.org/abs/2402.16822
-- Friedman, D., and Dieng, A. B. (2023). *The Vendi Score: A Diversity Evaluation Metric for Machine Learning.* https://arxiv.org/abs/2210.02410
-- Hansen, N. *The CMA Evolution Strategy.* https://cma-es.github.io/
