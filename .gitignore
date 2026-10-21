@@ -1,0 +1,19 @@
+# Secrets — never commit
+.env
+.env.example
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Run outputs and LLM cache
+runs/
+build/cache/
+
+# Local-only: Claude instructions, course data, role cards
+CLAUDE.md
+data/**
+!data/**/
+!data/**/.gitkeep
+Rolecard*
