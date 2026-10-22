@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "example-collaboration",
+  "title": "Shared project agreement",
+  "example": true,
+  "parties": { "us": "Team A", "opponent": "Team B" },
+  "role": "Team A representative",
+  "objective": "Agree on a supported exchange of project responsibilities.",
+  "walkAway": "Continue with separate projects if no acceptable exchange is agreed.",
+  "sources": [
+    { "id": "source-1", "title": "Illustrative shared project brief", "text": "Team A can provide a workshop. Team B can provide a review session. Either team may continue with a separate project. Scope and dates require agreement by both teams." }
+  ],
+  "facts": [
+    { "id": "fact-1", "sourceId": "source-1", "text": "Team A can provide a workshop.", "quote": "Team A can provide a workshop." },
+    { "id": "fact-2", "sourceId": "source-1", "text": "Team B can provide a review session.", "quote": "Team B can provide a review session." },
+    { "id": "fact-3", "sourceId": "source-1", "text": "Scope and dates need joint agreement.", "quote": "Scope and dates require agreement by both teams." }
+  ],
+  "actions": [
+    { "id": "a1", "owner": "us", "label": "Provide a workshop", "factId": "fact-1" },
+    { "id": "b1", "owner": "opponent", "label": "Provide a review session", "factId": "fact-2" }
+  ],
+  "strategies": [
+    { "id": "plan-1", "title": "Explore a reciprocal exchange", "opening": "Would a workshop in exchange for a review session meet both teams’ needs?", "fallback": "Clarify scope and dates before committing; keep separate projects as the outside option.", "actionIds": ["a1", "b1"], "redLines": ["Do not commit to unagreed scope or dates."], "assumptions": ["Both teams have authority to agree on project responsibilities."], "ethicsFlags": ["Illustrative fixture: no advisor review has been performed."], "branches": ["If interested: agree on scope and dates before acceptance.", "If rejected: ask which responsibility or condition prevents agreement."] }
+  ],
+  "variants": [
+    { "id": "reading-1", "factId": "fact-1", "text": "A workshop can be provided by Team A.", "outcome": "unscored", "validation": "Illustrative rewording only. Entailment and hard-fact checks have not been run.", "effect": "No game or plan comparison supplied." }
+  ],
+  "pipeline": [
+    { "status": "complete", "detail": "Illustrative source text supplied" },
+    { "status": "complete", "detail": "Manually authored facts; quotes match source" },
+    { "status": "pending" }, { "status": "pending" }, { "status": "pending" }, { "status": "pending" }, { "status": "pending" }
+  ]
+}

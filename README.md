@@ -2,6 +2,14 @@
 
 An AI-assisted tool that helps a human team prepare for and participate in a two-team, mixed-motive negotiation. LLMs interpret the scenario and develop options during preparation. During negotiation, a non-LLM planner updates recommendations from confirmed exchanges. Humans make every decision.
 
+## Run the frontend
+
+```sh
+python3 server.py --port 8000
+```
+
+Open http://localhost:8000. Choose **Upload documents** to read a mixed batch of PDF and DOCX source documents, import a package JSON, or choose **Explore example workspace** to try preparation, strategy selection, confirmed negotiation events, and research inspection. The example is illustrative. The local Python server supplies the HUIT source-analysis API and persistent SQLite cache; PDF and DOCX text extraction runs in the browser. Preparation opens on a printable brief and critical sources, with no sentence-approval queue. Upload first using the optional shared/specific/role-card buckets. Analyze the files to infer editable roles and document summaries, tags, claims, and arguments. Connect the package-to-game and rewording services for baseline game inference and bounded planning; source corrections remain optional and targeted. Semantic model inference remains with the external engines. See [PIPELINE_INTERFACE.md](PIPELINE_INTERFACE.md) for the dataset contract, session handoff, and checks.
+
 ## 1. The idea in one minute
 
 Both teams get the same shared package plus their own private role card. We play one side and want the best outcome for our side. We do not assume the other side has to lose for us to win.
@@ -111,3 +119,11 @@ The classroom exercise evaluates preparation time, operator workload, recommenda
 - [Mouret and Clune (2015): MAP-Elites](https://arxiv.org/abs/1504.04909)
 - [Samvelyan et al. (2024): Rainbow Teaming](https://arxiv.org/abs/2402.16822)
 - [Friedman and Dieng (2023): Vendi score](https://arxiv.org/abs/2210.02410)
+
+Source inference configuration: put the course key in `.env` as `HUIT_API_KEY` (the existing `ANTHROPIC_API_KEY` name is accepted for compatibility). See `.env.example` for model/provider settings. The default is HUIT OpenAI Direct v2 with `gpt-4.1-mini`; Bedrock Claude is also supported by configuration. Restart the Python server after changes. Analysis records live in ignored `.data/analysis.sqlite`, survive restarts, and are invalidated by text, scope, model, prompt/schema version changes. See [schemas/source-analysis.example.json](schemas/source-analysis.example.json) for the response shape.
+
+
+For an end-to-end integration test before peer services are available, open **Pipeline settings → Use local reference engines**, then **Preparation brief → Build strategy options**. Newly uploaded packages default to these local engines. They make no network/model calls. The reference game models reciprocal confirmation of source interpretations using explicitly illustrative utilities; it is not a calibrated model of the real negotiation. Edit its labels, owners, weights and forbidden actions in Pipeline settings. The bounded wording engine targets K = 128 distinct rule-based wording substitutions and re-plans each resulting reference game; semantic entailment and ethics certification remain unimplemented. Formatting controls are unscored and excluded from stable/sensitive/changed totals. The original baseline is retained. External peer endpoints can replace either local engine.
+
+
+The local wording generator now targets **128 distinct wording substitutions**, using bounded phrase rules and combinations, with numbers, known entity names, and listed modal/negation tokens checked. It no longer fills the target with formatting controls. Insufficient inputs produce an explicit shortfall. Existing saved controls remain distinguishable in Research until the run is regenerated. These candidates still require semantic entailment/audit; comparing them with a category-based reference game does not establish semantic robustness. No model calls are made by local generation.
