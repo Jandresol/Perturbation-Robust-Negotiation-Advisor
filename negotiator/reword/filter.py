@@ -12,6 +12,8 @@ _NUMBER = re.compile(r"\d[\d,]*(?:\.\d+)?")
 _CAPITALISED = re.compile(r"[A-Z][\w'’-]*")
 _PERCENT = re.compile(r"\s*(?:per ?cent|percent)\b", re.I)
 _LIST_MARKER = re.compile(r"^\s*\d+[.)]\s", re.M)   # "1. " at a line start is formatting
+_I_CONTRACTION = re.compile(r"I['’](m|ll|ve|d)$")   # "I'm", "I'll": not names
+_CLAUSE_START = set(":;-–—…|.!?")
 # "one" is left out: it is usually a pronoun ("one of the highest", "no one").
 _WORD_NUMBERS = {w: str(i) for i, w in enumerate(
     "zero _ two three four five six seven eight nine ten eleven twelve thirteen "
@@ -49,12 +51,15 @@ def _names(text: str, common: set) -> tuple[set, set]:
         title = _is_title_case(sent)
         for m in _CAPITALISED.finditer(sent):
             tok = re.sub(r"['’]s$", "", m.group()).rstrip("-")
-            if len(tok) < 2 or tok.lower() in common or tok.lower() in _WORD_NUMBERS:
+            if (len(tok) < 2 or tok.lower() in common or tok.lower() in _WORD_NUMBERS
+                    or _I_CONTRACTION.match(tok)):
                 continue
             if title and not _is_acronym(tok):
                 continue
             every.add(tok)
-            if sent[: m.start()].strip(" \"'“‘(-–—"):
+            # A word right after a speaker label, dash, ellipsis or "|" starts a clause.
+            before = sent[: m.start()].rstrip(" \"'“‘(")
+            if before and before[-1] not in _CLAUSE_START:
                 inner.add(tok)
     return inner, every
 

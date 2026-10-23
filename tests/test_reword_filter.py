@@ -68,3 +68,12 @@ def test_hard_facts_ignores_title_case_and_common_words():
                 "Once nine months had passed, the staff were held. The road was blocked by tribespeople.")
     assert accept.hard_facts_ok(original, reworded)
     assert not accept.hard_facts_ok(original, reworded.replace("(HfA)", "(WHO)"))
+
+
+def test_hard_facts_transcripts_and_logs():
+    original = ("Militia Leader: Tell FWB I’m not moving. Got it? So we wait — Then we act.\n"
+                "001 1 May 11:16 | Man from Compound 2 found with matches.")
+    reworded = ("Militia Leader: Let FWB know I'll stay put. Understood? We wait — Next we act.\n"
+                "001 1 May 11:16 | Unauthorized matches found on a man from Compound 2.")
+    assert accept.hard_facts_ok(original, reworded)
+    assert not accept.hard_facts_ok(original, reworded.replace("FWB", "MASHA"))
