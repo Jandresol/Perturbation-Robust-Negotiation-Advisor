@@ -6,7 +6,7 @@ function rawProcessingNotice(){
 }
 function updateRawProcessing(status){rawProcessingStatus=status;const el=document.getElementById('raw-processing-status');if(el)el.innerHTML=rawProcessingNotice();}
 function sourceProcessingNotice(){
- if(sourceInferenceBusy)return `<section class="source-processing-banner" role="status"><p>Sources are processing. Browse the extracted text while you wait.</p>${state.view==='sources'?'':'<button type="button" class="btn" data-view="sources">Read sources</button>'}</section>`;
+ if(sourceInferenceBusy)return `<section class="source-processing-banner" role="status"><p>Sources are processing. Browse the extracted text while you wait.</p>${state.view==='sources'?'':'<button type="button" class="btn btn-primary" data-view="sources">Read sources</button>'}</section>`;
  return inferenceNotice?.packageId===state.package?.id&&inferenceNotice?.status==='complete'?'<div class="source-success" role="status">✓ Source processing complete. Your summaries and preparation brief are ready to review.</div>':'';
 }
 function openRawSources(sources){
