@@ -102,6 +102,9 @@ def entailment(premise: str, hypothesis: str, cfg: dict) -> float:
     and longer runs cover a rewording that merged or split sentences.
     """
     model, entail_idx = _nli(cfg["nli_model"])
+    # The cross-encoder reads two sentences that both end in "…" as neutral, even
+    # identical ones (0.002); "..." scores like a full stop. Normalise for NLI only.
+    premise, hypothesis = premise.replace("…", "..."), hypothesis.replace("…", "...")
     prem = sentences(premise)
     windows = [" ".join(prem[i:i + w]) for w in range(1, cfg["window_sentences"] + 1)
                for i in range(len(prem) - w + 1)] or [premise]

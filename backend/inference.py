@@ -8,9 +8,20 @@ import threading
 import time
 import urllib.error
 import urllib.request
+from contextlib import nullcontext
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeout
 from pathlib import Path
 
 VERSION = 'source-analysis-v2'
+# Model calls in flight at once. Each waits on the gateway, not the CPU.
+PARALLEL_CALLS = 6
+# Seconds to wait for one response. Opus 5.5 takes 60-90 s for a long document's
+# 4-8k output tokens, and a timed-out generation is still billed.
+GATEWAY_TIMEOUT = 180
+# Several long generations at once stalled the gateway past GATEWAY_TIMEOUT on Sim 2,
+# so at most 3 requests with prompts over ~2k tokens (role cards, minutes) are in flight.
+LONG_PROMPT_CHARS = 8000
+LONG_CALLS = threading.BoundedSemaphore(3)
 DOCUMENT_SCHEMA = {
     'document_type': 'report | meeting_minutes | article | correspondence | role_card | instructions | other',
     'summary': 'at most 100 words, attributed and factual',
@@ -93,6 +104,7 @@ class AnalysisService:
         Path(database).parent.mkdir(parents=True, exist_ok=True)
         self.transport = transport or self._request
         self.lock = threading.Lock()
+        self.key_locks = {}
         with self._db() as db:
             db.execute('CREATE TABLE IF NOT EXISTS artifacts (key TEXT PRIMARY KEY, kind TEXT, value TEXT, created REAL)')
             db.execute('CREATE TABLE IF NOT EXISTS gateway_responses (key TEXT PRIMARY KEY, value TEXT, created REAL)')
@@ -137,7 +149,10 @@ class AnalysisService:
         elif self.provider == 'bedrock':
             from urllib.parse import quote
             url = 'https://apis.huit.harvard.edu/ais-bedrock-llm/v2/model/' + quote(self.model, safe='.:') + '/invoke'
+            # Thinking tokens count against max_tokens and current Claude models always think;
+            # low effort (as in configs/default.yaml) keeps them from crowding out the JSON.
             body = {'anthropic_version': 'bedrock-2023-05-31', 'max_tokens': output_budget, 'system': system,
+                    'output_config': {'effort': 'low'},
                     'messages': [{'role': 'user', 'content': [{'type': 'text', 'text': prompt}]}]}
             header = 'x-api-key'
         else:
@@ -151,8 +166,7 @@ class AnalysisService:
             if saved:
                 result = json.loads(saved[0])
             else:
-                with urllib.request.urlopen(request, timeout=75) as response:
-                    result = json.load(response)
+                result = self._send(request, len(prompt) > LONG_PROMPT_CHARS)
                 with self._db() as db:
                     db.execute('INSERT OR REPLACE INTO gateway_responses VALUES (?,?,?)', (request_key, json.dumps(result), time.time()))
                     usage = result.get('usage', {})
@@ -185,11 +199,28 @@ class AnalysisService:
         except (KeyError, TypeError, ValueError):
             raise InferenceError('The model returned incomplete or invalid JSON. The gateway response was saved locally; repeating this request will not make another model call.') from None
 
+    @staticmethod
+    def _send(request, long):
+        """POST, retrying once after a timeout (the gateway stalls intermittently)."""
+        for attempt in range(2):
+            try:
+                with LONG_CALLS if long else nullcontext():
+                    with urllib.request.urlopen(request, timeout=GATEWAY_TIMEOUT) as response:
+                        return json.load(response)
+            except TimeoutError:
+                if attempt:
+                    raise
+
+    def _key_lock(self, key):
+        with self.lock:
+            return self.key_locks.setdefault(key, threading.Lock())
+
     def artifact(self, kind, inputs, schema, validator):
         cache_key = digest({'scope': os.environ.get('CACHE_SCOPE', 'local-project'), 'version': VERSION,
                             'provider': self.provider, 'model': self.model, 'kind': kind, 'schema': schema, 'inputs': inputs})
         # Serialize identical requests, including concurrent uploads, before cache miss/model call.
-        with self.lock:
+        # Different requests run concurrently.
+        with self._key_lock(cache_key):
             with self._db() as db:
                 row = db.execute('SELECT value FROM artifacts WHERE key=?', (cache_key,)).fetchone()
             if row:
@@ -302,6 +333,33 @@ class AnalysisService:
         return {'sourceId': source['id'], 'documentId': f'doc-{text_hash}', 'textHash': text_hash,
                 'cacheHit': hit, 'analysisKey': key, 'analysis': {**analysis, 'claims': claims, 'arguments': arguments}}
 
+    def documents(self, sources, emit, deadline):
+        """Extract every source concurrently; results keep the sources' order.
+
+        Past the deadline, calls still in flight finish in the background and are
+        cached, so a retry resumes without reprocessing them."""
+        emit_lock = threading.Lock()
+        def send(event):
+            with emit_lock:
+                emit(event)
+        def one(source):
+            send({'type':'source', 'sourceId':source['id'], 'status':'running'})
+            try:
+                document = self.document(source)
+            except InferenceError as exc:
+                send({'type':'source', 'sourceId':source['id'], 'status':'failed'})
+                title = str(source.get('title') or source.get('id') or 'Untitled document')[:200]
+                raise InferenceError(f'{title}: {exc}') from None
+            send({'type':'source', 'sourceId':source['id'], 'status':'complete', 'cacheHit':document['cacheHit'], 'claims':len(document['analysis']['claims']), 'limitations':len(document['analysis']['limitations'])})
+            return document
+        pool = ThreadPoolExecutor(max_workers=PARALLEL_CALLS)
+        futures = [pool.submit(one, source) for source in sources]
+        pool.shutdown(wait=False)
+        try:
+            return [future.result(timeout=max(0, deadline - time.monotonic())) for future in futures]
+        except FutureTimeout:
+            raise InferenceError('Preparation parsing reached its time budget. Completed document analyses are cached; retry to resume without reprocessing them.') from None
+
     def parse(self, package, on_progress=None):
         emit = on_progress or (lambda event: None)
         sources = package.get('sources')
@@ -309,20 +367,7 @@ class AnalysisService:
             raise InferenceError('Supply 1–30 readable source documents.')
         if len({s.get('id') for s in sources}) != len(sources):
             raise InferenceError('Source IDs must be unique.')
-        deadline = time.monotonic() + 210
-        documents = []
-        for source in sources:
-            if time.monotonic() >= deadline:
-                raise InferenceError('Preparation parsing reached its time budget. Completed document analyses are cached; retry to resume without reprocessing them.')
-            emit({'type':'source', 'sourceId':source['id'], 'status':'running'})
-            try:
-                document = self.document(source)
-                documents.append(document)
-                emit({'type':'source', 'sourceId':source['id'], 'status':'complete', 'cacheHit':document['cacheHit'], 'claims':len(document['analysis']['claims']), 'limitations':len(document['analysis']['limitations'])})
-            except InferenceError as exc:
-                emit({'type':'source', 'sourceId':source['id'], 'status':'failed'})
-                title = str(source.get('title') or source.get('id') or 'Untitled document')[:200]
-                raise InferenceError(f'{title}: {exc}') from None
+        documents = self.documents(sources, emit, time.monotonic() + 210)
         # Duplicate extracted texts share claim IDs; prefer our role-specific source for provenance.
         unique_facts = {}
         priorities = {s['id']: {'role_card':3,'specific':2,'shared':1}.get(s.get('category'),0) for s in sources}

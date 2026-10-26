@@ -14,12 +14,18 @@ PROHIBITION = re.compile(
     r"\b(must not|shall not|cannot|prohibited|red line|non-negotiable|not authorized|do not)\b",
     re.I,
 )
+# "Scope and dates need agreement from both teams" is a condition on the deal, not a move.
+AGREEMENT = re.compile(r"\b(agree(?:d|ment)?|approv\w*|consent|sign[- ]off)\b", re.I)
+JOINT = re.compile(r"\b(both|each|all|joint(?:ly)?|mutual(?:ly)?)\b", re.I)
+# Our role card and private briefs are about our own options; read them first.
+SOURCE_PRIORITY = {"role_card": 0, "specific": 1}
 
 ASSUMPTIONS = [
     "Commitments are binding and additive.",
     "Utilities are estimates from who gives each commitment: ours costs us and benefits them, theirs does the reverse, and taking both adds joint value.",
     "The extra opponent column lowers that joint value. It is a sensitivity check, not a measured opponent type.",
     "Confirmed red lines are forbidden actions. Other constraints stay as text for the team.",
+    "Facts about third parties, stated worries and joint-agreement requirements stay as evidence, not actions.",
 ]
 
 
@@ -140,10 +146,15 @@ def _actions(facts, sources, parties):
             continue
         if category not in ACTION_CATEGORIES and category != "goal":
             continue
+        if fact.get("force") in ("concern", "approval_requirement") or (AGREEMENT.search(fact["text"]) and JOINT.search(fact["text"])):
+            continue
+        if _subject_owner(fact, parties) == "third":
+            continue
+        priority = SOURCE_PRIORITY.get((by_id.get(fact["sourceId"]) or {}).get("category"), len(SOURCE_PRIORITY))
         rank = ACTION_CATEGORIES.index(category) if category in ACTION_CATEGORIES else len(ACTION_CATEGORIES)
-        ranked.append((rank, index, fact, category))
-    ranked.sort(key=lambda item: (item[0], item[1]))
-    chosen = [item for item in ranked if item[3] in ACTION_CATEGORIES][:MAX_ACTIONS]
+        ranked.append((priority, rank, index, fact, category))
+    ranked.sort(key=lambda item: item[:3])
+    chosen = [item for item in ranked if item[4] in ACTION_CATEGORIES][:MAX_ACTIONS]
     if len(chosen) < 2:
         for item in ranked:
             if item in chosen:
@@ -154,7 +165,7 @@ def _actions(facts, sources, parties):
     chosen = chosen[:MAX_ACTIONS]
     counts = {"us": 0, "opponent": 0}
     actions = []
-    for _, _, fact, _category_name in chosen:
+    for _, _, _, fact, _category_name in chosen:
         owner = _owner(fact, by_id.get(fact["sourceId"]), parties, counts)
         counts[owner] += 1
         actions.append({
@@ -167,6 +178,9 @@ def _actions(facts, sources, parties):
 
 
 def _owner(fact, source, parties, counts):
+    subject = _subject_owner(fact, parties)
+    if subject in ("us", "opponent"):
+        return subject
     text = fact["text"]
     us = _mentions(parties["us"], text)
     opponent = _mentions(parties["opponent"], text)
@@ -178,6 +192,39 @@ def _owner(fact, source, parties, counts):
     if private:
         return "us"
     return "us" if counts["us"] <= counts["opponent"] else "opponent"
+
+
+def _subject_owner(fact, parties):
+    """Who the extractor says the fact is about: "us", "opponent", "third", or None without a subject field.
+
+    Party names also match their initials ("CC" for Camp Commander, "Food without
+    borders" for FWB). An extracted fact with an empty subject has an unknown actor,
+    so it is not a move for either side unless its text names exactly one party."""
+    if "subject" not in fact:
+        return None
+    subject = fact["subject"]
+    if not isinstance(subject, str) or not subject.strip():
+        us, opponent = _mentions(parties["us"], fact["text"]), _mentions(parties["opponent"], fact["text"])
+        return ("us" if us else "opponent") if us != opponent else "third"
+    us, opponent = _names_party(parties["us"], subject), _names_party(parties["opponent"], subject)
+    if us != opponent:
+        return "us" if us else "opponent"
+    return None if us else "third"
+
+
+def _aliases(name):
+    words = re.findall(r"[A-Za-z]+", name)
+    found = {name.strip().lower()}
+    if len(words) > 1:
+        found.add("".join(word[0] for word in words).lower())
+    return found
+
+
+def _names_party(name, subject):
+    party, other = _aliases(name), _aliases(subject)
+    return bool(party & other) or any(
+        len(alias) >= 2 and re.search(rf"\b{re.escape(alias)}\b", subject.lower()) for alias in party
+    )
 
 
 def _mentions(name, text):

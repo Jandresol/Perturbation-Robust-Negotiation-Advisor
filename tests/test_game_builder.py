@@ -71,6 +71,27 @@ class GameBuilderTests(unittest.TestCase):
             self.assertIn(fact["quote"], package["sources"][0]["text"])
         self.assertEqual(result["strategies"][0]["fallback"], "Continue current operations.")
 
+    def test_extracted_subjects_set_owners_and_filter_non_moves(self):
+        # Shaped like Sim 2 extraction: subjects use initials, third parties and worries appear first.
+        shared = ("SML says he is trusting CC with the task. CC says the generator is on its last legs. "
+                  "Dates need agreement from both teams. Food without borders can bring two trucks of rice.")
+        role = "You can offer FWB escorted access to compound E."
+        package = {
+            "id": "sim-like", "parties": {"us": "Camp Commander", "opponent": "FWB"},
+            "sources": [{"id": "shared", "text": shared, "category": "shared"},
+                        {"id": "role", "text": role, "category": "role_card"}],
+            "facts": [
+                {"id": "f1", "sourceId": "shared", "text": "SML says he is trusting CC with the task.", "quote": "SML says he is trusting CC with the task.", "category": "commitment", "subject": "SML"},
+                {"id": "f2", "sourceId": "shared", "text": "CC says the generator is on its last legs.", "quote": "CC says the generator is on its last legs.", "category": "resource", "subject": "CC", "force": "concern"},
+                {"id": "f3", "sourceId": "shared", "text": "Dates need agreement from both teams.", "quote": "Dates need agreement from both teams.", "category": "timeline"},
+                {"id": "f4", "sourceId": "shared", "text": "Food without borders can bring two trucks of rice.", "quote": "Food without borders can bring two trucks of rice.", "category": "resource", "subject": "Food without borders"},
+                {"id": "f6", "sourceId": "shared", "text": "SML says he is trusting CC with the task.", "quote": "SML says he is trusting CC with the task.", "category": "commitment", "subject": None},
+                {"id": "f5", "sourceId": "role", "text": "You can offer FWB escorted access to compound E.", "quote": role, "category": "commitment", "subject": "CC"},
+            ],
+        }
+        result = respond(package)
+        self.assertEqual([(a["factId"], a["owner"]) for a in result["actions"]], [("f5", "us"), ("f4", "opponent")])
+
     def test_solver_matches_frontend_planner_value(self):
         built = respond(EXAMPLE)
         package = merge(EXAMPLE, built)

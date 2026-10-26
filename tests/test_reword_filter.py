@@ -35,6 +35,14 @@ def test_nli_negation_fails(cfg):
     assert accept.entailment(ORIGINAL, negated, fc) < fc["nli_threshold"]
 
 
+def test_nli_trailing_ellipsis_passes(cfg):
+    # Sim 2 role card: the cross-encoder scored this identical pair 0.002 before normalising "…".
+    fc = cfg["filter"]
+    line = "These are the thoughts on your mind when a new negotiator reaches out from FWB…"
+    assert accept.entailment(line, line, fc) >= fc["nli_threshold"]
+    assert accept.entailment(line, line.replace("reaches out from FWB", "from FWB reaches out"), fc) >= fc["nli_threshold"]
+
+
 def test_check_accepts_paraphrase(cfg):
     result = accept.check(ORIGINAL, PARAPHRASE, cfg["filter"])
     assert result["accepted"], result

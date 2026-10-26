@@ -25,6 +25,37 @@ class InferenceTests(unittest.TestCase):
         claim_id = data['input'][0]['analysis']['claims'][0]['id']
         return {'title': 'Equipment discussion', 'summary': 'Team A and Team B discuss equipment.', 'our_side': 'Team A', 'opponent': 'Team B', 'objective': None, 'outside_option': None, 'red_lines': [], 'issues': [{'text': 'No objective supplied.', 'claim_ids': [claim_id]}]}, (100, 50)
 
+    def test_gateway_timeout_is_retried_once(self):
+        import io
+        from backend import inference
+        reply = {'stop_reason': 'end_turn', 'content': [{'type': 'text', 'text': '{"ok": true}'}], 'usage': {}}
+        outcomes = [TimeoutError(), io.BytesIO(json.dumps(reply).encode())]
+        def urlopen(*args, **kwargs):
+            outcome = outcomes.pop(0)
+            if isinstance(outcome, Exception):
+                raise outcome
+            return outcome
+        with patch.dict(os.environ, {'HUIT_API_KEY': 'test-only-not-real', 'HUIT_PROVIDER': 'bedrock', 'HUIT_MODEL': 'm'}), \
+             patch('urllib.request.urlopen', side_effect=urlopen):
+            self.assertEqual(AnalysisService(self.path)._request('{"task":"x"}')[0], {'ok': True})
+        self.assertFalse(outcomes)
+        with patch('urllib.request.urlopen', side_effect=TimeoutError()) as network:
+            with self.assertRaises(TimeoutError):
+                inference.AnalysisService._send(None, True)
+        self.assertEqual(network.call_count, 2)
+
+    def test_documents_are_extracted_concurrently_in_source_order(self):
+        import time
+        def slow(prompt):
+            time.sleep(0.3)
+            return self.transport(prompt)
+        service = AnalysisService(self.path, slow)
+        sources = [{**self.source, 'id': f's{i}', 'text': f'You represent Team A. Copy {i}.'} for i in range(6)]
+        started = time.monotonic()
+        documents = service.documents(sources, lambda event: None, time.monotonic() + 30)
+        self.assertLess(time.monotonic() - started, 1.2)  # six 0.3 s calls one after another would take 1.8 s
+        self.assertEqual([d['sourceId'] for d in documents], [s['id'] for s in sources])
+
     def test_situation_requires_valid_citations_and_preserves_attribution(self):
         def contextual(prompt):
             value, usage = self.transport(prompt)
