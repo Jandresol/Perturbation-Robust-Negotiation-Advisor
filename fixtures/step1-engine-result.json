@@ -1,0 +1,42 @@
+{
+  "packageId": "example-collaboration",
+  "facts": [
+    {"id": "fact-1", "sourceId": "source-1", "text": "Team A can provide a workshop.", "quote": "Team A can provide a workshop."},
+    {"id": "fact-2", "sourceId": "source-1", "text": "Team B can provide a review session.", "quote": "Team B can provide a review session."},
+    {"id": "fact-3", "sourceId": "source-1", "text": "Scope and dates need joint agreement.", "quote": "Scope and dates require agreement by both teams."}
+  ],
+  "actions": [
+    {"id": "a1", "owner": "us", "label": "Provide a workshop", "factId": "fact-1"},
+    {"id": "b1", "owner": "opponent", "label": "Provide a review session", "factId": "fact-2"}
+  ],
+  "game": {
+    "maxOffers": 2,
+    "maxActionsPerSide": 1,
+    "goals": [
+      {"id": "g-workshop", "type": "all", "actionIds": ["a1"], "usValue": -1, "opponentValue": 2},
+      {"id": "g-review", "type": "all", "actionIds": ["b1"], "usValue": 2, "opponentValue": -1},
+      {"id": "g-joint", "type": "all", "actionIds": ["a1", "b1"], "usValue": 3, "opponentValue": 3}
+    ],
+    "forbiddenActions": [],
+    "assumptions": ["Hand-built example: a workshop traded for a review session."],
+    "opponentReadings": [
+      {"id": "reading-1", "values": {"g-workshop": 2, "g-review": -1, "g-joint": 2}}
+    ]
+  },
+  "strategies": [
+    {
+      "id": "plan-1",
+      "title": "Trade a workshop for a review",
+      "opening": "Team A: Provide a workshop ↔ Team B: Provide a review session",
+      "fallback": "Continue with separate projects if no acceptable exchange is agreed.",
+      "actionIds": ["a1", "b1"],
+      "steps": [["a1", "b1"]],
+      "meanScore": 0.8,
+      "worstScore": 0.6,
+      "assumptions": ["Both commitments are accepted together.", "Scores are estimates on this hand-built game."],
+      "branches": ["If rejected: pause and keep separate projects as the outside option."],
+      "redLines": ["Do not commit to unagreed scope or dates."],
+      "ethicsFlags": ["No ethics review has been run."]
+    }
+  ]
+}
