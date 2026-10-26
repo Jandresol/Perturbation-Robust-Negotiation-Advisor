@@ -1,6 +1,8 @@
 let prepTab = 'overview', docId = null, docPage = 1, docQuery = '', claimFilter = 'pending', claimSource = 'all';
 const categories = ['constraint', 'condition', 'timeline', 'commitment', 'goal', 'resource', 'context'];
 const ENGINE_SETTINGS = 'negotiation-engine-connections-v1';
+const prepScrollPositions={};
+function switchPreparationTab(tab){prepScrollPositions[prepTab]=window.scrollY;if(tab==='documents'){state.view='sources';}else{state.view='prep';prepTab=tab;}save();render();window.scrollTo({top:prepScrollPositions[tab]||0,behavior:'instant'});}
 let prepController = null, prepRunToken = 0, sourceInferenceBusy = false, workspaceInferenceProgress = {};
 function ensurePreparation(p) {
   CaseModel.hydrate(p);
@@ -8,8 +10,9 @@ function ensurePreparation(p) {
   // Legacy sentence suggestions are an optional source index, never a task queue.
   p.preparation.workflowVersion = 2;
   if (!p.preparation.engines) {
-    try { p.preparation.engines = JSON.parse(localStorage.getItem(ENGINE_SETTINGS)) || {game:'builtin:game',perturbation:'builtin:perturbation'}; } catch { p.preparation.engines = {game:'builtin:game',perturbation:'builtin:perturbation'}; }
+    try { p.preparation.engines = JSON.parse(localStorage.getItem(ENGINE_SETTINGS)) || {game:'peer:game',perturbation:'peer:perturbation'}; } catch { p.preparation.engines = {game:'peer:game',perturbation:'peer:perturbation'}; }
   }
+  if(!p.preparation.engines.mode&&p.preparation.engines.game==='builtin:game'&&p.preparation.engines.perturbation==='builtin:perturbation')p.preparation.engines={game:'peer:game',perturbation:'peer:perturbation',mode:'peer'};
   p.pipeline ||= [];
   if (p.sources.length && !p.pipeline[0]) p.pipeline[0] = { status: 'complete', detail: 'Source text read' };
   if (p.pipeline[1]?.detail?.includes('awaiting review')) p.pipeline[1] = { status: p.facts.length ? 'complete' : 'pending', detail: p.facts.length ? 'Source-linked facts available' : 'Waiting for package inference; no manual approval required' };
@@ -17,9 +20,9 @@ function ensurePreparation(p) {
 }
 function preparationWorkspace() {
   const p=state.package;ensurePreparation(p);
-  return `<section class="preparation-workspace"><ol class="preparation-steps" aria-label="Preparation progress">${['Read sources','Prepare brief','Review decisions','Start negotiation'].map((label,i)=>{const step=!p.facts.length?0:!p.sourceAnalysis?.caseAnalysis?.brief&&!p.strategies.some(s=>!s.referenceOnly)?1:state.session?3:2;return `<li class="${i===step?'current':i<step?'complete':''}" ${i===step?'aria-current="step"':''}><span>${i<step?'✓':String(i+1).padStart(2,'0')}</span><div><strong>${label}</strong><small>${i<step?'Complete':i===step?(sourceInferenceBusy?'In progress':'Current step'):'Up next'}</small></div></li>`;}).join('')}</ol>${prepTab!=='overview'?`<div class="prep-back"><button type="button" class="btn" data-prep-tab="overview">← Back to preparation</button></div>`:''}<div class="prep-content">${prepTab==='overview'?overview(p):prepTab==='case'?caseEditor():prepTab==='documents'?documentWorkspace(p):prepTab==='issues'?issuesWorkspace(p):enginesWorkspace(p)}</div></section>`;
+  return `<section class="preparation-workspace">${prepTab!=='overview'?`<button type="button" class="btn" data-prep-tab="overview">← Back to preparation</button>`:''}${prepTab==='overview'?preparationStepWorkspace(p):prepTab==='case'?caseEditor():prepTab==='documents'?documentWorkspace(p):prepTab==='issues'?issuesWorkspace(p):enginesWorkspace(p)}</section>`;
 }
-function citation(p,f){const source=p.sources.find(s=>s.id===f.sourceId);return `<button type="button" class="btn-ghost-link" data-citation-source="${esc(f.sourceId)}" data-citation-page="${f.section||f.page||1}">${esc(source?.title)}${f.section?` · section ${esc(f.section)}`:f.page&&source?.format!=='docx'?` · p. ${esc(f.page)}`:''}</button>`;}
+function citation(p,f){const source=p.sources.find(s=>s.id===f.sourceId);return `<button type="button" class="btn-ghost-link" data-citation-fact="${esc(f.id)}" data-citation-source="${esc(f.sourceId)}" data-citation-page="${f.section||f.page||1}">${esc(source?.title)}${f.section?` · section ${esc(f.section)}`:f.page&&source?.format!=='docx'?` · p. ${esc(f.page)}`:''}</button>`;}
 function briefCitations(p,item){return `<div class="brief-citations">${(item?.claim_ids||[]).map(id=>{const f=p.facts.find(f=>f.id===id);return f?citation(p,f):'';}).join(' ')}</div>`;}
 function adviceEvidence(p,b){
  if(!b.advice?.opening)return '';
@@ -62,17 +65,17 @@ function referenceGameEditor(p){
 }
 function enginesWorkspace(p) {
   const config=p.preparation.engines || {};
-  return `<div class="overview-grid"><section>${card('Local reference engines',`<p>Run the complete pipeline without extra API calls. The game models reciprocal confirmation of source topics with illustrative utilities. It does not infer real concessions or enforce all textual red lines. Edit the generated game below before interpreting scores.</p>${button('use-reference-engines','Use local reference engines',true)}${p.game?.referenceOnly?referenceGameEditor(p):''}`)}${card('Connect your teammates’ engines', `<p>The package-to-game service receives shared documents and our private role card, extracts source-linked facts once, and builds the baseline game. Rewording starts from that fixed fact set. No manual fact approvals are required.</p><form id="engine-config"><label>Game builder endpoint (optional)<input type="url" name="game" value="${esc(config.game || '')}" placeholder="http://localhost:8001/game"></label><label>Perturbation endpoint (optional)<input type="url" name="perturbation" value="${esc(config.perturbation || '')}" placeholder="http://localhost:8002/perturb"></label><button type="submit" class="btn">Save connections</button></form><p class="note-sm">Endpoints receive the package, including documents marked private. Use services authorized for your role information. Services on another port must allow this app’s origin through CORS.</p><div class="row-actions">${button('run-game','Run game builder',true,!config.game || !p.sources.length)}${button('run-perturbation','Run perturbation engine',false,!config.perturbation || !p.actions.length)}</div><div id="engine-status" role="status">${esc(p.preparation.engineStatus || '')}</div>`)}${card('Plan on the supplied game', `<p>Once the game builder provides goals and utilities, the local planner searches commitment sequences and compares them across supplied opponent readings.</p><p>Supports up to 12 actions, four offers, and two new commitments per side per offer. It models accept/reject responses to our offers, rather than a full alternating-proposer equilibrium.</p>${button('run-local-planner','Generate strategy options',true,!p.game || !p.actions.length)}<p id="planner-status" role="status">${esc(p.preparation.plannerReport?.note || '')}</p>`)}${card('File-based handoff', `<p>Without a service endpoint, export sources and available facts and import the engine’s result JSON. No game or rewording results are fabricated by this app.</p><div class="row-actions">${button('handoff','Export package')}${button('import-engine','Import engine result')}</div><input hidden type="file" id="engine-file" accept=".json,application/json">`)}</section><aside>${card('Current artifacts', `<p>${p.facts.length} source-linked facts<br>${p.actions.length} supported actions<br>${p.strategies.length} strategies<br>${p.variants.length} rewording results</p><p>Game-builder result: <code>{packageId, actions, strategies?, game?}</code><br>Perturbation result: <code>{packageId, variants}</code></p><p>All fact and action references must match this package. Failed results leave your current workspace intact.</p>`)}</aside></div>`;
+  return `<div class="overview-grid"><section>${card('Teammates’ engines',`<p>The Python game builder and solver run locally. Rewordings use the configured HUIT model, then local similarity and two-way entailment filters. Paid responses are cached; no automatic retries. Utilities remain heuristic and need review.</p>${button('use-peer-engines','Use teammates’ engines',true)}`)}${card('Local reference engines',`<p>Run the complete pipeline without extra API calls. The game models reciprocal confirmation of source topics with illustrative utilities. It does not infer real concessions or enforce all textual red lines. Edit the generated game below before interpreting scores.</p>${button('use-reference-engines','Use local reference engines',true)}${p.game?.referenceOnly&&p.game?.method!=='peer-heuristic-v1'?referenceGameEditor(p):''}`)}${card('Connect your teammates’ engines', `<p>The package-to-game service receives shared documents and our private role card, extracts source-linked facts once, and builds the baseline game. Rewording starts from that fixed fact set. No manual fact approvals are required.</p><form id="engine-config"><label>Game builder endpoint (optional)<input type="text" name="game" value="${esc(config.game || '')}" placeholder="http://localhost:8001/game"></label><label>Perturbation endpoint (optional)<input type="text" name="perturbation" value="${esc(config.perturbation || '')}" placeholder="http://localhost:8002/perturb"></label><button type="submit" class="btn">Save connections</button></form><p class="note-sm">Endpoints receive the package, including documents marked private. Use services authorized for your role information. Services on another port must allow this app’s origin through CORS.</p><div class="row-actions">${button('run-game','Run game builder',true,!config.game || !p.sources.length)}${button('run-perturbation','Run perturbation engine',false,!config.perturbation || !p.actions.length)}</div><div id="engine-status" role="status">${esc(p.preparation.engineStatus || '')}</div>`)}${card('Plan on the supplied game', `<p>Once the game builder provides goals and utilities, the local planner searches commitment sequences and compares them across supplied opponent readings.</p><p>Supports up to 12 actions, four offers, and two new commitments per side per offer. It models accept/reject responses to our offers, rather than a full alternating-proposer equilibrium.</p>${button('run-local-planner','Generate strategy options',true,!p.game || !p.actions.length)}<p id="planner-status" role="status">${esc(p.preparation.plannerReport?.note || '')}</p>`)}${card('File-based handoff', `<p>Without a service endpoint, export sources and available facts and import the engine’s result JSON. No game or rewording results are fabricated by this app.</p><div class="row-actions">${button('handoff','Export package')}${button('import-engine','Import engine result')}</div><input hidden type="file" id="engine-file" accept=".json,application/json">`)}</section><aside>${card('Current artifacts', `<p>${p.facts.length} source-linked facts<br>${p.actions.length} supported actions<br>${p.strategies.length} strategies<br>${p.variants.length} rewording results</p><p>Game-builder result: <code>{packageId, actions, strategies?, game?}</code><br>Perturbation result: <code>{packageId, variants}</code></p><p>All fact and action references must match this package. Failed results leave your current workspace intact.</p>`)}</aside></div>`;
 }
 function commitPreparation(p) { ensurePreparation(p); M.validate(p); state.package=p; save(); render(); }
 function bindPreparation() {
   bindIssueReviews();
   bindCaseEditor();
   bindWorkflowControls();
-  document.querySelectorAll('[data-prep-tab]').forEach(el=>el.onclick=()=>{prepTab=el.dataset.prepTab;render();});
+  document.querySelectorAll('[data-prep-tab]').forEach(el=>el.onclick=()=>{switchPreparationTab(el.dataset.prepTab);});
   document.querySelectorAll('[data-document]').forEach(el=>el.onclick=()=>{docId=el.dataset.document;docPage=1;render();});
   document.querySelectorAll('[data-hit-source]').forEach(el=>el.onclick=()=>{docId=el.dataset.hitSource;docPage=Number(el.dataset.hitPage);render();});
-  document.querySelectorAll('[data-citation-source]').forEach(el=>el.onclick=()=>{docId=el.dataset.citationSource;docPage=Number(el.dataset.citationPage);docQuery='';prepTab='documents';state.view='prep';save();render();});
+  document.querySelectorAll('[data-citation-source]').forEach(el=>el.onclick=()=>{openSourceInspection(el.dataset.citationSource,el.dataset.citationFact);});
   document.getElementById('reader-page')?.addEventListener('change',e=>{docPage=Number(e.target.value);render();});
   document.getElementById('document-search')?.addEventListener('input',e=>{
     docQuery=e.target.value;
@@ -84,7 +87,7 @@ function bindPreparation() {
     document.getElementById('document-text').innerHTML=highlightText(page.text,docQuery);
   });
   document.getElementById('source-visibility')?.addEventListener('change',e=>{state.package.sources.find(s=>s.id===docId).visibility=e.target.value;save();});
-  document.getElementById('team-brief-form')?.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(e.target),p=state.package;const lines=k=>d.get(k).split('\n').map(x=>x.trim()).filter(Boolean);const objective=d.get('objective').trim(),walkAway=d.get('walkAway').trim();if(objective!==(p.objective||'')||walkAway!==(p.walkAway||'')){stopPreparation('Team objective or outside option changed.',false);p.preparation.modelStale=true;p.caseEdits ||= {};p.caseEdits.history ||= [];p.caseEdits.history.push({kind:'team-context',before:{objective:p.objective,walkAway:p.walkAway},after:{objective,walkAway},at:new Date().toISOString()});}p.objective=objective;p.walkAway=walkAway;p.preparation.brief={opening:d.get('opening').trim(),fallback:d.get('fallback').trim(),redLines:p.preparation.brief?.redLines||[],assumptions:lines('assumptions'),branches:lines('branches')};message='Team brief saved. Print it or continue reviewing evidence.';save();render();});
+  document.getElementById('team-brief-form')?.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(e.target),p=state.package;const lines=k=>d.get(k).split('\n').map(x=>x.trim()).filter(Boolean);const objective=d.get('objective').trim(),walkAway=d.get('walkAway').trim();if(objective!==(p.objective||'')||walkAway!==(p.walkAway||'')){stopPreparation('Team objective or outside option changed.',false);p.preparation.modelStale=true;p.caseEdits ||= {};p.caseEdits.history ||= [];p.caseEdits.history.push({kind:'team-context',before:{objective:p.objective,walkAway:p.walkAway},after:{objective,walkAway},at:new Date().toISOString()});}p.objective=objective;p.walkAway=walkAway;p.preparation.brief={opening:d.get('opening').trim(),fallback:d.get('fallback').trim(),redLines:p.preparation.brief?.redLines||[],assumptions:lines('assumptions'),branches:lines('branches')};if(p.preparation.teamPlan)delete p.preparation.teamPlan.reviewed[2];message='Team brief saved. Print it or continue reviewing evidence.';save();render();});
   document.getElementById('reference-game-form')?.addEventListener('submit',e=>{e.preventDefault();try{if(state.session)throw new Error('Export and clear the current session before changing game actions.');stopPreparation('Reference game edited.',false);const d=new FormData(e.target),next=structuredClone(state.package);next.referenceGameEdits={actions:Object.fromEntries(next.actions.map(a=>[a.id,{label:d.get(`label:${a.id}`).trim(),owner:d.get(`owner:${a.id}`)}])),goals:Object.fromEntries(next.game.goals.map(g=>[g.id,{usValue:Number(d.get(`us:${g.id}`)),opponentValue:Number(d.get(`opponent:${g.id}`))}])),forbiddenActions:d.getAll('forbidden')};const result=ReferenceEngines.build(next);next.actions=result.actions;next.game=result.game;next.strategies=[];next.variants=[];next.preparation.modelStale=false;next.preparation.baseline=null;state.selected=null;message='Reference assumptions saved. Run Prepare package to regenerate plans and comparisons.';commitPreparation(next);}catch(err){error(err);}});
   document.getElementById('engine-config')?.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(e.target);state.package.preparation.engines={game:d.get('game').trim(),perturbation:d.get('perturbation').trim()};try{localStorage.setItem(ENGINE_SETTINGS,JSON.stringify(state.package.preparation.engines));}catch{}save();render();});
   document.getElementById('engine-file')?.addEventListener('change',async e=>{try{const file=e.target.files[0];if(!file)return;if(file.size>25*1024*1024)throw new Error('Result exceeds 25 MB.');mergeEngineResult(JSON.parse(await file.text()));}catch(err){error(err);}});
@@ -110,7 +113,8 @@ function mergeEngineResult(result) {
 async function preparationAction(a) {
   const p=state.package; if(!p)return false;
   if(a==='browse-raw-sources'){openRawSources(p.sources);return true;}
-  if(a==='read-docs'||a==='open-issues'||a==='edit-team-brief'||a==='edit-case-constraints'){prepTab=a==='read-docs'?'documents':a==='open-issues'?'issues':a==='edit-case-constraints'?'case':'overview';if(a==='edit-team-brief')p.preparation.editBrief=!p.preparation.editBrief;render();return true;}
+  if(a==='read-docs'){switchPreparationTab('documents');return true;}
+  if(a==='read-docs'||a==='open-issues'||a==='edit-team-brief'||a==='edit-case-constraints'){prepTab=a==='read-docs'?'documents':a==='open-issues'?'issues':a==='edit-case-constraints'?'case':'overview';state.view='prep';if(a==='edit-team-brief')p.preparation.editBrief=!p.preparation.editBrief;render();return true;}
   if(a==='prev-page'||a==='next-page'){const source=p.sources.find(s=>s.id===docId),pages=sourceUnits(source);const i=pages.findIndex(x=>x.number===docPage);docPage=pages[i+(a==='prev-page'?-1:1)]?.number||docPage;render();return true;}
   if(a==='capture-passage'){
     const selection=window.getSelection(),article=document.getElementById('document-text');
@@ -118,22 +122,24 @@ async function preparationAction(a) {
     const quote=selection.toString().trim(),source=p.sources.find(s=>s.id===docId);if(quote.length<5||!source.text.includes(quote))throw new Error('Select a continuous passage of at least five characters.');
     p.preparation.candidates.unshift({id:`manual-${crypto.randomUUID()}`,sourceId:docId,page:source.format==='docx'?null:docPage,section:source.format==='docx'?docPage:null,quote,text:quote,category:Preparation.classify(quote),status:'pending',method:'manual-selection'});message='Passage saved in the optional source index.';save();render();return true;
   }
-  if(a==='use-reference-engines'){p.preparation.engines={game:'builtin:game',perturbation:'builtin:perturbation'};localStorage.setItem(ENGINE_SETTINGS,JSON.stringify(p.preparation.engines));message='Local reference engines enabled. No model calls; utilities are illustrative.';save();render();return true;}
-  if(a==='open-engine-settings'){prepTab='engines';render();return true;}
+  if(a==='use-peer-engines'){p.preparation.engines={game:'peer:game',perturbation:'peer:perturbation',mode:'peer'};localStorage.setItem(ENGINE_SETTINGS,JSON.stringify(p.preparation.engines));message='Teammate engines connected through the local server.';save();render();return true;}
+  if(a==='use-reference-engines'){p.preparation.engines={game:'builtin:game',perturbation:'builtin:perturbation',mode:'local'};localStorage.setItem(ENGINE_SETTINGS,JSON.stringify(p.preparation.engines));message='Local reference engines enabled. No model calls; utilities are illustrative.';save();render();return true;}
+  if(a==='open-engine-settings'){state.view='prep';prepTab='engines';render();return true;}
   if(a==='handoff'){download('negotiation-package.json',{...p,preparation:undefined});return true;}
   if(a==='import-engine'){document.getElementById('engine-file').click();return true;}
   if(a==='print-team-brief'){printPreparationBrief(p);return true;}
   if(a==='infer-sources'){
     if(sourceInferenceBusy)return true;
-    if(state.session)throw new Error('Source inference is a preparation step. Keep the current live session unchanged.');
-    if(p.sourceAnalysis&&!PrepWorkflow.context(p).our_side&&!p.sources.some(s=>s.category==='role_card'||(s.visibility==='private'&&s.analysis?.represented_side))){prepTab='case';message='Confirm our side first. This avoids paying for a role-neutral brief that would need to be generated again.';render();return true;}
+    if(state.session&&!state.session.ended)throw new Error('Source inference is a preparation step. Keep the current live session unchanged.');
+    if(p.sourceAnalysis&&!PrepWorkflow.context(p).our_side&&!p.sources.some(s=>s.category==='role_card'||(s.visibility==='private'&&s.analysis?.represented_side))){state.view='prep';prepTab='case';message='Confirm our side first. This avoids paying for a role-neutral brief that would need to be generated again.';render();return true;}
+    if(p.preparation.run?.status==='running')stopPreparation('Source interpretation is refreshing.',false);
     const inferenceState=x=>JSON.stringify({sources:x.sources,facts:x.facts,context:PrepWorkflow.context(x)});
     const snapshot=inferenceState(p),controller=new AbortController();sourceInferenceBusy=true;inferenceNotice=null;updateRawProcessing('running');workspaceInferenceProgress={};message='Interpreting uploaded sources… Cached analyses are reused.';render();
     const timeout=setTimeout(()=>controller.abort(),300000);
     try{
-      const result=await requestSourceInference({id:p.id,sources:p.sources,context:PrepWorkflow.context(p)},controller.signal,event=>{updateInferenceProgress(workspaceInferenceProgress,event);const region=document.getElementById('workspace-inference-progress');if(region)region.innerHTML=inferenceProgressMarkup(p.sources,workspaceInferenceProgress);});
+      const result=await requestSourceInference({id:p.id,sources:p.sources,context:PrepWorkflow.context(p),requireDetailedBrief:true},controller.signal,event=>{updateInferenceProgress(workspaceInferenceProgress,event);const region=document.getElementById('workspace-inference-progress');if(region)region.innerHTML=inferenceProgressMarkup(p.sources,workspaceInferenceProgress);});
       if(state.package?.id!==p.id||inferenceState(state.package)!==snapshot)throw new Error('The workspace changed during inference. Retry to reuse the cached result.');
-      if(!Array.isArray(result.documents)||!Array.isArray(result.facts)||!result.caseAnalysis)throw new Error('Incomplete source analysis returned.');
+      if(!Array.isArray(result.documents)||!Array.isArray(result.facts)||(!Array.isArray(result.caseAnalysis?.negotiation_issues)||!result.caseAnalysis.negotiation_issues.length))throw new Error('The detailed issue synthesis did not complete. Your saved brief and edits are unchanged.');
       const next=structuredClone(state.package),c=result.caseAnalysis;
       // Retain human corrections and added facts when an existing source-only case is analyzed.
       const edited=next.facts.filter(f=>f.corrected||!result.facts.some(x=>x.id===f.id));
@@ -143,12 +149,13 @@ async function preparationAction(a) {
       for(const [key,value] of [['us',c.our_side],['opponent',c.opponent]])if(value&&(!next.parties[key]||next.parties[key].includes('(not inferred)')))next.parties[key]=value;
       if(!next.objective)next.objective=c.objective||'';
       if(!next.walkAway)next.walkAway=c.outside_option||'';
-      next.sourceAnalysis={briefContext:JSON.stringify(PrepWorkflow.context(next)),caseAnalysis:c,caseCacheHit:result.caseCacheHit,caseAnalysisKey:result.caseAnalysisKey,cache:result.cache,documents:result.documents.map(({analysis,...metadata})=>metadata)};
+      if(next.sourceAnalysis?.caseAnalysisKey!==result.caseAnalysisKey&&next.preparation.teamPlan)next.preparation.teamPlan.reviewed={};
+      next.sourceAnalysis={briefContext:JSON.stringify(PrepWorkflow.context(next)),caseAnalysis:c,sourcePassages:result.sourcePassages||[],caseCacheHit:result.caseCacheHit,caseAnalysisKey:result.caseAnalysisKey,cache:result.cache,documents:result.documents.map(({analysis,...metadata})=>metadata)};
       next.pipeline[1]={status:'complete',detail:'Source-linked claims, summaries, arguments and case interpretation inferred'};
       if(next.actions.length||next.strategies.length)next.preparation.modelStale=true;
-      M.validate(next);inferenceNotice={packageId:next.id,status:'complete'};updateRawProcessing('complete');message='Documents interpreted. Review the inferred case and constraints, then prepare the game.';commitPreparation(next);
+      M.validate(next);inferenceNotice={packageId:next.id,status:'complete'};updateRawProcessing('complete');message='Your preparation brief is ready.';commitPreparation(next);
     }catch(err){updateRawProcessing('failed');stopInferenceProgress(workspaceInferenceProgress);error(err.name==='AbortError'?new Error('Inference timed out. Completed document analyses are cached; retry to resume.'):err);}
-    finally{clearTimeout(timeout);sourceInferenceBusy=false;render();}
+    finally{clearTimeout(timeout);sourceInferenceBusy=false;render();maybeStartAutomaticResearch();}
     return true;
   }
   if(a==='start-preparation'){await runPreparation();return true;}
@@ -167,7 +174,7 @@ async function preparationAction(a) {
   if(a==='run-game'||a==='run-perturbation'){
     const endpoint=p.preparation.engines?.[a==='run-game'?'game':'perturbation'];if(!endpoint)throw new Error('Save an engine endpoint first.');
     p.preparation.engineStatus='Running…';save();const status=document.getElementById('engine-status');if(status)status.textContent='Running…';
-    try{if(endpoint==='builtin:game'||endpoint==='builtin:perturbation'){mergeEngineResult(endpoint==='builtin:game'?ReferenceEngines.build(p):ReferenceEngines.perturb(p));return true;}const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({schemaVersion:1,packageId:p.id,package:{...p,preparation:undefined}}),signal:AbortSignal.timeout(120000)});if(!response.ok)throw new Error(`Engine returned HTTP ${response.status}.`);const result=await response.json();if(state.package.id!==p.id)throw new Error('Workspace changed while the engine was running.');mergeEngineResult(result);}catch(err){p.preparation.engineStatus=`Could not complete: ${err.message}`;save();if(state.package.id===p.id)render();throw err;}return true;
+    try{if(endpoint==='peer:game'||endpoint==='peer:perturbation'){const result=await runPeerEngine(endpoint==='peer:game'?'game':'perturbation',{...p,preparation:undefined},{signal:AbortSignal.timeout(300000),onProgress:progress=>{const el=document.getElementById('engine-status');if(el)el.textContent=engineProgressText(progress);}});if(state.package.id!==p.id)throw new Error('Workspace changed.');mergeEngineResult(result);return true;}if(endpoint==='builtin:game'||endpoint==='builtin:perturbation'){mergeEngineResult(endpoint==='builtin:game'?ReferenceEngines.build(p):ReferenceEngines.perturb(p));return true;}const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({schemaVersion:1,packageId:p.id,package:{...p,preparation:undefined}}),signal:AbortSignal.timeout(120000)});if(!response.ok)throw new Error(`Engine returned HTTP ${response.status}.`);const result=await response.json();if(state.package.id!==p.id)throw new Error('Workspace changed while the engine was running.');mergeEngineResult(result);}catch(err){p.preparation.engineStatus=`Could not complete: ${err.message}`;save();if(state.package.id===p.id)render();throw err;}return true;
   }
   return false;
 }
@@ -177,7 +184,7 @@ function bindWorkflowControls(){
     const q=e.target.value.toLowerCase().trim(),p=state.package;
     const matches=q?p.preparation.candidates.filter(c=>c.text.toLowerCase().includes(q)).slice(0,15):[];
     document.getElementById('excerpt-results').innerHTML=matches.map(c=>`<blockquote>${esc(c.text)}<footer>${citation(p,c)}</footer></blockquote>`).join('');
-    document.querySelectorAll('[data-citation-source]').forEach(el=>el.onclick=()=>{docId=el.dataset.citationSource;docPage=Number(el.dataset.citationPage);docQuery='';prepTab='documents';state.view='prep';save();render();});
+    document.querySelectorAll('[data-citation-source]').forEach(el=>el.onclick=()=>{openSourceInspection(el.dataset.citationSource,el.dataset.citationFact);});
   });
   document.getElementById('fact-correction')?.addEventListener('submit',e=>{
     e.preventDefault();try{
@@ -211,6 +218,7 @@ async function runPreparation(){
   }
   const id=p.id,token=++prepRunToken,controller=new AbortController();prepController=controller;
   const active=()=>prepRunToken===token&&state.package?.id===id&&state.package.preparation.run?.status==='running';
+  p.preparation.researchProgress={};
   p.preparation.run={status:'running',startedAt:Date.now(),message:'Extracting source-linked facts and building the baseline from the package…',stages:[]};
   p.pipeline[1]={status:'running',detail:'Automatic package inference'};p.pipeline[2]={status:'running',detail:'Building baseline game'};save();render();
   const cutoff=setTimeout(()=>{if(active())stopPreparation('Five-minute generation cutoff reached. Current baseline or source draft retained.');},PrepWorkflow.STOP_GENERATION_MS);
@@ -219,24 +227,24 @@ async function runPreparation(){
     const current=state.package;current.pipeline[stage]={status,detail};current.preparation.run.stages.push({stage,status,at:Date.now(),detail});current.preparation.run.message=detail;save();render();
   };
   async function call(endpoint){
-    const snapshot=structuredClone(state.package);if(endpoint==='builtin:game')return ReferenceEngines.build(snapshot);if(endpoint==='builtin:perturbation')return ReferenceEngines.perturb(snapshot);const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({schemaVersion:1,packageId:id,package:{...snapshot,preparation:undefined},task:'prepare',factSetFrozen:!!snapshot.preparation.baseline}),signal:controller.signal});
+    const snapshot=structuredClone(state.package);if(endpoint==='peer:game'||endpoint==='peer:perturbation')return runPeerEngine(endpoint==='peer:game'?'game':'perturbation',{...snapshot,preparation:undefined},{signal:controller.signal,onProgress:progress=>{if(!active())return;updateResearchProgress(progress);const el=document.getElementById('engine-run-progress');if(el)el.textContent=engineProgressText(progress);}});if(endpoint==='builtin:game')return ReferenceEngines.build(snapshot);if(endpoint==='builtin:perturbation')return ReferenceEngines.perturb(snapshot);const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({schemaVersion:1,packageId:id,package:{...snapshot,preparation:undefined},task:'prepare',factSetFrozen:!!snapshot.preparation.baseline}),signal:controller.signal});
     if(!response.ok)throw new Error(`Service returned HTTP ${response.status}.`);
     const result=await response.json();if(!active())return null;if(result.packageId!==id)throw new Error('Service result belongs to a different package.');return result;
   }
   try{
-    const baseline=await call(config.game);if(!baseline)return;
+    const baseline=await call(config.game);if(!baseline||!active())return;
     mergeEngineResult(baseline);
     if(!active())return;
     if(!Array.isArray(baseline.actions)||(!baseline.game&&!baseline.strategies?.length))throw new Error('Inference returned no complete baseline game or plan. Partial sources/facts remain available.');
     state.package.preparation.modelStale=false;
-    if(state.package.game?.goals?.length&&state.package.actions.length){record(4,'running','Planning baseline commitment options…');await preparationAction('run-local-planner');}
+    if(state.package.game?.goals?.length&&state.package.actions.length&&!baseline.strategies?.length){record(4,'running','Planning baseline commitment options…');await preparationAction('run-local-planner');}
     if(!active())return;
     state.package.preparation.baseline={facts:structuredClone(state.package.facts),actions:structuredClone(state.package.actions),game:structuredClone(state.package.game||null),strategies:structuredClone(state.package.strategies),savedAt:Date.now()};
     record(2,'complete','Baseline stored. Available while additional readings run.');
     if(config.perturbation&&state.package.facts.length&&PrepWorkflow.canGenerate(state.package.preparation.run)){
       record(3,'running','Running fact rewordings against the fixed extracted fact set…');
       try{
-        const result=await call(config.perturbation);if(!result)return;
+        const result=await call(config.perturbation);if(!result||!active())return;
         // Keep baseline actions, facts, and strategy menu intact unless all release gates are explicit.
         mergeEngineResult({packageId:id,variants:result.variants||[],generation:result.generation});
         const gates=result.release;
@@ -252,10 +260,34 @@ async function runPreparation(){
     const current=state.package;
     current.pipeline[6]={status:'complete',detail:current.strategies.length?'Brief assembled from available baseline and released results':'Source draft assembled; modeled options incomplete'};
     current.pipeline=Array.from({length:7},(_,i)=>current.pipeline[i]||{status:'pending'});
-    current.preparation.run.status='complete';current.preparation.run.finishedAt=Date.now();current.preparation.run.message='Brief ready for team discussion. Inspect critical evidence and unresolved assumptions; choose your opening and fallback.';save();render();
+    current.preparation.run.status='complete';current.preparation.run.finishedAt=Date.now();current.preparation.run.message=current.pipeline[3]?.status==='failed'?'Baseline strategy ready. Wording tests did not finish; the baseline is retained.':'Brief ready for team discussion. Inspect critical evidence and unresolved assumptions; choose your opening and fallback.';save();render();
   }catch(err){
     if(active()){
       const current=state.package;current.pipeline[2]={status:'failed',detail:err.message};current.preparation.run.status='failed';current.preparation.run.message=`Baseline inference did not finish. Source draft is still available. ${err.message}`;save();render();
     }
   }finally{clearTimeout(cutoff);if(prepController===controller)prepController=null;}
+}
+
+// One automatic attempt per interpreted fact set; reloads and failures never trigger paid retries.
+function maybeStartAutomaticResearch(){
+ const p=state.package;if(!p||state.session||sourceInferenceBusy)return;
+ ensurePreparation(p);
+ if(!p.sourceAnalysis?.caseAnalysis||p.sourceAnalysis.stale||!p.facts.length||p.preparation.run?.status==='running'||p.variants.some(v=>v.method==='peer-semantic-v1'))return;
+ if(p.preparation.engines?.perturbation!=='peer:perturbation')return;
+ const key=JSON.stringify([p.sourceAnalysis.caseAnalysisKey||'',p.facts.map(f=>[f.id,f.text])]);
+ if(p.preparation.autoResearchAttempt===key)return;
+ p.preparation.autoResearchAttempt=key;save();
+ queueMicrotask(()=>{if(state.package?.id===p.id&&!state.session)runPreparation().catch(error);});
+}
+function researchRunStatus(p){
+ const run=p.preparation?.run,running=run?.status==='running',progress=p.preparation?.researchProgress||{};
+ const done=progress.unit?Math.max(0,progress.unit-1):0,total=progress.units||0;
+ return `<section class="card research-job-status" aria-label="Wording test progress"><h2>${running?'Testing your case in the background':p.variants.some(v=>v.method==='peer-semantic-v1')?'Wording tests ready':'Wording tests'}</h2><p id="research-progress-text" role="status">${esc(running?(progress.phase?engineProgressText(progress):run.message):run?.message||'Wording tests start automatically once your documents have been interpreted.')}</p>${running?`<progress id="research-progress-bar" aria-label="Source claims tested" ${total?`max="${total}" value="${done}"`:''}></progress><p id="research-progress-count" class="note-sm">${total?`${done} of ${total} source claims tested`:'Preparing the baseline and local semantic filters…'}</p>${button('finalize-preparation','Stop tests & keep brief')}`:button('start-preparation',run?'Retry wording tests':'Start wording tests',true,!p.facts.length||!!state.session)}<p class="note-sm">Uses the configured model and cached responses, with up to 16 requests per run. No automatic paid retries. You can keep reading or negotiating while tests run.</p></section>`;
+}
+function updateResearchProgress(progress){
+ state.package.preparation.researchProgress=progress;
+ const text=document.getElementById('research-progress-text');if(text)text.textContent=engineProgressText(progress);
+ const bar=document.getElementById('research-progress-bar'),count=document.getElementById('research-progress-count');
+ if(bar&&progress.units){bar.max=progress.units;bar.value=Math.max(0,(progress.unit||1)-1);}
+ if(count&&progress.units)count.textContent=`${Math.max(0,(progress.unit||1)-1)} of ${progress.units} source claims tested · ${progress.accepted||0} accepted wordings`;
 }

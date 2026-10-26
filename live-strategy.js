@@ -1,7 +1,7 @@
 /* Latest-request-wins worker updates; never rerender the recording form. */
 const LiveStrategy=(()=>{
  let key='',worker=null,timer=null,result=null,status='idle',generation=0;
- function paint(){const el=document.querySelector('.strategy-guidance');if(el){const opened=[...el.querySelectorAll('details[data-guidance-section][open]')].map(d=>d.dataset.guidanceSection);el.outerHTML=guidance();for(const id of opened)document.querySelector(`[data-guidance-section="${id}"]`)?.setAttribute('open','');bindGuidanceUI();document.querySelectorAll('.strategy-guidance [data-citation-source]').forEach(link=>link.onclick=()=>{docId=link.dataset.citationSource;docPage=Number(link.dataset.citationPage);docQuery='';prepTab='documents';state.view='prep';save();render();});}}
+ function paint(){const el=document.querySelector('.strategy-guidance');if(el){const opened=[...el.querySelectorAll('details[data-guidance-section][open]')].map(d=>d.dataset.guidanceSection);el.outerHTML=guidance();for(const id of opened)document.querySelector(`[data-guidance-section="${id}"]`)?.setAttribute('open','');bindGuidanceUI();document.querySelectorAll('.strategy-guidance [data-citation-source]').forEach(link=>link.onclick=()=>{openSourceInspection(link.dataset.citationSource,link.dataset.citationFact);});}}
  function schedule(){
   if(state.view!=='classroom'||!state.session||state.session.ended){worker?.terminate();clearTimeout(timer);worker=null;key='';generation++;status='idle';result=null;return;}
   const p=state.package,s=state.session,b=AdviceReview.reviewed(p);

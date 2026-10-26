@@ -1,0 +1,28 @@
+# Frozen before the live test (README §10). Change values here, not in code.
+seed: 0
+
+llm:
+  base_url: https://apis.huit.harvard.edu/ais-bedrock-llm/v2   # Harvard Bedrock gateway
+  model: us.anthropic.claude-opus-5-5   # us. = US-only processing; global. is ~10% cheaper
+  effort: low            # low | medium | high | xhigh | max
+  max_tokens: 16000
+
+reword:
+  k: 4                   # candidates per (unit, operator, level); small for pilots
+  levels: [light, moderate, heavy]
+  operators: [paraphrase_fact, paraphrase_doc, register, reorder]
+  reorder_k: 4           # package-level permutations
+
+filter:
+  encoder: BAAI/bge-base-en-v1.5
+  tau: 0.85              # min cosine similarity; calibrate on the human sample
+  nli_model: cross-encoder/nli-deberta-v3-base
+  nli_threshold: 0.5     # min entailment probability, each direction
+  window_sentences: 3    # premise windows are runs of 1..N sentences
+  top_windows: 3         # windows checked per hypothesis sentence
+
+noise:
+  # Document-level rewordings sit at d_emb ~0.001-0.01, so the grid starts very low.
+  rates: [0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4]
+
+human_sample_rate: 0.05
