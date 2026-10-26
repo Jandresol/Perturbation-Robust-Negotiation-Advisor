@@ -22,7 +22,7 @@
   if(text.trim()===fact.text)return next;
   next.caseEdits ||= {};next.caseEdits.history ||= [];
   next.caseEdits.history.push({kind:'claim',id,before:fact.text,after:text.trim(),reason:reason.trim(),at:new Date().toISOString()});
-  fact.text=text.trim();fact.corrected=true;next.preparation ||= {};next.preparation.modelStale=true;if(next.preparation.teamPlan)next.preparation.teamPlan.reviewed={};
+  fact.text=text.trim();fact.corrected=true;next.preparation ||= {};next.preparation.modelStale=true;
   return next;
  }
  function reviseRedLine(p,id,text,status,factIds){
@@ -31,7 +31,7 @@
   const line={id,text:text.trim(),status,factIds:[...factIds]};
   next.caseEdits ||= {};next.caseEdits.redLines=before?lines.map(r=>r.id===id?line:r):[...lines,line];
   next.caseEdits.history ||= [];next.caseEdits.history.push({kind:'red_line',id,before:before||null,after:line,at:new Date().toISOString()});
-  next.preparation ||= {};next.preparation.modelStale=true;if(next.preparation.teamPlan)next.preparation.teamPlan.reviewed={};
+  next.preparation ||= {};next.preparation.modelStale=true;
   return next;
  }
  const api={hydrate,redLines,reviseFact,reviseRedLine};

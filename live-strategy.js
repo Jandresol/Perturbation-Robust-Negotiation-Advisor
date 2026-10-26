@@ -1,10 +1,10 @@
 /* Latest-request-wins worker updates; never rerender the recording form. */
 const LiveStrategy=(()=>{
  let key='',worker=null,timer=null,result=null,status='idle',generation=0;
- function paint(){const el=document.querySelector('.strategy-guidance');if(el){const opened=[...el.querySelectorAll('details[data-guidance-section][open]')].map(d=>d.dataset.guidanceSection);el.outerHTML=guidance();for(const id of opened)document.querySelector(`[data-guidance-section="${id}"]`)?.setAttribute('open','');bindGuidanceUI();document.querySelectorAll('.strategy-guidance [data-citation-source]').forEach(link=>link.onclick=()=>{openSourceInspection(link.dataset.citationSource,link.dataset.citationFact);});}}
+ function paint(){const el=document.querySelector('.strategy-guidance');if(el){el.outerHTML=guidance();document.querySelectorAll('.strategy-guidance [data-citation-source]').forEach(link=>link.onclick=()=>{docId=link.dataset.citationSource;docPage=Number(link.dataset.citationPage);docQuery='';prepTab='documents';state.view='prep';save();render();});}}
  function schedule(){
   if(state.view!=='classroom'||!state.session||state.session.ended){worker?.terminate();clearTimeout(timer);worker=null;key='';generation++;status='idle';result=null;return;}
-  const p=state.package,s=state.session,b=AdviceReview.reviewed(p);
+  const p=state.package,s=state.session,b=PrepWorkflow.draftBrief(p);
   const nextKey=JSON.stringify([p.id,s.events,s.commitments,b,p.game,p.actions]);
   if(key===nextKey)return;
   key=nextKey;result=null;const token=++generation;worker?.terminate();clearTimeout(timer);status='updating';paint();
@@ -17,5 +17,5 @@ const LiveStrategy=(()=>{
    worker.postMessage({package:compact,session:s,brief:b});
   }catch{status='limited';paint();}
  }
- return {schedule,repaint:paint,get current(){return result;},get status(){return status;}};
+ return {schedule,get current(){return result;},get status(){return status;}};
 })();

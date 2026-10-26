@@ -1,11 +1,9 @@
 """Local static app plus HUIT inference API. Run: python3 server.py"""
 import argparse
 import json
-import re
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
-from backend.engines import PeerEngines
 from backend.inference import AnalysisService, InferenceError, load_env
 
 ROOT = Path(__file__).resolve().parent
@@ -45,22 +43,6 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_error(404); return None
 
     def do_GET(self):
-        if self.path.startswith('/api/engines/figures/'):
-            match=re.fullmatch(r'/api/engines/figures/([0-9a-f]{64})/(acceptance|distance|nli|rejections|noise_match|sentence_pairs)\.(png|pdf)',self.path)
-            csv_match=re.fullmatch(r'/api/engines/figures/([0-9a-f]{64})/measurements\.csv',self.path)
-            if not match and not csv_match:return self.json_response(404,{'error':'Unknown figure'})
-            key=(match or csv_match).group(1)
-            filename=f'{match.group(2)}.{match.group(3)}' if match else 'measurements.csv'
-            asset=ROOT/'.data'/'research-figures'/key/filename
-            if not asset.is_file():return self.json_response(404,{'error':'Figure not found'})
-            content=asset.read_bytes();self.send_response(200)
-            self.send_header('Content-Type', 'image/png' if filename.endswith('.png') else 'application/pdf' if filename.endswith('.pdf') else 'text/csv; charset=utf-8')
-            self.send_header('Cache-Control','no-store');self.send_header('Content-Length',str(len(content)));self.end_headers();self.wfile.write(content);return
-        if self.path == '/api/engines/config':
-            return self.json_response(200, self.server.engines.config())
-        if self.path.startswith('/api/engines/jobs/'):
-            try:return self.json_response(200,self.server.engines.get(urlsplit(self.path).path.rsplit('/',1)[-1]))
-            except KeyError:return self.json_response(404, {'error':'Unknown engine job'})
         if self.path == '/api/config':
             return self.json_response(200, self.server.analysis.config())
         if self.path.startswith('/api/'):
@@ -68,7 +50,7 @@ class Handler(SimpleHTTPRequestHandler):
         super().do_GET()
 
     def do_POST(self):
-        if urlsplit(self.path).path != '/api/sources/parse' and not self.path.startswith('/api/engines/'):
+        if urlsplit(self.path).path != '/api/sources/parse':
             return self.json_response(404, {'error': 'Unknown API endpoint'})
         origin = self.headers.get('Origin')
         if origin and urlsplit(origin).netloc != self.headers.get('Host'):
@@ -78,15 +60,6 @@ class Handler(SimpleHTTPRequestHandler):
             if not 0 < length <= 25 * 1024 * 1024:
                 return self.json_response(413, {'error': 'Supply a JSON package smaller than 25 MB'})
             data = json.loads(self.rfile.read(length))
-            if self.path.startswith('/api/engines/jobs/') and self.path.endswith('/cancel'):
-                return self.json_response(200,self.server.engines.cancel(self.path.split('/')[-2]))
-            if self.path == '/api/engines/figures':
-                from backend.research_figures import build_figures
-                return self.json_response(200,build_figures(data.get('package',data),ROOT/'.data'/'research-figures'))
-            if self.path == '/api/engines/jobs':
-                return self.json_response(202,self.server.engines.start(data))
-            if self.path.startswith('/api/engines/'):
-                return self.json_response(404, {'error':'Unknown engine endpoint'})
             package = data.get('package', data)
             if 'application/x-ndjson' in self.headers.get('Accept', ''):
                 self.send_response(200)
@@ -123,7 +96,6 @@ class Handler(SimpleHTTPRequestHandler):
 def make_server(port=8000, database=None):
     server = ThreadingHTTPServer(('127.0.0.1', port), Handler)
     server.analysis = AnalysisService(database or ROOT / '.data' / 'analysis.sqlite')
-    server.engines = PeerEngines(server.analysis)
     return server
 
 

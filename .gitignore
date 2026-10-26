@@ -5,8 +5,3 @@
 .data/
 __pycache__/
 *.pyc
-
-.venv-engines/
-.pytest_cache/
-build/cache/
-runs/
