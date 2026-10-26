@@ -34,7 +34,9 @@ CASE_SCHEMA = {
 
 # Version only the synthesis schema; cached per-document extraction remains reusable.
 ADVICE = {'text':'short proposed advice, not an established fact', 'claim_ids':['supporting supplied claim IDs'], 'status':'supported | inferred | unknown'}
+CONTEXT_ENTRY = {'text':'short attributed descriptive synthesis, never advice', 'claim_ids':['supporting supplied claim IDs'], 'status':'supported | inferred | unknown'}
 CASE_SCHEMA.update({
+    'situation': {'immediate':CONTEXT_ENTRY, 'actors':[CONTEXT_ENTRY], 'tension':CONTEXT_ENTRY, 'background':CONTEXT_ENTRY, 'uncertainty':[CONTEXT_ENTRY]},
     'objective_claim_ids':['supporting claim IDs'], 'outside_option_claim_ids':['supporting claim IDs or empty when unknown/team supplied'],
     'brief': {
         'opening':ADVICE, 'fallback':ADVICE,
@@ -170,6 +172,7 @@ class AnalysisService:
             if kind == 'case':
                 task = json.loads(prompt)
                 task['instructions'] += ' Produce a decision-focused preparation brief before a game exists. Proposed openings and alternatives are advisory inferences, never scored optima. Separate our constraints from opponent demands and third-party preferences; demands must never be promoted to our red lines. Use only explicit authority and outside options; leave unknown outside_option null. Choose three evidence passages affecting the next decision, not generic background statistics. At most two alternatives, three conditional response branches, three critical assumptions, and five potential trades. Every nonunknown advice item needs supporting claim_ids and its status. Supported means explicitly stated; proposed recommendations are inferred. An unknown item has empty claim_ids and explains what to clarify. Prioritize the identified role card, then our private instructions. If our side cannot be established, give role-neutral clarification advice, keep our objective null, and ask the team to confirm its side. Include only decision-critical issues, at most five; do not list every document omission. Team context overrides inferred role/objective choices but cannot invent source support. Dismissed red-line interpretations must not be treated as our constraints; retain the source facts without silently restoring dismissed team constraints.'
+                task['instructions'] += ' Situation at a glance must describe the immediate situation, relevant actors and roles, central tension, essential history, and uncertainty. Keep it under 180 words total, descriptive rather than advisory. Preserve attribution (the commander demands, the director states, a contact reports). Do not turn allegations into established facts. Cite supplied claim IDs for every nonunknown contextual entry. Use at most six actors and three uncertainties; omit unrelated political history. Unknown means missing or unresolved, not permission to invent a fact.'
                 prompt = json.dumps(task, ensure_ascii=False)
             with self._db() as db:
                 saved = db.execute('SELECT value FROM model_responses WHERE key=?', (cache_key,)).fetchone()
@@ -343,6 +346,23 @@ class AnalysisService:
                         raise InferenceError('Case interpretation references unknown evidence.')
                     if field == 'red_lines' and not item['claim_ids']:
                         raise InferenceError('A red line has no supporting claim.')
+            situation = result.get('situation')
+            if situation is not None:
+                if not isinstance(situation, dict):
+                    raise InferenceError('Invalid situation synthesis.')
+                entries = []
+                for section in ['immediate', 'tension', 'background']:
+                    entries.append(situation.get(section))
+                for section, maximum in [('actors', 6), ('uncertainty', 3)]:
+                    values = situation.get(section)
+                    if not isinstance(values, list) or len(values) > maximum:
+                        raise InferenceError('Invalid situation section size.')
+                    entries.extend(values)
+                for item in entries:
+                    if not isinstance(item, dict) or not isinstance(item.get('text'), str) or item.get('status') not in ['supported', 'inferred', 'unknown'] or not isinstance(item.get('claim_ids'), list) or any(i not in selected for i in item['claim_ids']):
+                        raise InferenceError('Situation synthesis references invalid evidence.')
+                    if item['status'] != 'unknown' and not item['claim_ids']:
+                        raise InferenceError('Situation synthesis has no supporting evidence.')
             brief = result.get('brief')
             if brief is not None:
                 if not isinstance(brief, dict):

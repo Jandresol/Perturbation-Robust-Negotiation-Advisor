@@ -25,6 +25,27 @@ class InferenceTests(unittest.TestCase):
         claim_id = data['input'][0]['analysis']['claims'][0]['id']
         return {'title': 'Equipment discussion', 'summary': 'Team A and Team B discuss equipment.', 'our_side': 'Team A', 'opponent': 'Team B', 'objective': None, 'outside_option': None, 'red_lines': [], 'issues': [{'text': 'No objective supplied.', 'claim_ids': [claim_id]}]}, (100, 50)
 
+    def test_situation_requires_valid_citations_and_preserves_attribution(self):
+        def contextual(prompt):
+            value, usage = self.transport(prompt)
+            data = json.loads(prompt)
+            if data['task'] == 'case':
+                claim_id = data['input'][0]['analysis']['claims'][0]['id']
+                entry = {'text': 'The role instructions identify Team A as our side.', 'status': 'supported', 'claim_ids': [claim_id]}
+                value['situation'] = {'immediate': entry, 'actors': [entry], 'tension': entry, 'background': entry, 'uncertainty': []}
+            return value, usage
+        service = AnalysisService(self.path, contextual)
+        result = service.parse(self.package())
+        self.assertIn('role instructions', result['caseAnalysis']['situation']['immediate']['text'])
+        self.assertTrue(service.parse(self.package())['caseCacheHit'])
+        def invalid(prompt):
+            value, usage = contextual(prompt)
+            if json.loads(prompt)['task'] == 'case':
+                value['situation']['immediate']['claim_ids'] = ['unknown-claim']
+            return value, usage
+        with self.assertRaisesRegex(InferenceError, 'invalid evidence'):
+            AnalysisService(Path(self.tmp.name) / 'invalid.sqlite', invalid).parse(self.package())
+
     def package(self, source=None):
         return {'id': 'p1', 'sources': [source or self.source]}
 

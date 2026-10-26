@@ -1645,3 +1645,53 @@ mark { background: #f5dc9c; color: #203b35; }
 #notice:empty { display:none; }
 @media(max-width:900px){.preparation-steps{grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:480px){.preparation-steps{gap:8px;}.preparation-steps li{padding:12px;gap:8px;}.preparation-steps li > span{width:26px;height:26px;}}
+
+.source-success { padding: 16px 20px; margin: 16px 0; border: 1px solid #8bbfa0; border-radius: 12px; background: #e8f5ec; color: #1c5a36; font-weight: 600; }
+.source-processing-banner { padding: 16px 20px; margin: 16px 0; border: 1px solid var(--border, #d9e1dc); border-radius: 12px; }
+#upload-browse-raw { margin: 16px 0; }
+#raw-source-dialog { width: min(960px, calc(100vw - 32px)); max-height: 90vh; overflow: auto; padding: clamp(16px, 4vw, 32px); }
+#raw-source-dialog .document-page { max-height: 48vh; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+#raw-source-dialog select { max-width: 100%; }
+
+/* Focused negotiation workspace: capture + decision, evidence on demand. */
+.negotiation-focus { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(340px,1fr); gap:24px; align-items:start; margin:20px 0; }
+.negotiation-recording,.negotiation-focus .strategy-guidance { min-width:0; width:auto; display:flex; flex-direction:column; gap:16px; }
+.negotiation-focus .card { margin:0; padding:24px; }
+.negotiation-mode,.guidance-tags { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+.negotiation-mode { font-size:13px; color:var(--muted,#63716b); margin:16px 0; }
+.conversation-map { list-style:none; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; padding:0; margin:12px 0 18px; }
+.conversation-map li { display:flex; flex-direction:column; align-items:center; gap:6px; padding:10px 4px; border-bottom:3px solid #e2e7e3; color:#68756f; font-size:12px; }
+.conversation-map li.current { border-color:#286e5d; color:#205649; font-weight:700; background:#eef5ef; border-radius:8px 8px 0 0; }
+.conversation-map span { font-size:15px; font-weight:700; }
+.next-step-card ul { padding-left:20px; font-size:18px; line-height:1.65; }
+.guidance-objective { font-size:14px; opacity:.9; }
+.guidance-category summary,.negotiation-evidence>summary,.conversation-history>summary { font-weight:650; cursor:pointer; padding:4px 0; }
+.guidance-category[open] summary { margin-bottom:16px; }
+.boundary-check { display:block; border-bottom:1px solid #e2e7e3; padding:16px 0; line-height:1.6; }
+.boundary-check select { margin-top:8px; }
+.negotiation-evidence { margin-top:28px; }
+.negotiation-evidence .col-evidence { max-height:650px; overflow:auto; width:auto; margin-top:20px; }
+.negotiation-recording .voice-panel { padding:20px; }
+.negotiation-recording #voice-start { min-height:56px; padding:16px 28px; font-size:18px; }
+@media(max-width:850px){.negotiation-focus{grid-template-columns:minmax(0,1fr)}.negotiation-focus .strategy-guidance{grid-column:auto;display:flex}.negotiation-focus .card{padding:20px}.next-step-card ul{font-size:16px}}
+
+@media(max-width:850px){.negotiation-focus{display:flex;flex-direction:column}.negotiation-focus>.strategy-guidance{display:contents}.negotiation-focus .plan-overview{order:0;width:100%}.negotiation-focus .next-step-card{order:1;width:100%}.negotiation-recording{order:2;width:100%}.negotiation-focus .guidance-category{order:3;width:100%}.negotiation-focus>.strategy-guidance>.note-sm{order:4}}
+
+@media(max-width:650px){.page-intro{flex-direction:column;align-items:stretch}.page-intro .copy{width:100%;max-width:none}.intro-actions{justify-content:flex-start}.time-card .action-group{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px}.time-card .action-group .btn{width:auto;padding:10px 12px;font-size:12px;min-height:38px}.time-card{gap:12px}.negotiation-focus .plan-overview{padding:16px}.conversation-map{margin:8px 0}.negotiation-focus{gap:16px}}
+
+/* Preparation: essentials first, categorized detail on demand. */
+.preparation-toolbar {display:flex;justify-content:space-between;gap:16px;align-items:center;margin:20px 0;color:var(--text-secondary);font-size:13px;flex-wrap:wrap}
+.prep-tools{position:relative;padding:10px}.prep-tools>summary{cursor:pointer}.prep-tools[open]{border:1px solid #d9e1dc;border-radius:8px}.prep-tools .btn{margin:8px}
+.prep-essential{width:100%;max-width:none;min-width:0;box-sizing:border-box;margin:0;padding:28px}.brief-note{display:grid;grid-template-columns:100px minmax(0,1fr);gap:20px;padding:16px 0;border-bottom:1px solid #e6ebe7}.brief-note p,.brief-note ul{margin:0}.brief-category-label{font-size:13px;font-weight:700;color:#286e5d}.prep-essential .row-actions{margin-top:24px;justify-content:flex-start;flex-wrap:wrap}.prep-priority{padding:12px;background:#fbf1e4;border-radius:8px;font-size:13px}
+.prep-category-list{width:100%;max-width:none;margin:0;display:flex;flex-direction:column;gap:12px}.prep-category{width:100%;min-width:0;box-sizing:border-box;margin:0;padding:20px 24px}.prep-category>summary{cursor:pointer;font-weight:650}.prep-category>summary small{display:block;font-weight:400;color:var(--text-secondary);margin:6px 0 0 18px}.prep-category-body{padding-top:20px}.prep-back{margin:20px 0}.prep-category-body blockquote{padding:16px;border-left:3px solid #91b8a3;margin:12px 0}.issue-category{margin:20px 0}.issue-review{border:1px solid #dce4de;border-radius:10px;padding:16px;margin:10px 0}.issue-review>summary{cursor:pointer;line-height:1.8}.issue-review>summary>span:last-child{margin-left:10px;font-size:12px;color:var(--text-secondary)}.issue-review[open] summary{margin-bottom:16px}.issue-review form{max-width:700px}.preparation-steps li small{display:none}.preparation-steps li{padding:12px}.preparation-steps{margin-bottom:12px}
+@media(max-width:600px){.brief-note{grid-template-columns:minmax(0,1fr);gap:8px}.prep-essential{padding:20px}.prep-category{padding:18px}.preparation-toolbar .action-group{flex-wrap:wrap}.preparation-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.case-agenda-item{padding:14px 0;border-bottom:1px solid #dce4de}.case-agenda-item>summary{cursor:pointer;font-weight:650}.case-agenda-item dl{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px 20px;margin:18px 0}.case-agenda-item dt{font-weight:650;font-size:13px;color:#286e5d}.case-agenda-item dd{margin:0;line-height:1.6}.case-agenda-item dd small{display:block;color:var(--text-secondary);margin-top:8px}.inline-evidence{display:inline-block;vertical-align:top;margin:6px 8px 6px 0;padding:4px 8px;border:1px solid #dce4de;border-radius:6px;font-size:12px}.inline-evidence>summary{cursor:pointer}.inline-evidence[open]{display:block}.inline-evidence blockquote{margin:8px 0}.prep-essential .brief-note ul{padding-left:18px}.prep-essential .brief-note li{margin-bottom:12px}.prep-essential .brief-note li p{margin:6px 0}.prep-category#prep-issues{margin-bottom:20px}
+@media(max-width:650px){.case-agenda-item dl{grid-template-columns:minmax(0,1fr);gap:6px}.case-agenda-item dd{margin-bottom:12px}}
+
+.situation-glance{margin:0 0 20px;padding:24px}.situation-glance>p{max-width:90ch;line-height:1.75}.situation-actors{margin:20px 0;padding:16px;background:#f1f5f1;border-radius:8px}.context-evidence,.context-document-list{display:flex;gap:12px;flex-wrap:wrap}.context-document-list{flex-direction:column;align-items:flex-start;padding:14px 0}.context-evidence .btn-ghost-link{padding:6px 10px;border:1px solid #d9e3db;border-radius:6px}#source-inspection-dialog{width:min(960px,calc(100vw - 32px));max-height:90vh;overflow:auto;padding:clamp(18px,4vw,32px)}#source-inspection-dialog h2{font-size:22px;overflow-wrap:anywhere}#source-inspection-dialog blockquote{border-left:3px solid #75a58b;padding:16px;margin:16px 0;background:#f0f6f1}#source-inspection-dialog mark{background:#fff0a0;color:#243a31;padding:2px}#source-inspection-dialog dl{display:grid;grid-template-columns:100px minmax(0,1fr);gap:10px}#source-inspection-dialog dd{margin:0}#inspection-full-text{padding:16px 0}#inspection-full-text>summary{cursor:pointer;font-weight:650}.inspection-summary{margin:24px 0}
+
+/* Align all preparation cards on one full-width content column. */
+.prep-content > .prep-essential,.prep-content > .situation-glance,.prep-content > .prep-category{width:100%;min-width:0;max-width:none;box-sizing:border-box;margin:0}
+.prep-essential .brief-note{grid-template-columns:148px minmax(0,1fr);gap:24px;padding:20px 0;align-items:start}.prep-essential .brief-note>div,.prep-essential .brief-note>p,.prep-essential .brief-note>ul{min-width:0;overflow-wrap:anywhere;line-height:1.65}.prep-essential .brief-category-label{line-height:1.5}.prep-essential .brief-note li{padding-left:2px}.prep-essential .brief-note .btn-ghost-link{display:inline-block;margin-top:6px}.prep-content .situation-glance h2{margin-top:6px}.prep-category-body{min-width:0;overflow-wrap:anywhere}
+@media(max-width:700px){.prep-essential .brief-note{grid-template-columns:minmax(0,1fr);gap:8px;padding:16px 0}.prep-essential .row-actions{gap:10px}.prep-content>.prep-essential,.prep-content>.situation-glance{padding:20px}}
