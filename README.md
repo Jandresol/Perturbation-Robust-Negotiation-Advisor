@@ -10,6 +10,41 @@ python3 server.py --port 8000
 
 Open http://localhost:8000. Choose **Upload documents** to read a mixed batch of PDF and DOCX source documents, import a package JSON, or choose **Explore example workspace** to try preparation, strategy selection, confirmed negotiation events, and research inspection. The example is illustrative. The local Python server supplies the HUIT source-analysis API and persistent SQLite cache; PDF and DOCX text extraction runs in the browser. Preparation opens on a printable brief and critical sources, with no sentence-approval queue. Upload first using the optional shared/specific/role-card buckets. Analyze the files to infer editable roles and document summaries, tags, claims, and arguments. Connect the package-to-game and rewording services for baseline game inference and bounded planning; source corrections remain optional and targeted. Semantic model inference remains with the external engines. See [PIPELINE_INTERFACE.md](PIPELINE_INTERFACE.md) for the dataset contract, session handoff, and checks.
 
+## Game builder and solver
+
+The game builder and solver are a separate service from the page. They do not call a model. Source inference still produces the facts; this service turns those facts into a commitment game and a plan.
+
+```sh
+python3 game_service.py
+```
+
+In the app, open **Pipeline settings**, set **Game builder endpoint** to `http://localhost:8001/game`, choose **Save connections**, then **Run game builder**. The service answers `POST /game` with the same `packageId` the page sent, plus `facts`, `actions`, `game`, and `strategies`. The preparation brief uses the first strategy as the opening and fallback.
+
+### How the builder works
+
+`game_builder.py` reads the posted package.
+
+1. Keep facts that are already on the package, including their ids. A quote must appear verbatim in its source. If the package has no facts, split source sentences into quotes and keep only those exact slices.
+2. Turn commitments, resources, and timelines into actions, at most 12. A fact that names our side is ours; a fact that names the other side is theirs. Prohibitions such as "must not" stay text. They are not offers.
+3. Give each action an all-or-nothing goal. Our concession costs us and benefits them. Their concession does the reverse. Pairing one action from each side adds joint value for both. These numbers are role estimates, not measurements from a role card.
+4. Add one extra opponent column that lowers the joint value. That column is a sensitivity check, not a claim about which type of person we face.
+5. Put confirmed red lines into `forbiddenActions` when they point at an action's fact. The search cannot offer those actions.
+
+The game stays inside the limits of the in-browser planner: at most 12 actions, 4 offers, and 1 new commitment per side per offer (`maxOffers` is 2 or 3).
+
+### How the solver works
+
+`solver.py` searches that game without an LLM.
+
+- A state is the set of commitments already accepted. Accepted commitments stay on.
+- An offer may add at most one new commitment from each side. The search looks ahead at most `maxOffers` offers.
+- The modeled opponent accepts an offer only when their estimated value does not fall.
+- The search maximizes our value. If two sequences tie, it keeps the one with fewer offers, so a single trade is preferred to asking for the same commitments one at a time.
+- Each candidate is scored on the baseline opponent column and on the lower-joint column. `meanScore` and `worstScore` are those results scaled to `[0, 1]`.
+- Up to five strategies are returned, best worst-case first. Each one has an opening, a fallback (the package walk-away text when it exists), the action ids in each step, and a rejection branch. If nothing beats walking away, the only strategy is to walk away.
+
+Live re-planning in the browser still uses `planner.js` on the same `game` object. Pass already accepted commitment ids into `solve(package, commitments)` when calling the solver directly.
+
 ## 1. The idea in one minute
 
 Both teams get the same shared package plus their own private role card. We play one side and want the best outcome for our side. We do not assume the other side has to lose for us to win.
