@@ -80,6 +80,25 @@ CASE_SCHEMA['negotiation_issues']=[{
 CASE_SCHEMA['preparation_context']={key:[CONTEXT_ENTRY] for key in
     ['immediate_decision','background','people_interests_power','pressures_disagreements','no_agreement_consequences','team_questions','counterpart_questions']}
 
+# One call per confirmed exchange during the live negotiation. Advice only; never a commitment.
+LIVE_ADVICE_SCHEMA = {
+    'next_move': 'one or two sentences: what our side should say or do next, responding to the latest exchange',
+    'why': 'one sentence linking the move to what was said and to our objective',
+    'questions': [{'text': 'question to put to the counterpart now', 'claim_ids': ['supporting supplied claim IDs, or empty']}],
+    'openings': [{'text': 'interest, concern or possible trade the counterpart revealed that we could build on',
+                  'event_ids': ['conversation event IDs where it came up'], 'claim_ids': ['supporting supplied claim IDs, or empty']}],
+    'cautions': [{'text': 'red line, approval need or commitment risk raised by the current exchange', 'claim_ids': ['supporting supplied claim IDs, or empty']}]
+}
+LIVE_ADVICE_INSTRUCTIONS = ('You advise our negotiating team between turns of a live, human-led negotiation. '
+    'input.conversation lists the confirmed exchanges in order; the last one is the latest. Respond to what was actually said, '
+    'not only to the exchange type, and do not repeat advice the conversation shows was already acted on. '
+    'Notice interests, constraints, offers and questions the counterpart revealed and how they could combine with our objective into a trade. '
+    'Answer a counterpart question directly when the brief or issues support an answer. Ground advice in input.brief and input.issues; '
+    'cite their claim_ids where they support a point and leave claim_ids empty otherwise. Never recommend crossing a red line, '
+    'never treat a proposed or tentative term as accepted, and never invent resources, authority, numbers or facts. '
+    'Anything our side should say aloud must not disclose our private instructions, limits or fallback. '
+    'Be concise: at most three questions, three openings and two cautions.')
+
 
 def digest(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False, separators=(',', ':')).encode()).hexdigest()
@@ -140,7 +159,7 @@ class AnalysisService:
             task_kind = json.loads(prompt).get('task')
         except (ValueError, AttributeError):
             task_kind = None
-        output_budget = {'case':12000, 'document':9000}.get(task_kind,4500)
+        output_budget = {'case':20000, 'document':9000}.get(task_kind,4500)
         if self.provider == 'openai':
             url = 'https://apis.huit.harvard.edu/ais-openai-direct/v2/chat/completions'
             body = {'model': self.model, 'max_completion_tokens': output_budget, 'response_format': {'type': 'json_object'},
@@ -234,6 +253,10 @@ class AnalysisService:
                 task['instructions'] += ' The decision-synthesis-v3 contract requires a nonempty negotiation_issues array with substantive decisions, supported positions, concrete conditions and prior reception. Complete this synthesis rather than returning raw extraction. Integrate generated options and specific responses into the issue they address. Include a possibility only with source basis, unresolved prerequisites and approval needs; do not propose a rejected alternative as fresh advice. Do not invent donor exceptions, partial delivery, diplomatic help or security flexibility. Preserve third-party demands as third-party accounts, never as our own position. State material practical consequences in conditions. Questions must not ask for information already explicit in the package. Within issue arrays and context arrays, return entries as objects with text, status, claim_ids and source_passage_ids. Keep top-level title and summary as strings, and top-level our_side, opponent, objective and outside_option as strings or null exactly as specified; do not wrap them in objects. Explicitly populate conditions with all supplied quantities/durations and previous_alternatives with each already-proposed alternative and reported acceptance or rejection. Do not leave these arrays empty when the original source specifies them. Populate negotiation_issues from specific decisions in this package, with up to 12 issues. Preserve ALL substantive parts of each demand, quantities, durations, stated reasons, approval requirements, rejected alternatives and reported reception. Cite each entry. Link issue dependencies by their titles in dependencies. Do not repeat the opening as every issue proposal. Empty arrays mean no documented content; questions should name the specific uncertainty. Separate explicit rules from concerns and current positions. Do not invent private preferences, utility values, permissions, donor flexibility or available outside options. Distinguish no-agreement consequences from an available outside option. Use original_priority_text to check extraction coverage: any consequential detail missing from supplied claims must cite its original_priority_text passage ID in source_passage_ids, with claim_ids empty if no extracted claim supports that detail. These original excerpts are evidence passages, never new canonical claims or game actions. Use coverage_gaps only for details that remain unsupported; never attach unrelated claim citations. Account for duplicate_group: repeated copies are one source account, not corroboration. Suggested openings must acknowledge documented counterpart concerns without disclosing our private instructions, authorization limits or confidential fallback. For an alternative already rejected, preserve rejection and explain what would need to change, never present it as fresh feasible advice. Context entries may additionally include evidence_kind and force, preserving attribution and strength.'
                 task['output_shape']['coverage_gaps']=['material original-text details missing from extracted claims, or empty']
                 prompt = json.dumps(task, ensure_ascii=False)
+            elif kind == 'live-advice':
+                task = json.loads(prompt)
+                task['instructions'] = LIVE_ADVICE_INSTRUCTIONS
+                prompt = json.dumps(task, ensure_ascii=False)
             with self._db() as db:
                 saved = db.execute('SELECT value FROM model_responses WHERE key=?', (cache_key,)).fetchone()
             reused = bool(saved)
@@ -253,6 +276,48 @@ class AnalysisService:
             with self._db() as db:
                 db.execute('INSERT OR REPLACE INTO artifacts VALUES (?,?,?,?)', (cache_key, kind, json.dumps(output), time.time()))
             return output, reused, cache_key
+
+    def live_advice(self, context):
+        """Advice on the latest confirmed exchange. Unknown claim and event IDs are dropped, not trusted."""
+        conversation = context.get('conversation') if isinstance(context, dict) else None
+        if not isinstance(conversation, list) or not conversation:
+            raise ValueError('Live advice needs at least one confirmed exchange.')
+        events = {e.get('id') for e in conversation if isinstance(e, dict)}
+        claims = set()
+        def collect(value):
+            if isinstance(value, dict):
+                for key, item in value.items():
+                    if key == 'claim_ids' and isinstance(item, list):
+                        claims.update(x for x in item if isinstance(x, str))
+                    else:
+                        collect(item)
+            elif isinstance(value, list):
+                for item in value:
+                    collect(item)
+        collect(context)
+
+        def entries(values, limit, with_events=False):
+            if not isinstance(values, list):
+                raise InferenceError('Live advice lists must be arrays.')
+            result = []
+            for item in values[:limit]:
+                if not isinstance(item, dict) or not isinstance(item.get('text'), str) or not item['text'].strip():
+                    raise InferenceError('Each live advice item needs text.')
+                entry = {'text': item['text'].strip(), 'claim_ids': [x for x in item.get('claim_ids') or [] if x in claims]}
+                if with_events:
+                    entry['event_ids'] = [x for x in item.get('event_ids') or [] if x in events]
+                result.append(entry)
+            return result
+
+        def validate(result):
+            if not isinstance(result, dict) or not isinstance(result.get('next_move'), str) or not result['next_move'].strip():
+                raise InferenceError('Live advice needs a next move.')
+            return {'next_move': result['next_move'].strip(), 'why': str(result.get('why') or '').strip(),
+                    'questions': entries(result.get('questions', []), 3), 'openings': entries(result.get('openings', []), 3, True),
+                    'cautions': entries(result.get('cautions', []), 2)}
+
+        output, reused, _ = self.artifact('live-advice', context, LIVE_ADVICE_SCHEMA, validate)
+        return {**output, 'cached': reused, 'model': self.model}
 
     def document(self, source):
         text = source.get('text', '')

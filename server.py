@@ -68,7 +68,7 @@ class Handler(SimpleHTTPRequestHandler):
         super().do_GET()
 
     def do_POST(self):
-        if urlsplit(self.path).path != '/api/sources/parse' and not self.path.startswith('/api/engines/'):
+        if urlsplit(self.path).path not in ('/api/sources/parse', '/api/live/advice') and not self.path.startswith('/api/engines/'):
             return self.json_response(404, {'error': 'Unknown API endpoint'})
         origin = self.headers.get('Origin')
         if origin and urlsplit(origin).netloc != self.headers.get('Host'):
@@ -87,6 +87,8 @@ class Handler(SimpleHTTPRequestHandler):
                 return self.json_response(202,self.server.engines.start(data))
             if self.path.startswith('/api/engines/'):
                 return self.json_response(404, {'error':'Unknown engine endpoint'})
+            if self.path == '/api/live/advice':
+                return self.json_response(200, self.server.analysis.live_advice(data.get('context')))
             package = data.get('package', data)
             if 'application/x-ndjson' in self.headers.get('Accept', ''):
                 self.send_response(200)

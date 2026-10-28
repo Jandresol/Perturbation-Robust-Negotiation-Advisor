@@ -240,6 +240,30 @@ class InferenceTests(unittest.TestCase):
                 AnalysisService(self.path, bad_case).parse(self.package())
         self.assertEqual(self.calls, ['document', 'case'])
 
+    def test_live_advice_reads_the_conversation_drops_unknown_ids_and_caches(self):
+        prompts = []
+        def advisor(prompt):
+            prompts.append(json.loads(prompt))
+            return {'next_move': 'Offer registration for identity checks only, in writing.', 'why': 'The mayor asked for that guarantee.',
+                    'questions': [{'text': 'Which records would you share?', 'claim_ids': ['c1', 'invented']}],
+                    'openings': [{'text': 'Written limits on registration use.', 'event_ids': ['event-2', 'event-9'], 'claim_ids': []}],
+                    'cautions': []}, (300, 80)
+        context = {'parties': {'us': 'Officer', 'opponent': 'Mayor'},
+                   'issues': [{'id': 'I1', 'title': 'Registration', 'conditions': [{'text': 'Two weeks.', 'claim_ids': ['c1']}]}],
+                   'conversation': [{'id': 'event-1', 'speaker': 'Mayor', 'type': 'note', 'text': 'We lack resources.'},
+                                    {'id': 'event-2', 'speaker': 'Mayor', 'type': 'question', 'text': 'Can registration be limited to identity checks?'}]}
+        first = AnalysisService(self.path, advisor).live_advice(context)
+        self.assertEqual(prompts[0]['task'], 'live-advice')
+        self.assertIn('Can registration be limited', json.dumps(prompts[0]['input']))
+        self.assertEqual(first['questions'][0]['claim_ids'], ['c1'])
+        self.assertEqual(first['openings'][0]['event_ids'], ['event-2'])
+        self.assertFalse(first['cached'])
+        again = AnalysisService(self.path, advisor).live_advice(context)
+        self.assertTrue(again['cached'])
+        self.assertEqual(len(prompts), 1)
+        with self.assertRaises(ValueError):
+            AnalysisService(self.path, advisor).live_advice({**context, 'conversation': []})
+
 
 if __name__ == '__main__':
     unittest.main()
