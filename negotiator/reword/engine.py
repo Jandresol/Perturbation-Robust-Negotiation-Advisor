@@ -20,14 +20,13 @@ def run(units: list[dict], cfg: dict) -> tuple[list[dict], list[dict]]:
             if op not in rc["operators"]:
                 continue
             for level in rc["levels"]:
-                texts, meta = operators.reword(op, unit["text"], level, rc["k"], cfg["llm"], seed)
-                for i, text in enumerate(texts):
+                for i, text, meta, sample_seed in candidates(op, unit["text"], level, cfg):
                     rec = {
                         "id": f"{unit['id']}:{op}:{level}:{seed}:{i}",
                         "source_id": unit["id"], "kind": unit["kind"],
                         "operator": op, "level": level, "text": text,
-                        **accept.check(unit["text"], text, fc),
-                        **meta, "seed": seed,
+                        **accept.check(unit["text"], text, fc, unit.get("red_line", False)),
+                        **meta, "seed": sample_seed,
                     }
                     records.append(rec)
                     if rec["accepted"] and cfg["noise"].get("enabled", True):
@@ -38,6 +37,22 @@ def run(units: list[dict], cfg: dict) -> tuple[list[dict], list[dict]]:
     if "reorder" in rc["operators"] and len(units) > 1:
         records += _reorders(units, rc["reorder_k"], fc["encoder"], seed)
     return records, control
+
+
+def candidates(op: str, text: str, level: str, cfg: dict):
+    """(index, text, meta, seed) for k candidates of one (unit, operator, level).
+
+    With reword.independent, each candidate is its own call with seed + i, so the
+    candidates are independent samples; otherwise one call returns all k."""
+    rc, seed = cfg["reword"], cfg["seed"]
+    if not rc.get("independent"):
+        texts, meta = operators.reword(op, text, level, rc["k"], cfg["llm"], seed)
+        return [(i, t, meta, seed) for i, t in enumerate(texts)]
+    out = []
+    for i in range(rc["k"]):
+        texts, meta = operators.reword(op, text, level, 1, cfg["llm"], seed + i)
+        out += [(i, t, meta, seed + i) for t in texts[:1]]
+    return out
 
 
 def _reorders(units: list[dict], n: int, encoder: str, seed: int) -> list[dict]:

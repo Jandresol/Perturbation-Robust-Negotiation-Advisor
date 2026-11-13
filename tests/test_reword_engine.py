@@ -38,7 +38,7 @@ def test_render_keeps_braces_in_text():
 
 def test_engine_filters_and_keeps_noise_separate(monkeypatch, cfg):
     _stub_llm(monkeypatch)
-    cfg["reword"]["levels"] = ["light"]
+    cfg["reword"].update(levels=["light"], independent=False)
     records, control = engine.run(UNITS, cfg)
     llm_records = [r for r in records if r["operator"] == "paraphrase_fact"]
     assert [r["accepted"] for r in llm_records] == [True, False, True, False]
@@ -46,6 +46,20 @@ def test_engine_filters_and_keeps_noise_separate(monkeypatch, cfg):
     assert len(control) == 2 and all(c["control"] for c in control)
     assert not {c["id"] for c in control} & {r["id"] for r in records}
     assert sum(r["operator"] == "reorder" for r in records) == 1   # 2 units: one other order
+
+
+def test_independent_candidates_are_separate_calls_with_their_own_seeds(monkeypatch, cfg):
+    calls = []
+
+    def fake(prompt, schema, **kw):
+        calls.append(kw["seed"])
+        return {"rewordings": [GOOD["f2"], "ignored extra"]}, {"model": "stub", "prompt_hash": "x"}
+    monkeypatch.setattr(llm, "complete_json", fake)
+    cfg["reword"].update(levels=["light"], independent=True, k=3)
+    cfg["noise"]["enabled"] = False
+    records, _ = engine.run(UNITS[1:], cfg)
+    assert calls == [cfg["seed"], cfg["seed"] + 1, cfg["seed"] + 2]
+    assert [r["seed"] for r in records] == calls and all(r["text"] == GOOD["f2"] for r in records)
 
 
 def test_cache_hit_makes_no_model_call(monkeypatch, tmp_path):

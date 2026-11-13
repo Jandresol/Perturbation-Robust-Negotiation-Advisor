@@ -30,6 +30,7 @@ def _get_client(base_url: str) -> AnthropicBedrock:
         _clients[base_url] = AnthropicBedrock(
             base_url=base_url, aws_region="us-east-1",
             api_key=key, default_headers={"x-api-key": key},
+            max_retries=6,   # the gateway returns transient 503s under concurrent calls
         )
     return _clients[base_url]
 

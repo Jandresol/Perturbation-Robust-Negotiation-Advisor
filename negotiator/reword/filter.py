@@ -20,6 +20,30 @@ _WORD_NUMBERS = {w: str(i) for i, w in enumerate(
     "fourteen fifteen sixteen seventeen eighteen nineteen twenty".split()) if w != "_"}
 
 
+# Red-line force: which kinds of rule a text states. Synonyms map to one class, so
+# "must" -> "is required to" passes, but "must" -> "may", "all" -> "some" or
+# "authorised" -> "not authorised" changes the set of classes. Prohibitions are
+# matched (and removed) first, so the "must" in "must not" is not an obligation.
+_FORCE = [
+    ("prohibition", r"\b(?:must|may|shall|can|should)\s+not\b|\b(?:cannot|can't|mustn't|shan't)\b"
+                    r"|\bnot\s+(?:be\s+)?(?:allowed|permitted|authori[sz]ed)\b|\b(?:prohibit|forbid|forbidden|bans?|banned|unauthori[sz]ed)\w*|\bnever\b|\bunder no circumstances\b"
+                    r"|\b(?:without|lacking|no)\s+(?:having\s+)?(?:prior |formal |official )?(?:authori[sz]ation|permission|approval|consent)\b"),
+    ("obligation", r"\b(?:must|shall|required|requires?|requirement|ha(?:s|ve) to|needs? to|obliged|obligated|mandatory|compulsory)\b"),
+    ("permission", r"\b(?:may|allowed|permitted|authori[sz]ed|entitled|permission)\b"),
+    ("exclusive", r"\b(?:only|solely|exclusively|sole)\b"),
+    ("universal", r"\b(?:all|every|none|no one|nobody)\b"),
+]
+
+
+def force_classes(text: str) -> set:
+    found, rest = set(), text.lower().replace("’", "'")
+    for name, pattern in _FORCE:
+        if re.search(pattern, rest):
+            found.add(name)
+            rest = re.sub(pattern, " ", rest)
+    return found
+
+
 # ---------- hard facts: deterministic, no model ----------
 
 def _numbers(text: str) -> Counter:
@@ -124,20 +148,25 @@ def entailment(premise: str, hypothesis: str, cfg: dict) -> float:
 
 # ---------- combined check ----------
 
-def check(original: str, new: str, cfg: dict) -> dict:
-    """All checks are run and logged; reject_reason names the first that failed."""
+def check(original: str, new: str, cfg: dict, red_line: bool = False) -> dict:
+    """All checks are run and logged; reject_reason names the first that failed.
+
+    A red-line unit must also keep its force classes (prohibition, obligation, ...).
+    Only red lines get this check: on ordinary text it mostly rejects good paraphrases."""
     cos = cosine(original, new, cfg["encoder"])
     fwd = entailment(original, new, cfg)
     bwd = entailment(new, original, cfg)
     facts = hard_facts_ok(original, new)
+    force = not red_line or force_classes(original) == force_classes(new)
     failed = [name for name, ok in [
         ("cosine", cos >= cfg["tau"]),
         ("nli_fwd", fwd >= cfg["nli_threshold"]),
         ("nli_bwd", bwd >= cfg["nli_threshold"]),
         ("hard_facts", facts),
+        ("red_line_force", force),
     ] if not ok]
     return {
         "cos": cos, "d_emb": 1 - cos, "nli_fwd": fwd, "nli_bwd": bwd,
-        "hard_facts_ok": facts, "accepted": not failed,
+        "hard_facts_ok": facts and force, "accepted": not failed,
         "reject_reason": failed[0] if failed else None,
     }

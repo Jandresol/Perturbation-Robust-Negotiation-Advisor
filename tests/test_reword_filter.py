@@ -85,3 +85,24 @@ def test_hard_facts_transcripts_and_logs():
                 "001 1 May 11:16 | Unauthorized matches found on a man from Compound 2.")
     assert accept.hard_facts_ok(original, reworded)
     assert not accept.hard_facts_ok(original, reworded.replace("FWB", "MASHA"))
+
+
+def test_force_classes_catch_red_line_edits_and_allow_synonyms():
+    same = [("Staff must remain on site.", "Staff are required to stay on site."),
+            ("Staff must not leave the compound.", "Staff are prohibited from leaving the compound."),
+            ("No one may enter without approval.", "Nobody may enter without permission.")]
+    changed = [("Staff must remain on site.", "Staff may remain on site."),
+               ("All families must be moved together.", "Some families must be moved together."),
+               ("Transfers are authorised by the Mayor.", "Transfers are not authorised by the Mayor."),
+               ("Only documented citizens may be transported.", "Documented citizens may be transported.")]
+    assert all(accept.force_classes(a) == accept.force_classes(b) for a, b in same)
+    assert all(accept.force_classes(a) != accept.force_classes(b) for a, b in changed)
+
+
+def test_force_check_applies_to_red_lines_only(monkeypatch, cfg):
+    monkeypatch.setattr(accept, "cosine", lambda a, b, enc: 0.99)
+    monkeypatch.setattr(accept, "entailment", lambda p, h, c: 0.99)   # suppose NLI missed it
+    original, edited = "Staff must remain on site.", "Staff may remain on site."
+    assert accept.check(original, edited, cfg["filter"])["accepted"]
+    result = accept.check(original, edited, cfg["filter"], red_line=True)
+    assert not result["accepted"] and result["reject_reason"] == "red_line_force" and not result["hard_facts_ok"]
