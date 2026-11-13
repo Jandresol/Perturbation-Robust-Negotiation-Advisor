@@ -1,0 +1,54 @@
+# Frozen before the live test (README §10). Change values here, not in code.
+seed: 0
+
+llm:
+  base_url: https://apis.huit.harvard.edu/ais-bedrock-llm/v2   # Harvard Bedrock gateway
+  model: us.anthropic.claude-opus-5-5   # us. = US-only processing; global. is ~10% cheaper
+  effort: low            # low | medium | high | xhigh | max
+  max_tokens: 16000
+
+reword:
+  k: 4                   # candidates per (unit, operator, level); small for pilots
+  independent: true      # one call per candidate (seed + i), so candidates are independent samples
+  levels: [light, moderate, heavy]
+  operators: [paraphrase_fact, paraphrase_doc, register, reorder]
+  reorder_k: 4           # package-level permutations
+
+filter:
+  encoder: BAAI/bge-base-en-v1.5
+  tau: 0.85              # min cosine similarity; calibrate on the human sample
+  nli_model: cross-encoder/nli-deberta-v3-base
+  nli_threshold: 0.5     # min entailment probability, each direction
+  window_sentences: 3    # premise windows are runs of 1..N sentences
+  top_windows: 3         # windows checked per hypothesis sentence
+
+noise:
+  # Document-level rewordings sit at d_emb ~0.001-0.01, so the grid starts very low.
+  rates: [0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4]
+
+human_sample_rate: 0.05
+
+game:
+  # Model-built game, staged after Benac et al. (2026, App. B). Rule-based game_builder.py stays the baseline.
+  model: us.anthropic.claude-opus-5-5   # Opus 5.5 for every builder call
+  effort: medium
+  max_tokens: 16000
+  n_runs: 3              # repeats per extraction stage; kept if found in a majority of runs (pilot value)
+  min_relevance: 2       # facts below this (0-3) are not used
+  max_goals: 16          # issues asked for per party per run
+  max_goals_in_game: 48  # majority goals kept (solver allows 64); a cap of 16 was decided by tie-breaks and made builds disagree
+  max_actions_per_side: 6   # chosen per side for the game; solver.py handles at most 12 actions in total
+  max_candidates_per_side: 12   # actions asked for per run, before merging and selection
+  action_min_runs: 1     # an action needs to appear in this many runs to be a candidate (a majority dropped whole goals)
+  stance_values: [10, 5, 0, -5, -10]   # strongly support, moderately support, neutral, moderately oppose, strongly oppose
+  opp_samples: 8         # opponent readings drawn from the elicited stance distribution (solver allows 16)
+  max_offers: 3          # solver horizon (1-4)
+  max_actions_per_offer: 2   # k: new commitments per side per offer (1-2)
+  parallel: 3            # concurrent builder calls (6 drew repeated 503s from the gateway)
+
+compare:
+  # Rewording comparison on model-built games (negotiator/game/compare.py).
+  k: 3                   # same-text builds and reworded builds, each (equal compute)
+  levels: [light, moderate, heavy]   # reworded reading j uses levels[j % 3]
+  align_tau: 0.8         # min label cosine for two actions/goals from different builds to count as the same
+  alpha: 0.9             # a plan is "good" if its cross-reading score is >= alpha * best

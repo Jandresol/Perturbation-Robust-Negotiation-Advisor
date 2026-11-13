@@ -1,0 +1,11 @@
+{
+  "sources": {
+    "origin/setup/game-builder": "2aa0c86d67c532485f96fa50d80e1d5347e8a3c7",
+    "origin/setup/perturbation-engine-scaffold": "f630e16512967abbe11eb4010defc9e25c8b06c4"
+  },
+  "integration": {
+    "game": "same-origin async adapter; canonical-fact checks; heuristic utility labels",
+    "rewording": "same-origin async adapter; HUIT raw-response cache; fact-only budget; local semantic filters; game/plan comparison",
+    "benchmarkDefaults": "configs/default.yaml remains separate from the app configuration"
+  }
+}
