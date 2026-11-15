@@ -118,6 +118,9 @@ def run(args, cfg, cases, passages):
         rows = [{**r, "verified": "yes"} for r in rows if r["index"] == str(args.index)]
         cfg["sentence_test"]["variants"] = 1
         print(f"running variant {args.index} of each strategy, reviewed or not")
+    elif args.unreviewed:
+        rows = [{**r, "verified": "yes"} for r in rows]
+        print("running every variant, reviewed or not")
     runs = st.plan(passages, rows, cfg)
     if args.strategies:
         runs = [r for r in runs if r["strategy"] in ("reference", "original", *args.strategies)]
@@ -211,6 +214,7 @@ def main():
     ap.add_argument("--stage", choices=["extract", "build"], default="extract")
     ap.add_argument("--cap", type=float, default=30.0)
     ap.add_argument("--index", type=int, help="run only this variant number of each strategy, skipping the review")
+    ap.add_argument("--unreviewed", action="store_true", help="run every variant, skipping the review")
     ap.add_argument("--force", action="store_true", help="overwrite variants.csv (and its review)")
     ap.add_argument("--yes", action="store_true", help="make the paid calls")
     args = ap.parse_args()

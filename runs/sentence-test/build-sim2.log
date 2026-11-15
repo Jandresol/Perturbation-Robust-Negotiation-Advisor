@@ -1,0 +1,67 @@
+running variant 1 of each strategy, reviewed or not
+runs: {'reference': 1, 'original': 4, 'lexical': 4, 'passive': 3, 'clause_order': 4, 'split': 4, 'register': 3, 'conditional': 3, 'nominalise': 4, 'pronoun': 3, 'doc_order': 4}
+distinct inputs 36: 35 extractor calls, 36 builds (rough cost $131 before cache hits)
+extraction done; spend $0.00
+  built sim2:reference; spend $2.42
+  built sim2-1:original:1; spend $4.80
+  built sim2-2:original:1; spend $7.21
+  built sim2-4:original:1; spend $9.62
+  built sim2-1:lexical:1; spend $12.04
+  built sim2-1:passive:1; spend $14.49
+  built sim2-1:clause_order:1; spend $16.87
+  built sim2-1:split:1; spend $19.30
+  built sim2-1:register:1; spend $21.70
+  built sim2-1:conditional:1; spend $24.13
+  built sim2-1:nominalise:1; spend $26.58
+  built sim2-1:pronoun:1; spend $28.95
+  built sim2-1:doc_order:1; spend $31.37
+  built sim2-2:lexical:1; spend $33.76
+  built sim2-2:passive:1; spend $36.22
+  built sim2-2:clause_order:1; spend $38.57
+  built sim2-2:split:1; spend $40.97
+  built sim2-2:register:1; spend $43.34
+  built sim2-2:conditional:1; spend $45.69
+  built sim2-2:nominalise:1; spend $48.11
+  built sim2-2:pronoun:1; spend $50.56
+  built sim2-2:doc_order:1; spend $52.96
+  built sim2-3:lexical:1; spend $55.39
+  built sim2-3:passive:1; spend $57.81
+  built sim2-3:clause_order:1; spend $60.25
+  built sim2-3:split:1; spend $62.61
+  built sim2-3:register:1; spend $65.00
+  built sim2-4:conditional:1; spend $67.34
+  built sim2-3:nominalise:1; spend $69.71
+  built sim2-4:pronoun:1; spend $72.12
+  built sim2-3:doc_order:1; spend $74.54
+  built sim2-4:lexical:1; spend $76.80
+  built sim2-4:clause_order:1; spend $79.17
+  built sim2-4:split:1; spend $81.56
+  built sim2-4:nominalise:1; spend $83.99
+  built sim2-4:doc_order:1; spend $86.40
+| strategy | passages | ownership or conditions: variant | original | inferred game: variant | original | opening or fallback: variant | original |
+|---|---|---|---|---|---|---|---|
+| original | 4 | 0/4 (0%) |  | 4/4 (100%) |  | 4/4 (100%) |  |
+| lexical | 4 | 1/4 (25%) | 0/4 (0%) | 4/4 (100%) | 4/4 (100%) | 4/4 (100%) | 4/4 (100%) |
+| passive | 3 | 2/3 (67%) | 0/3 (0%) | 3/3 (100%) | 3/3 (100%) | 3/3 (100%) | 3/3 (100%) |
+| clause_order | 4 | 0/4 (0%) | 0/4 (0%) | 4/4 (100%) | 4/4 (100%) | 4/4 (100%) | 4/4 (100%) |
+| split | 4 | 1/4 (25%) | 0/4 (0%) | 4/4 (100%) | 4/4 (100%) | 4/4 (100%) | 4/4 (100%) |
+| register | 3 | 1/3 (33%) | 0/3 (0%) | 3/3 (100%) | 3/3 (100%) | 3/3 (100%) | 3/3 (100%) |
+| conditional | 3 | 1/3 (33%) | 0/3 (0%) | 3/3 (100%) | 3/3 (100%) | 3/3 (100%) | 3/3 (100%) |
+| nominalise | 4 | 2/4 (50%) | 0/4 (0%) | 4/4 (100%) | 4/4 (100%) | 4/4 (100%) | 4/4 (100%) |
+| pronoun | 3 | 2/3 (67%) | 0/3 (0%) | 3/3 (100%) | 3/3 (100%) | 3/3 (100%) | 3/3 (100%) |
+| doc_order | 4 | 2/4 (50%) | 0/4 (0%) | 4/4 (100%) | 4/4 (100%) | 4/4 (100%) | 4/4 (100%) |
+
+| strategy | ownership_changed | conditions_changed | conditions_lost | builder_ownership_changed | opening_changed | fallback_changed | action_distance | goal_distance |
+|---|---|---|---|---|---|---|---|---|
+| original | 0/4 (0%) | 0/4 (0%) | 0/4 (0%) | 3/4 (75%) | 4/4 (100%) | 4/4 (100%) | 0.74 | 0.62 |
+| lexical | 1/4 (25%) | 1/4 (25%) | 1/4 (25%) | 3/4 (75%) | 4/4 (100%) | 4/4 (100%) | 0.72 | 0.63 |
+| passive | 2/3 (67%) | 1/3 (33%) | 1/3 (33%) | 2/3 (67%) | 3/3 (100%) | 3/3 (100%) | 0.70 | 0.65 |
+| clause_order | 0/4 (0%) | 0/4 (0%) | 0/4 (0%) | 3/4 (75%) | 4/4 (100%) | 4/4 (100%) | 0.72 | 0.69 |
+| split | 1/4 (25%) | 0/4 (0%) | 0/4 (0%) | 2/4 (50%) | 4/4 (100%) | 4/4 (100%) | 0.68 | 0.66 |
+| register | 1/3 (33%) | 0/3 (0%) | 0/3 (0%) | 2/3 (67%) | 3/3 (100%) | 3/3 (100%) | 0.76 | 0.72 |
+| conditional | 1/3 (33%) | 0/3 (0%) | 0/3 (0%) | 3/3 (100%) | 3/3 (100%) | 3/3 (100%) | 0.73 | 0.74 |
+| nominalise | 0/4 (0%) | 2/4 (50%) | 2/4 (50%) | 2/4 (50%) | 4/4 (100%) | 4/4 (100%) | 0.77 | 0.68 |
+| pronoun | 1/3 (33%) | 1/3 (33%) | 1/3 (33%) | 2/3 (67%) | 3/3 (100%) | 3/3 (100%) | 0.71 | 0.76 |
+| doc_order | 1/4 (25%) | 1/4 (25%) | 1/4 (25%) | 3/4 (75%) | 4/4 (100%) | 4/4 (100%) | 0.72 | 0.73 |
+
+spend $86.40; wrote runs/sentence-test
