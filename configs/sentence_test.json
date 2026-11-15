@@ -1,0 +1,64 @@
+{
+  "about": "Sentence-level wording test: 12 short verbatim passages, 4 per case, covering actions, goals and constraints. Each passage must occur exactly once in every document that holds it. 'actors' maps the extractor's free-text claim subject to a named actor (whole-word, case-insensitive); a subject matching none is kept as written.",
+  "cases": {
+    "sim1": {
+      "package": "runs/benchmark-2026-10-28/sim1/package.json",
+      "actors": {
+        "Health for All": ["health for all", "hfa", "delegation", "organization", "country director"],
+        "Tribal leaders": ["tribal", "tribe", "tribespeople", "chief"],
+        "police": ["police"],
+        "hospital staff": ["hospital staff", "local staff"],
+        "donors": ["donor", "donors", "germany", "switzerland", "developmental agencies"],
+        "local health officials": ["local health officials", "local health authorities"]
+      }
+    },
+    "sim2": {
+      "package": "runs/benchmark-2026-10-28/sim2/package.json",
+      "actors": {
+        "Camp Commander": ["camp commander", "commander", "cc", "camp side"],
+        "Food Without Borders": ["fwb", "food without borders"],
+        "guards": ["guard", "guards"],
+        "Senior Militia Leader": ["senior militia leader", "sml", "militia", "militia leaders"],
+        "Mayor": ["mayor"],
+        "local laborers": ["laborer", "laborers", "labourers", "local hires"],
+        "refugees": ["refugee", "refugees"]
+      }
+    },
+    "qiso": {
+      "package": "runs/benchmark-2026-10-28/qiso/package.json",
+      "actors": {
+        "Border Authority": ["border authority", "officer"],
+        "Mayor of Qiso": ["mayor"],
+        "local police": ["police"],
+        "Chiasans": ["chiasan", "chiasans", "refugee", "refugees", "migrant", "migrants", "non-citizens", "resident", "residents"],
+        "facility director": ["facility director"]
+      }
+    }
+  },
+  "passages": [
+    {"id": "sim1-1", "case": "sim1", "kind": "action",
+     "text": "Once the HfA delegation has made clear commitment on these urgent issues, it will be able to visit its colleagues and resume their operations at the hospital."},
+    {"id": "sim1-2", "case": "sim1", "kind": "constraint",
+     "text": "He firmly advised the delegation against any attempts to communicate with the detained international staff until an amicable resolution to the ongoing issues is reached."},
+    {"id": "sim1-3", "case": "sim1", "kind": "goal",
+     "text": "The objective now is to transition the Beta Town hospital's control to local health officials, with the financial assistance from developmental agencies."},
+    {"id": "sim1-4", "case": "sim1", "kind": "constraint",
+     "text": "The delegation insisted to see the safe release of its international staff before discussing the sources of the dispute with the staff of the hospital."},
+    {"id": "sim2-1", "case": "sim2", "kind": "constraint",
+     "text": "If FWB hires local independent laborers for the food distribution, you cannot trust those people not to stir unrest and even potentially support hidden terrorists by sharing items or information."},
+    {"id": "sim2-2", "case": "sim2", "kind": "action",
+     "text": "Guards must be responsible for organizing and implementing the distribution, while any FWB presence would need to be coordinated and escorted at all times due to security concerns and the risk of unrest."},
+    {"id": "sim2-3", "case": "sim2", "kind": "goal",
+     "text": "Given the corruption in Alpha and the resulting severe difficulties in paying your guards in non-worthless currency, an agreement that includes ongoing food aid could be highly attractive."},
+    {"id": "sim2-4", "case": "sim2", "kind": "action",
+     "text": "One block at a time. Any trouble while that block is getting food, no one gets food until the next day."},
+    {"id": "qiso-1", "case": "qiso", "kind": "constraint",
+     "text": "You may not allow any undocumented non-citizens in Sitwan, no matter how or when they arrived."},
+    {"id": "qiso-2", "case": "qiso", "kind": "action",
+     "text": "As per protocols, you will contain all Chiasans in the stadium – the only place large enough for the number of migrants that you have – and you will use your local police to ensure that all Chiasans are brought there and none can leave."},
+    {"id": "qiso-3", "case": "qiso", "kind": "goal",
+     "text": "Your task is to work with the mayor to get these refugees to the appropriate centers within the next two weeks."},
+    {"id": "qiso-4", "case": "qiso", "kind": "constraint",
+     "text": "Residents may leave the facility only with written permission from the facility director."}
+  ]
+}

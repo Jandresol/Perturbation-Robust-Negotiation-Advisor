@@ -1,0 +1,19 @@
+{
+ "workspace": "runs/benchmark-2026-10-28-names-mismatch/sim2/workspace.json",
+ "source": {
+  "id": "source-13",
+  "category": "role_card"
+ },
+ "k": 3,
+ "brief_model": "us.anthropic.claude-opus-5-5",
+ "reword_model": "us.anthropic.claude-opus-5-5",
+ "rewordings": {
+  "candidates": 6,
+  "accepted": 6,
+  "used": 3
+ },
+ "paid_calls": 19,
+ "quota_before": 239.01013,
+ "quota_after": 235.60326,
+ "spent_usd": 3.41
+}

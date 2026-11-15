@@ -1,0 +1,14 @@
+{
+ "tag": "reworded-1-light",
+ "condition": "reworded",
+ "brief": null,
+ "error": "The model returned incomplete or invalid JSON. The gateway response was saved locally; repeating this request will not make another model call.",
+ "rewording": {
+  "id": "source:paraphrase_doc:light:0:0",
+  "level": "light",
+  "d_emb": 0.0007489919662475586,
+  "nli_fwd": 0.9557663202285767,
+  "nli_bwd": 0.9557663202285767,
+  "seed": 0
+ }
+}

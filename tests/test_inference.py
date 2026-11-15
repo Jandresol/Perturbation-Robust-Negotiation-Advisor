@@ -240,6 +240,38 @@ class InferenceTests(unittest.TestCase):
                 AnalysisService(self.path, bad_case).parse(self.package())
         self.assertEqual(self.calls, ['document', 'case'])
 
+    def test_replicates_are_fresh_samples_with_their_own_claim_ids(self):
+        replicates = []
+        def transport(prompt, replicate=0):
+            replicates.append((json.loads(prompt)['task'], replicate))
+            return self.transport(prompt)
+        service = AnalysisService(self.path, transport)
+        base = service.parse(self.package())
+        again = service.parse(self.package())
+        sample = service.parse({**self.package({**self.source, 'replicate': 2}), 'replicate': 2})
+        self.assertTrue(again['caseCacheHit'])
+        self.assertEqual(replicates, [('document', 0), ('case', 0), ('document', 2), ('case', 2)])
+        self.assertNotEqual(base['facts'][0]['id'], sample['facts'][0]['id'])
+        self.assertTrue(service.parse({**self.package({**self.source, 'replicate': 2}), 'replicate': 2})['caseCacheHit'])
+
+    def test_gateway_replicate_and_rewording_schema(self):
+        import io
+        bodies = []
+        reply = {'stop_reason': 'end_turn', 'content': [{'type': 'text', 'text': '{"rewordings": ["a"]}'}], 'usage': {}}
+        def urlopen(request, timeout):
+            bodies.append(json.loads(request.data))
+            return io.BytesIO(json.dumps(reply).encode())
+        schema = {'type': 'object', 'properties': {'rewordings': {'type': 'array', 'items': {'type': 'string'}}}}
+        prompt = json.dumps({'task': 'rewording', 'prompt': 'p', 'schema': schema, 'seed': 0})
+        with patch.dict(os.environ, {'HUIT_API_KEY': 'test-only-not-real', 'HUIT_PROVIDER': 'bedrock', 'HUIT_MODEL': 'm'}), \
+             patch('urllib.request.urlopen', side_effect=urlopen):
+            service = AnalysisService(self.path)
+            for replicate in (0, 0, 1):
+                service._request(prompt, replicate)
+        self.assertEqual(len(bodies), 2)  # the repeat of replicate 0 is cached; replicate 1 is a new call
+        self.assertEqual(bodies[0]['output_config']['format'], {'type': 'json_schema', 'schema': schema})
+        self.assertEqual(bodies[0]['max_tokens'], 16000)
+
     def test_live_advice_reads_the_conversation_drops_unknown_ids_and_caches(self):
         prompts = []
         def advisor(prompt):

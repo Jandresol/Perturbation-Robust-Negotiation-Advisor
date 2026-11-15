@@ -52,3 +52,11 @@ compare:
   levels: [light, moderate, heavy]   # reworded reading j uses levels[j % 3]
   align_tau: 0.8         # min label cosine for two actions/goals from different builds to count as the same
   alpha: 0.9             # a plan is "good" if its cross-reading score is >= alpha * best
+
+sentence_test:
+  # Sentence-level wording test (negotiator/game/sentence_test.py, configs/sentence_test.json).
+  model: us.anthropic.claude-opus-5-5   # writes the variants
+  effort: low
+  variants: 2            # per passage and strategy; the original is repeated this many times per passage
+  context_chars: 600     # document text shown before and after the passage when writing variants
+  tau: 0.8               # min cosine for two extracted conditions to count as the same

@@ -1,0 +1,84 @@
+{
+ "started": "2026-10-28 01:48",
+ "model": "us.anthropic.claude-opus-5-5",
+ "remaining_before": 253.95782,
+ "packs": {
+  "sim1": {
+   "intake": {
+    "cached": false,
+    "documents": 26,
+    "facts": 509,
+    "cache": {
+     "documentHits": 4,
+     "documentMisses": 22
+    },
+    "our_side": null,
+    "opponent": null,
+    "opening": "Role-neutral: confirm which side the team represents. In council-office talks, acknowledge the community's grievance over the abrupt exit, and frame talks around safe release linked to near-term hospital service continuity."
+   },
+   "baseline": {
+    "facts": 509,
+    "actions": 2,
+    "actions_us": 0,
+    "actions_opponent": 2,
+    "goals": 2,
+    "forbidden": 0,
+    "strategies": 1,
+    "best": {
+     "title": "Walk away",
+     "opening": "No improving offer under these assumptions.",
+     "fallback": "Pause and review the outside option if the offer is rejected.",
+     "worstScore": null,
+     "meanScore": null
+    }
+   },
+   "order": {
+    "shuffles": 20,
+    "game_changed": 0,
+    "plan_changed": 0
+   },
+   "fact_job": {
+    "perturbed_facts": 12,
+    "baseline_action_facts": 2,
+    "candidates": 61,
+    "accepted": 56,
+    "levels": {
+     "light": 17,
+     "moderate": 18,
+     "heavy": 21
+    },
+    "outcomes": {
+     "stable": 56,
+     "rejected": 5
+    }
+   },
+   "noise_b4": {
+    "readings": 56,
+    "outcomes": {
+     "stable": 56
+    }
+   },
+   "doc_job": {
+    "comparison": {
+     "same-text": {
+      "stable": 6,
+      "sensitive": 0,
+      "changed": 0
+     },
+     "reworded": {
+      "stable": 4,
+      "sensitive": 2,
+      "changed": 0
+     }
+    },
+    "extractions": {
+     "baseline": 2,
+     "same-text": 6,
+     "reworded": 6
+    },
+    "candidates": 30
+   },
+   "spend_after": 5.69
+  }
+ }
+}

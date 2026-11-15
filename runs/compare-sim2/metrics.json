@@ -1,0 +1,219 @@
+{
+  "alpha": 0.9,
+  "best_u_bar_overall": 0.512479508133605,
+  "good_plans_overall": 7,
+  "conditions": {
+    "same-text": {
+      "builds": 3,
+      "action_similarity": 0.796958714723587,
+      "goal_similarity": 0.8190116087595621,
+      "action_clusters": 22,
+      "g_us_l1": 0.16176470588235295,
+      "top_plan_agreement": 0.0,
+      "distinct_top_plans": 3,
+      "effective_top_plans": 2.9999999999999996,
+      "top_plan_jaccard": 0.6872294372294373,
+      "top_plan_u_bar": 0.3911557751948371,
+      "top_plan_worst": 0.22994652406417113,
+      "top_plans_crossing_lines": 0.6666666666666666,
+      "solver_plans_rejected": 0.3333333333333333,
+      "distinct_plans": 11,
+      "accumulation": [
+        3,
+        6,
+        11
+      ],
+      "best_u_bar": 0.512479508133605,
+      "good_plans": 1,
+      "novel_good_plans": 1
+    },
+    "reworded": {
+      "builds": 3,
+      "action_similarity": 0.8056356608867645,
+      "goal_similarity": 0.8010100523630778,
+      "action_clusters": 22,
+      "g_us_l1": 0.15,
+      "top_plan_agreement": 0.0,
+      "distinct_top_plans": 3,
+      "effective_top_plans": 2.9999999999999996,
+      "top_plan_jaccard": 0.7418803418803419,
+      "top_plan_u_bar": 0.4519818197795109,
+      "top_plan_worst": 0.2281639928698752,
+      "top_plans_crossing_lines": 0.3333333333333333,
+      "solver_plans_rejected": 0.0,
+      "distinct_plans": 12,
+      "accumulation": [
+        4,
+        8,
+        12
+      ],
+      "best_u_bar": 0.49575000931653435,
+      "good_plans": 6,
+      "novel_good_plans": 6
+    }
+  },
+  "baseline": {
+    "actions": 12,
+    "goals": 14,
+    "top_plan": [
+      "Aopponent1",
+      "Aopponent12",
+      "Aopponent2",
+      "Aopponent4",
+      "Aopponent9",
+      "Aus10",
+      "Aus11",
+      "Aus6",
+      "Aus7",
+      "Aus8"
+    ],
+    "top_plan_u_bar": 0.43478176236863236
+  },
+  "readings": [
+    {
+      "condition": "baseline",
+      "replicate": 0,
+      "level": null,
+      "factsReworded": null,
+      "factsCited": null,
+      "d_emb": null,
+      "actions": 12,
+      "goals": 14,
+      "top_plan": [
+        "Aopponent1",
+        "Aopponent12",
+        "Aopponent2",
+        "Aopponent4",
+        "Aopponent9",
+        "Aus10",
+        "Aus11",
+        "Aus6",
+        "Aus7",
+        "Aus8"
+      ]
+    },
+    {
+      "condition": "same-text",
+      "replicate": 1,
+      "level": null,
+      "factsReworded": null,
+      "factsCited": null,
+      "d_emb": null,
+      "actions": 12,
+      "goals": 10,
+      "top_plan": [
+        "Aopponent1",
+        "Aopponent14",
+        "Aopponent2",
+        "Aopponent9",
+        "Aus11",
+        "Aus13",
+        "Aus15",
+        "Aus16",
+        "Aus17"
+      ]
+    },
+    {
+      "condition": "same-text",
+      "replicate": 2,
+      "level": null,
+      "factsReworded": null,
+      "factsCited": null,
+      "d_emb": null,
+      "actions": 12,
+      "goals": 13,
+      "top_plan": [
+        "Aopponent1",
+        "Aopponent14",
+        "Aopponent19",
+        "Aopponent9",
+        "Aus11",
+        "Aus13",
+        "Aus15",
+        "Aus20"
+      ]
+    },
+    {
+      "condition": "same-text",
+      "replicate": 3,
+      "level": null,
+      "factsReworded": null,
+      "factsCited": null,
+      "d_emb": null,
+      "actions": 12,
+      "goals": 14,
+      "top_plan": [
+        "Aopponent19",
+        "Aopponent26",
+        "Aopponent9",
+        "Aus15",
+        "Aus23",
+        "Aus24",
+        "Aus8"
+      ]
+    },
+    {
+      "condition": "reworded",
+      "replicate": 1,
+      "level": "light",
+      "factsReworded": 90,
+      "factsCited": 90,
+      "d_emb": 0.0390314241250356,
+      "actions": 12,
+      "goals": 13,
+      "top_plan": [
+        "Aopponent1",
+        "Aopponent14",
+        "Aopponent2",
+        "Aopponent26",
+        "Aopponent29",
+        "Aopponent9",
+        "Aus15",
+        "Aus24",
+        "Aus27",
+        "Aus6"
+      ]
+    },
+    {
+      "condition": "reworded",
+      "replicate": 2,
+      "level": "moderate",
+      "factsReworded": 89,
+      "factsCited": 90,
+      "d_emb": 0.06624056114239639,
+      "actions": 12,
+      "goals": 12,
+      "top_plan": [
+        "Aopponent1",
+        "Aopponent12",
+        "Aopponent14",
+        "Aopponent9",
+        "Aus13",
+        "Aus15",
+        "Aus18",
+        "Aus20",
+        "Aus6",
+        "Aus8"
+      ]
+    },
+    {
+      "condition": "reworded",
+      "replicate": 3,
+      "level": "heavy",
+      "factsReworded": 67,
+      "factsCited": 90,
+      "d_emb": 0.09337446404926812,
+      "actions": 12,
+      "goals": 14,
+      "top_plan": [
+        "Aopponent2",
+        "Aopponent31",
+        "Aopponent33",
+        "Aopponent9",
+        "Aus15",
+        "Aus27",
+        "Aus32"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+ "started": "2026-10-28 02:07",
+ "model": "us.anthropic.claude-opus-5-5",
+ "remaining_before": 246.86865,
+ "packs": {
+  "sim1": {
+   "intake": {
+    "cached": false,
+    "documents": 26,
+    "facts": 509,
+    "cache": {
+     "documentHits": 26,
+     "documentMisses": 0
+    },
+    "our_side": null,
+    "opponent": null,
+    "opening": "Role-neutral: confirm which side the team represents. In council-office talks, acknowledge the community's grievance over the abrupt exit, and frame talks around safe release linked to near-term hospital service continuity."
+   },
+   "baseline": {
+    "facts": 509,
+    "actions": 12,
+    "actions_us": 12,
+    "actions_opponent": 0,
+    "goals": 12,
+    "forbidden": 0,
+    "strategies": 1,
+    "best": {
+     "title": "Walk away",
+     "opening": "No improving offer under these assumptions.",
+     "fallback": "Pause and review the outside option if the offer is rejected.",
+     "worstScore": null,
+     "meanScore": null
+    }
+   },
+   "order": {
+    "shuffles": 20,
+    "game_changed": 0,
+    "plan_changed": 0
+   },
+   "fact_job": {
+    "perturbed_facts": 12,
+    "baseline_action_facts": 12,
+    "candidates": 62,
+    "accepted": 54,
+    "levels": {
+     "light": 18,
+     "moderate": 18,
+     "heavy": 18
+    },
+    "outcomes": {
+     "stable": 54,
+     "rejected": 8
+    }
+   },
+   "noise_b4": {
+    "readings": 54,
+    "outcomes": {
+     "stable": 54
+    }
+   },
+   "doc_job": {
+    "comparison": {
+     "same-text": {
+      "stable": 6,
+      "sensitive": 0,
+      "changed": 0
+     },
+     "reworded": {
+      "stable": 6,
+      "sensitive": 0,
+      "changed": 0
+     }
+    },
+    "extractions": {
+     "baseline": 2,
+     "same-text": 6,
+     "reworded": 6
+    },
+    "candidates": 30
+   },
+   "spend_after": 0.28
+  },
+  "sim2": {
+   "intake": {
+    "cached": false,
+    "documents": 17,
+    "facts": 184,
+    "cache": {
+     "documentHits": 17,
+     "documentMisses": 0
+    },
+    "our_side": "Camp Commander",
+    "opponent": "Food Without Borders (FWB)",
+    "opening": "Open by acknowledging FWB's need for access and its neutrality concerns. Frame the talks around a safe, orderly and ongoing distribution, with coordination and escorts for security, and invite FWB's own proposal on how distribution is managed."
+   },
+   "baseline": {
+    "facts": 184,
+    "actions": 12,
+    "actions_us": 12,
+    "actions_opponent": 0,
+    "goals": 12,
+    "forbidden": 0,
+    "strategies": 1,
+    "best": {
+     "title": "Walk away",
+     "opening": "No improving offer under these assumptions.",
+     "fallback": "Pause and review the outside option if the offer is rejected.",
+     "worstScore": null,
+     "meanScore": null
+    }
+   },
+   "order": {
+    "shuffles": 20,
+    "game_changed": 0,
+    "plan_changed": 0
+   },
+   "fact_job": {
+    "perturbed_facts": 12,
+    "baseline_action_facts": 12,
+    "candidates": 56,
+    "accepted": 55,
+    "levels": {
+     "light": 18,
+     "moderate": 20,
+     "heavy": 17
+    },
+    "outcomes": {
+     "stable": 55,
+     "rejected": 1
+    }
+   },
+   "noise_b4": {
+    "readings": 55,
+    "outcomes": {
+     "stable": 55
+    }
+   },
+   "doc_job": {
+    "status": "failed",
+    "error": "HUIT returned HTTP 503. The quota endpoint accepting a key does not establish model access. Check the enabled service/model or required Harvard network access."
+   },
+   "spend_after": 1.18
+  },
+  "qiso": {
+   "intake": {
+    "cached": true
+   },
+   "baseline": {
+    "facts": 487,
+    "actions": 4,
+    "actions_us": 0,
+    "actions_opponent": 4,
+    "goals": 4,
+    "forbidden": 0,
+    "strategies": 1,
+    "best": {
+     "title": "Walk away",
+     "opening": "No improving offer under these assumptions.",
+     "fallback": "Pause and review the outside option if the offer is rejected.",
+     "worstScore": null,
+     "meanScore": null
+    }
+   },
+   "order": {
+    "shuffles": 20,
+    "game_changed": 0,
+    "plan_changed": 0
+   },
+   "fact_job": {
+    "perturbed_facts": 12,
+    "baseline_action_facts": 4,
+    "candidates": 61,
+    "accepted": 55,
+    "levels": {
+     "light": 17,
+     "moderate": 19,
+     "heavy": 19
+    },
+    "outcomes": {
+     "stable": 55,
+     "rejected": 6
+    }
+   },
+   "noise_b4": {
+    "readings": 55,
+    "outcomes": {
+     "stable": 55
+    }
+   },
+   "doc_job": {
+    "comparison": {
+     "same-text": {
+      "stable": 6,
+      "sensitive": 0,
+      "changed": 0
+     },
+     "reworded": {
+      "stable": 6,
+      "sensitive": 0,
+      "changed": 0
+     }
+    },
+    "extractions": {
+     "baseline": 2,
+     "same-text": 6,
+     "reworded": 6
+    },
+    "candidates": 30
+   },
+   "spend_after": 4.07
+  }
+ },
+ "spent": 4.07
+}

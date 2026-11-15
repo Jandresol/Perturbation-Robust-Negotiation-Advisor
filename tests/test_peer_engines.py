@@ -67,13 +67,17 @@ class PeerEngineTests(unittest.TestCase):
             llm.complete_json('fixed prompt', {'type':'object'}, seed=0)
             return [],[]
         with patch.dict('os.environ',{'HUIT_API_KEY':'test-only-not-real','HUIT_PROVIDER':'openai','HUIT_MODEL':'gpt-4.1-mini'}),patch('urllib.request.urlopen',side_effect=lambda *a,**kw:io.BytesIO(json.dumps(raw).encode())) as network,patch.object(engine,'run',side_effect=generate),patch.object(embed,'cosine',return_value=1),patch.object(filters,'entailment',return_value=1):
+            counts=[]
             for _ in range(2):
                 self.service=PeerEngines(AnalysisService(database))
                 job_id=self.service.start({'engine':'perturbation','factSetFrozen':True,'package':self.package})['jobId']
                 job=self.wait(job_id)
                 self.assertEqual(job['status'],'failed')
                 self.assertIn('paid response is retained',job['error'])
-            self.assertEqual(network.call_count,1)
+                counts.append(network.call_count)
+            # The first run sends each candidate call once (concurrently); the repeat sends none.
+            self.assertGreater(counts[0],0)
+            self.assertEqual(counts[1],counts[0])
 
     def test_semantic_engine_is_adapted_then_rebuilds_and_scores_each_reading(self):
         from negotiator.reword import engine, embed, filter as filters
@@ -111,14 +115,14 @@ class PeerEngineTests(unittest.TestCase):
             rec={'source_id':unit['id'],'operator':'paraphrase_doc','level':'light','cos':.99,'nli_fwd':.99,'nli_bwd':.99,'hard_facts_ok':True,'reject_reason':None,'model':'m','prompt_hash':'h'}
             return [{**rec,'text':same,'accepted':True},{**rec,'text':moved,'accepted':True},
                     {**rec,'text':rejected,'accepted':False,'reject_reason':'nli'}],[]
-        extracted=[];prefetched=[]
-        def transport(prompt):
+        extracted=[];prefetched=[];replicates=[]
+        def transport(prompt,replicate=0):
             task=json.loads(prompt)
             if task['task']=='rewording':
                 prefetched.append(task['prompt'])  # engine.run is faked; the job still warms the gateway cache
                 return {'rewordings':[same]},(10,10)
             self.assertEqual(task['task'],'document')
-            text=task['input']['text'];extracted.append(text)
+            text=task['input']['text'];extracted.append(text);replicates.append(replicate)
             quotes=re.split(r'(?<=\.) ',text)
             # The second rewording leads the extractor to read Team A's offer as context, so it is no longer an action.
             claims=[{'text':'Team A can provide a workshop.','quote':quotes[0],'category':'context' if text==moved else 'commitment'},
@@ -142,15 +146,57 @@ class PeerEngineTests(unittest.TestCase):
         self.assertEqual(variants[same]['facts'],{'baseline':3,'reextracted':3,'matched':3})
         self.assertEqual(variants[moved]['outcome'],'changed')
         self.assertEqual(variants[rejected]['outcome'],'rejected')
-        # The original text (the baseline) and both accepted rewordings are extracted; the rejected one never is.
-        self.assertEqual(sorted(extracted),sorted([self.package['sources'][0]['text'],same,moved]))
+        # Same-text controls: one independent re-extraction of the original per reworded extraction.
+        controls=[v for v in job['result']['variants'] if v['method']=='same-text-control']
+        self.assertEqual(sorted(v['replicate'] for v in controls),[1,2])
+        self.assertTrue(all(v['outcome']=='stable' and v['facts']['matched']==3 for v in controls))
+        # The original (baseline, then twice as controls) and both accepted rewordings are extracted; the rejected one never is.
+        original_text=self.package['sources'][0]['text']
+        self.assertEqual(sorted(extracted),sorted([original_text]*3+[same,moved]))
+        self.assertEqual(sorted(replicates),[0,0,0,1,2])
         self.assertEqual(len(prefetched),6)  # 2 operators x 3 levels, in one concurrent wave
-        self.assertEqual(job['result']['generation']['extractions'],3)
+        self.assertEqual(job['result']['generation']['extractions'],{'baseline':1,'same-text':2,'reworded':2})
+        self.assertEqual(job['result']['comparison']['same-text'],{'stable':2,'sensitive':0,'changed':0})
         self.assertEqual(self.package,original)
+
+    def test_fact_job_rewords_action_facts_at_every_level(self):
+        from backend.engines import select_facts
+        from negotiator.reword import engine, embed, filter as filters
+        package=copy.deepcopy(self.package)
+        baseline=build_peer_game(package)
+        extra=[{**package['facts'][0],'id':f'extra-{c}','category':c} for c in ('context','constraint','goal','timeline')]
+        package['facts']+=extra
+        chosen=[f['id'] for f in select_facts(package,baseline)]
+        actions=[a['factId'] for a in baseline['actions']]
+        self.assertEqual(chosen[:len(set(actions))],list(dict.fromkeys(actions)))
+        self.assertIn('extra-goal',chosen);self.assertIn('extra-timeline',chosen)
+        self.assertNotIn('extra-context',chosen);self.assertNotIn('extra-constraint',chosen)
+        package['caseEdits']={'redLines':[{'text':'r','status':'confirmed','factIds':[actions[0]]}]}
+        units=[];levels=set()
+        def fake_run(units_,cfg):
+            units.append(units_[0]);levels.update(cfg['reword']['levels'])
+            return [],[]
+        with patch.object(engine,'run',side_effect=fake_run),patch.object(embed,'cosine',return_value=1),patch.object(filters,'entailment',return_value=1):
+            job=self.wait(self.service.start({'engine':'perturbation','factSetFrozen':True,'package':package})['jobId'])
+        self.assertEqual(job['status'],'complete',job.get('error'))
+        self.assertEqual(levels,{'light','moderate','heavy'})
+        self.assertEqual([u['id'] for u in units],chosen)
+        self.assertEqual({u['id'] for u in units if u['red_line']},{actions[0]})
+        self.assertEqual([f['factId'] for f in job['result']['perturbedFacts']],chosen)
 
     def test_document_rewording_requires_frozen_facts(self):
         with self.assertRaisesRegex(ValueError,'frozen'):
             self.service.start({'engine':'perturbation-doc','package':self.package})
+
+    def test_align_facts_matches_quotes_before_embeddings(self):
+        from backend.engines import align_facts
+        old=[{'id':'o1','text':'Team A offers a workshop.','quote':'Team A is able to provide a workshop'},
+             {'id':'o2','text':'Team B offers a review.','quote':'Team B is able to provide a review session'}]
+        # Same quotes, differently worded fact texts and order: a re-extraction of the same document.
+        new=[{'id':'n1','text':'A review session can come from Team B.','quote':'Team B is able to provide a review session'},
+             {'id':'n2','text':'Workshop by Team A.','quote':'Team A is able to provide a workshop'}]
+        with patch('negotiator.reword.embed.embed',side_effect=AssertionError('no embedding needed')):
+            self.assertEqual(align_facts(new,old,'enc',.85),{'n1':'o2','n2':'o1'})
 
     def test_align_facts_is_one_to_one_and_leaves_dissimilar_facts_unmatched(self):
         import numpy as np
@@ -162,6 +208,37 @@ class PeerEngineTests(unittest.TestCase):
             out=align_facts(new,old,'enc',.85)
         self.assertEqual(len(out),1)
         self.assertEqual(set(out.values()),{'o1'})
+
+
+
+class OrderInvarianceProbes(unittest.TestCase):
+    """Fact order carries no meaning, so it must not change the game or the plan.
+    These fail today (teammate builder/solver; see BUILDER_ORDER_SPEC.md). Remove
+    expectedFailure once the fix lands."""
+    TEXT='A workshop can be provided next week. A review session can be provided on Friday. Team A can supply two trainers. Team B can supply a venue.'
+
+    def package(self, order):
+        package=json.loads((ROOT/'example-package.json').read_text())
+        package['sources'][0]['text']=self.TEXT
+        quotes=re.split(r'(?<=\.) ',self.TEXT)
+        facts=[{**package['facts'][0],'id':f'f{i}','text':q,'quote':q,'quoteStart':self.TEXT.index(q),'quoteEnd':self.TEXT.index(q)+len(q),'category':'commitment'}
+               for i,q in enumerate(quotes)]
+        package['facts']=[facts[i] for i in order]
+        return package
+
+    @unittest.expectedFailure
+    def test_owner_does_not_depend_on_fact_order(self):
+        from backend.engines import plan_signature
+        a,b=build_peer_game(self.package([0,1,2,3])),build_peer_game(self.package([1,0,2,3]))
+        self.assertEqual(game_signature(a),game_signature(b))
+        self.assertEqual(plan_signature(a),plan_signature(b))
+
+    @unittest.expectedFailure
+    def test_equal_plans_do_not_depend_on_fact_order(self):
+        from backend.engines import plan_signature
+        a,b=build_peer_game(self.package([0,1,2,3])),build_peer_game(self.package([2,3,0,1]))
+        self.assertEqual(game_signature(a),game_signature(b))
+        self.assertEqual(plan_signature(a),plan_signature(b))
 
 
 if __name__=='__main__':unittest.main()

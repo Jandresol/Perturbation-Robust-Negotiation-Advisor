@@ -1,0 +1,274 @@
+sim2: 17 sources, needs intake
+== sim2
+  spend so far $0.00 (cap $4.00) before intake
+  baseline 12 actions; order {'shuffles': 20, 'game_changed': 0, 'plan_changed': 0}
+  spend so far $0.00 (cap $4.00) before document-level job
+W1028 02:24:09.537000 57916 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 7580.02it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/Users/vedantsandhu/Desktop/Fall2026/COMPSCI2822R/Perturbation-Robust-Negotiation-Advisor/.venv/lib/python3.14/site-packages/torch/jit/_script.py:1485: FutureWarning: `torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 8402.33it/s]
+  doc job {'comparison': {'same-text': {'stable': 0, 'sensitive': 0, 'changed': 0}, 'reworded': {'stable': 0, 'sensitive': 0, 'changed': 0}}, 'extractions': {'baseline': 2, 'same-text': 0, 'reworded': 0}, 'candidates': 24}
+{
+ "started": "2026-10-28 02:24",
+ "model": "us.anthropic.claude-opus-5-5",
+ "remaining_before": 242.79461,
+ "packs": {
+  "sim2": {
+   "intake": {
+    "cached": false,
+    "documents": 17,
+    "facts": 184,
+    "cache": {
+     "documentHits": 17,
+     "documentMisses": 0
+    },
+    "our_side": "Camp Commander",
+    "opponent": "Food Without Borders (FWB)",
+    "opening": "Open by acknowledging FWB's need for access and its neutrality concerns. Frame the talks around a safe, orderly and ongoing distribution, with coordination and escorts for security, and invite FWB's own proposal on how distribution is managed."
+   },
+   "baseline": {
+    "facts": 184,
+    "actions": 12,
+    "actions_us": 12,
+    "actions_opponent": 0,
+    "goals": 12,
+    "forbidden": 0,
+    "strategies": 1,
+    "best": {
+     "title": "Walk away",
+     "opening": "No improving offer under these assumptions.",
+     "fallback": "Pause and review the outside option if the offer is rejected.",
+     "worstScore": null,
+     "meanScore": null
+    }
+   },
+   "order": {
+    "shuffles": 20,
+    "game_changed": 0,
+    "plan_changed": 0
+   },
+   "doc_job": {
+    "comparison": {
+     "same-text": {
+      "stable": 0,
+      "sensitive": 0,
+      "changed": 0
+     },
+     "reworded": {
+      "stable": 0,
+      "sensitive": 0,
+      "changed": 0
+     }
+    },
+    "extractions": {
+     "baseline": 2,
+     "same-text": 0,
+     "reworded": 0
+    },
+    "candidates": 24
+   },
+   "spend_after": 0.8
+  }
+ },
+ "spent": 0.8
+}
+W1028 02:32:48.704000 58119 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Package: 28 sources; varying Rolecard_ Officer from Border Authority.docx (role_card).
+Brief model: us.anthropic.claude-opus-5-5; rewording model: us.anthropic.claude-opus-5-5.
+Readings: original + 3 same-text + 3 reworded. New calls: at most 19, plus up to 29 for the original if the app has not already analysed these sources with this model.
+original: ok
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 6253.92it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/Users/vedantsandhu/Desktop/Fall2026/COMPSCI2822R/Perturbation-Robust-Negotiation-Advisor/.venv/lib/python3.14/site-packages/torch/jit/_script.py:1485: FutureWarning: `torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 7384.66it/s]
+same-1: ok
+same-3: ok
+same-2: ok
+reworded-1-light: ok
+reworded-3-heavy: ok
+reworded-2-moderate: ok
+{
+ "manifest": {
+  "workspace": "data/negotiation-workspace.json",
+  "source": {
+   "id": "source-b3bca91216ec94992b30",
+   "category": "role_card"
+  },
+  "k": 3,
+  "brief_model": "us.anthropic.claude-opus-5-5",
+  "reword_model": "us.anthropic.claude-opus-5-5",
+  "rewordings": {
+   "candidates": 6,
+   "accepted": 6,
+   "used": 3
+  },
+  "paid_calls": 16,
+  "quota_before": 241.98968,
+  "quota_after": 239.02894,
+  "spent_usd": 2.96
+ },
+ "excess_change": {
+  "opening": 0.015,
+  "fallback": -0.067,
+  "objective": 0.055,
+  "our_side": 0.014,
+  "alternatives": -0.083,
+  "red_lines": -0.194,
+  "our_constraints": -0.194,
+  "issues": 0.077,
+  "tradeoffs": 0.047
+ },
+ "judge_flip_rate": {
+  "same|same": {
+   "opening_cluster": 0,
+   "fallback_cluster": 0.5,
+   "pairs": 6
+  },
+  "reworded|same": {
+   "opening_cluster": 0,
+   "fallback_cluster": 0.583,
+   "pairs": 12
+  },
+  "reworded|reworded": {
+   "opening_cluster": 0,
+   "fallback_cluster": 0.667,
+   "pairs": 3
+  }
+ }
+}
+wrote runs/benchmark-2026-10-28/qiso/brief
+W1028 02:38:08.090000 58607 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Package: 17 sources; varying Rolecard (role_card).
+Brief model: us.anthropic.claude-opus-5-5; rewording model: us.anthropic.claude-opus-5-5.
+Readings: original + 3 same-text + 3 reworded. New calls: at most 19, plus up to 18 for the original if the app has not already analysed these sources with this model.
+original: ok
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 4383.84it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/Users/vedantsandhu/Desktop/Fall2026/COMPSCI2822R/Perturbation-Robust-Negotiation-Advisor/.venv/lib/python3.14/site-packages/torch/jit/_script.py:1485: FutureWarning: `torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 6446.64it/s]
+same-2: ok
+same-1: ok
+same-3: ok
+reworded-1-light: failed: The model returned incomplete or invalid JSON. The gateway response was saved locally; repeating this request will not make another model call.
+reworded-3-heavy: ok
+reworded-2-moderate: ok
+{
+ "manifest": {
+  "workspace": "runs/benchmark-2026-10-28-names-mismatch/sim2/workspace.json",
+  "source": {
+   "id": "source-13",
+   "category": "role_card"
+  },
+  "k": 3,
+  "brief_model": "us.anthropic.claude-opus-5-5",
+  "reword_model": "us.anthropic.claude-opus-5-5",
+  "rewordings": {
+   "candidates": 6,
+   "accepted": 6,
+   "used": 3
+  },
+  "paid_calls": 19,
+  "quota_before": 239.01013,
+  "quota_after": 235.60326,
+  "spent_usd": 3.41
+ },
+ "excess_change": {
+  "opening": 0.012,
+  "fallback": 0.128,
+  "objective": 0.071,
+  "our_side": 0.0,
+  "alternatives": 0.229,
+  "red_lines": -0.333,
+  "our_constraints": 0.011,
+  "issues": 0.025,
+  "tradeoffs": -0.14
+ },
+ "judge_flip_rate": {
+  "same|same": {
+   "opening_cluster": 0,
+   "fallback_cluster": 0,
+   "pairs": 6
+  },
+  "reworded|same": {
+   "opening_cluster": 0,
+   "fallback_cluster": 0.5,
+   "pairs": 8
+  },
+  "reworded|reworded": {
+   "opening_cluster": 0,
+   "fallback_cluster": 1,
+   "pairs": 1
+  }
+ }
+}
+wrote runs/benchmark-2026-10-28/sim2/brief
+W1028 02:46:15.104000 57915 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Package: 26 sources; varying 25_First_Meeting_with_Tribal_Leaders (shared).
+Brief model: us.anthropic.claude-opus-5-5; rewording model: us.anthropic.claude-opus-5-5.
+Readings: original + 3 same-text + 3 reworded. New calls: at most 19, plus up to 27 for the original if the app has not already analysed these sources with this model.
+original: ok
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 6818.56it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/Users/vedantsandhu/Desktop/Fall2026/COMPSCI2822R/Perturbation-Robust-Negotiation-Advisor/.venv/lib/python3.14/site-packages/torch/jit/_script.py:1485: FutureWarning: `torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 6326.53it/s]
+same-2: ok
+same-1: ok
+same-3: ok
+reworded-1-light: ok
+reworded-2-moderate: failed: A negotiation issue has no supported decision or position. Your saved brief is unchanged. The paid response is saved locally. Repeating this request rechecks it without another model call; automatic p
+reworded-3-heavy: ok
+{
+ "manifest": {
+  "workspace": "runs/benchmark-2026-10-28-names-mismatch/sim1/workspace.json",
+  "source": {
+   "id": "source-24",
+   "category": "shared"
+  },
+  "k": 3,
+  "brief_model": "us.anthropic.claude-opus-5-5",
+  "reword_model": "us.anthropic.claude-opus-5-5",
+  "rewordings": {
+   "candidates": 6,
+   "accepted": 6,
+   "used": 3
+  },
+  "paid_calls": 19,
+  "quota_before": 235.58612,
+  "quota_after": 232.68028,
+  "spent_usd": 2.91
+ },
+ "excess_change": {
+  "opening": 0.002,
+  "fallback": 0.056,
+  "objective": 0.0,
+  "our_side": 0.0,
+  "alternatives": 0.389,
+  "red_lines": 0.0,
+  "our_constraints": 1.0,
+  "issues": -0.087,
+  "tradeoffs": 0.06
+ },
+ "judge_flip_rate": {
+  "same|same": {
+   "opening_cluster": 0.667,
+   "fallback_cluster": 0.667,
+   "pairs": 6
+  },
+  "reworded|same": {
+   "opening_cluster": 0.5,
+   "fallback_cluster": 1,
+   "pairs": 8
+  },
+  "reworded|reworded": {
+   "opening_cluster": 0,
+   "fallback_cluster": 0,
+   "pairs": 1
+  }
+ }
+}
+wrote runs/benchmark-2026-10-28/sim1/brief

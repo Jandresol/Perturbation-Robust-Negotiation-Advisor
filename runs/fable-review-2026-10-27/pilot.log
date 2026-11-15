@@ -1,0 +1,92 @@
+20:16:01 quota remaining before: $275.691
+20:16:02 [shared] paid calls so far: 0
+20:16:02 shared {"type": "source", "sourceId": "source-80cb63619c7e9e1cc735", "status": "running"}
+20:16:02 shared {"type": "source", "sourceId": "source-1c3ae027861ce4374b90", "status": "running"}
+20:16:02 shared {"type": "source", "sourceId": "source-4c4ee81ca0e238fef1fe", "status": "running"}
+20:16:02 shared {"type": "source", "sourceId": "source-a0dce4633bfc1d0a3724", "status": "running"}
+20:16:02 shared {"type": "source", "sourceId": "source-34c0ed3d12c780210b7a", "status": "running"}
+20:16:42 shared {"type": "source", "sourceId": "source-34c0ed3d12c780210b7a", "status": "complete", "cacheHit": false, "claims": 14, "limitations": 5}
+20:16:55 shared {"type": "source", "sourceId": "source-1c3ae027861ce4374b90", "status": "complete", "cacheHit": false, "claims": 20, "limitations": 6}
+20:16:57 shared {"type": "source", "sourceId": "source-a0dce4633bfc1d0a3724", "status": "complete", "cacheHit": false, "claims": 22, "limitations": 6}
+20:16:57 shared {"type": "source", "sourceId": "source-4c4ee81ca0e238fef1fe", "status": "complete", "cacheHit": false, "claims": 24, "limitations": 6}
+20:17:00 shared {"type": "source", "sourceId": "source-80cb63619c7e9e1cc735", "status": "complete", "cacheHit": false, "claims": 25, "limitations": 5}
+20:17:00 [b2_r1] paid calls so far: 5
+20:17:42 b2_r1 {"type": "source", "sourceId": "source-b3bca91216ec94992b30", "status": "complete", "cacheHit": false, "claims": 18}
+20:17:42 b2_r1 {"type": "source", "sourceId": "source-80cb63619c7e9e1cc735", "status": "complete", "cacheHit": true, "claims": 25}
+20:17:42 b2_r1 {"type": "source", "sourceId": "source-1c3ae027861ce4374b90", "status": "complete", "cacheHit": true, "claims": 20}
+20:17:42 b2_r1 {"type": "source", "sourceId": "source-4c4ee81ca0e238fef1fe", "status": "complete", "cacheHit": true, "claims": 24}
+20:17:42 b2_r1 {"type": "source", "sourceId": "source-a0dce4633bfc1d0a3724", "status": "complete", "cacheHit": true, "claims": 22}
+20:17:42 b2_r1 {"type": "source", "sourceId": "source-34c0ed3d12c780210b7a", "status": "complete", "cacheHit": true, "claims": 14}
+20:17:42 b2_r1 {"type": "case", "status": "running"}
+20:20:38 b2_r1 {"type": "case", "status": "complete", "cacheHit": false}
+20:20:38 b2_r1 OK 218.7 s; case cache hit: False
+20:20:38 [b2_r2] paid calls so far: 7
+20:21:19 b2_r2 {"type": "source", "sourceId": "source-b3bca91216ec94992b30", "status": "complete", "cacheHit": false, "claims": 17}
+20:21:19 b2_r2 {"type": "source", "sourceId": "source-80cb63619c7e9e1cc735", "status": "complete", "cacheHit": true, "claims": 25}
+20:21:19 b2_r2 {"type": "source", "sourceId": "source-1c3ae027861ce4374b90", "status": "complete", "cacheHit": true, "claims": 20}
+20:21:19 b2_r2 {"type": "source", "sourceId": "source-4c4ee81ca0e238fef1fe", "status": "complete", "cacheHit": true, "claims": 24}
+20:21:19 b2_r2 {"type": "source", "sourceId": "source-a0dce4633bfc1d0a3724", "status": "complete", "cacheHit": true, "claims": 22}
+20:21:19 b2_r2 {"type": "source", "sourceId": "source-34c0ed3d12c780210b7a", "status": "complete", "cacheHit": true, "claims": 14}
+20:21:19 b2_r2 {"type": "case", "status": "running"}
+20:24:12 b2_r2 {"type": "case", "status": "complete", "cacheHit": false}
+20:24:12 b2_r2 OK 213.9 s; case cache hit: False
+20:24:12 [b2_r3] paid calls so far: 9
+20:24:54 b2_r3 {"type": "source", "sourceId": "source-b3bca91216ec94992b30", "status": "complete", "cacheHit": false, "claims": 17}
+20:24:54 b2_r3 {"type": "source", "sourceId": "source-80cb63619c7e9e1cc735", "status": "complete", "cacheHit": true, "claims": 25}
+20:24:54 b2_r3 {"type": "source", "sourceId": "source-1c3ae027861ce4374b90", "status": "complete", "cacheHit": true, "claims": 20}
+20:24:54 b2_r3 {"type": "source", "sourceId": "source-4c4ee81ca0e238fef1fe", "status": "complete", "cacheHit": true, "claims": 24}
+20:24:54 b2_r3 {"type": "source", "sourceId": "source-a0dce4633bfc1d0a3724", "status": "complete", "cacheHit": true, "claims": 22}
+20:24:54 b2_r3 {"type": "source", "sourceId": "source-34c0ed3d12c780210b7a", "status": "complete", "cacheHit": true, "claims": 14}
+20:24:54 b2_r3 {"type": "case", "status": "running"}
+20:27:53 b2_r3 {"type": "case", "status": "complete", "cacheHit": false}
+20:27:53 b2_r3 OK 221.0 s; case cache hit: False
+20:27:53 [reword] paid calls so far: 11
+W1027 20:27:57.484000 50268 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 11989.58it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/Users/vedantsandhu/Desktop/Fall2026/COMPSCI2822R/Perturbation-Robust-Negotiation-Advisor/.venv/lib/python3.14/site-packages/torch/jit/_script.py:1485: FutureWarning: `torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 7597.97it/s]
+20:29:43 rewordings: 6 candidates, 6 accepted; {'light': (0.0007, True, None), 'moderate': (0.0027, True, None), 'heavy': (0.0075, True, None)}
+20:29:43 [rw_1] paid calls so far: 14
+20:30:29 rw_1 {"type": "source", "sourceId": "source-b3bca91216ec94992b30", "status": "complete", "cacheHit": false, "claims": 18}
+20:30:29 rw_1 {"type": "source", "sourceId": "source-80cb63619c7e9e1cc735", "status": "complete", "cacheHit": true, "claims": 25}
+20:30:29 rw_1 {"type": "source", "sourceId": "source-1c3ae027861ce4374b90", "status": "complete", "cacheHit": true, "claims": 20}
+20:30:29 rw_1 {"type": "source", "sourceId": "source-4c4ee81ca0e238fef1fe", "status": "complete", "cacheHit": true, "claims": 24}
+20:30:29 rw_1 {"type": "source", "sourceId": "source-a0dce4633bfc1d0a3724", "status": "complete", "cacheHit": true, "claims": 22}
+20:30:29 rw_1 {"type": "source", "sourceId": "source-34c0ed3d12c780210b7a", "status": "complete", "cacheHit": true, "claims": 14}
+20:30:29 rw_1 {"type": "case", "status": "running"}
+20:32:53 rw_1 FAILED: The model returned incomplete or invalid JSON. The gateway response was saved locally; repeating this request will not make another model call.
+20:32:53 [rw_2] paid calls so far: 16
+20:33:37 rw_2 {"type": "source", "sourceId": "source-b3bca91216ec94992b30", "status": "complete", "cacheHit": false, "claims": 18}
+20:33:37 rw_2 {"type": "source", "sourceId": "source-80cb63619c7e9e1cc735", "status": "complete", "cacheHit": true, "claims": 25}
+20:33:37 rw_2 {"type": "source", "sourceId": "source-1c3ae027861ce4374b90", "status": "complete", "cacheHit": true, "claims": 20}
+20:33:37 rw_2 {"type": "source", "sourceId": "source-4c4ee81ca0e238fef1fe", "status": "complete", "cacheHit": true, "claims": 24}
+20:33:37 rw_2 {"type": "source", "sourceId": "source-a0dce4633bfc1d0a3724", "status": "complete", "cacheHit": true, "claims": 22}
+20:33:37 rw_2 {"type": "source", "sourceId": "source-34c0ed3d12c780210b7a", "status": "complete", "cacheHit": true, "claims": 14}
+20:33:37 rw_2 {"type": "case", "status": "running"}
+20:39:24 rw_2 {"type": "case", "status": "complete", "cacheHit": false}
+20:39:24 rw_2 OK 390.3 s; case cache hit: False
+20:39:24 [rw_3] paid calls so far: 18
+20:40:06 rw_3 {"type": "source", "sourceId": "source-b3bca91216ec94992b30", "status": "complete", "cacheHit": false, "claims": 16}
+20:40:06 rw_3 {"type": "source", "sourceId": "source-80cb63619c7e9e1cc735", "status": "complete", "cacheHit": true, "claims": 25}
+20:40:06 rw_3 {"type": "source", "sourceId": "source-1c3ae027861ce4374b90", "status": "complete", "cacheHit": true, "claims": 20}
+20:40:06 rw_3 {"type": "source", "sourceId": "source-4c4ee81ca0e238fef1fe", "status": "complete", "cacheHit": true, "claims": 24}
+20:40:06 rw_3 {"type": "source", "sourceId": "source-a0dce4633bfc1d0a3724", "status": "complete", "cacheHit": true, "claims": 22}
+20:40:06 rw_3 {"type": "source", "sourceId": "source-34c0ed3d12c780210b7a", "status": "complete", "cacheHit": true, "claims": 14}
+20:40:06 rw_3 {"type": "case", "status": "running"}
+20:42:53 rw_3 {"type": "case", "status": "complete", "cacheHit": false}
+20:42:53 rw_3 OK 209.6 s; case cache hit: False
+20:42:53 [rw_4] paid calls so far: 20
+20:43:42 rw_4 {"type": "source", "sourceId": "source-b3bca91216ec94992b30", "status": "complete", "cacheHit": false, "claims": 20}
+20:43:42 rw_4 {"type": "source", "sourceId": "source-80cb63619c7e9e1cc735", "status": "complete", "cacheHit": true, "claims": 25}
+20:43:42 rw_4 {"type": "source", "sourceId": "source-1c3ae027861ce4374b90", "status": "complete", "cacheHit": true, "claims": 20}
+20:43:42 rw_4 {"type": "source", "sourceId": "source-4c4ee81ca0e238fef1fe", "status": "complete", "cacheHit": true, "claims": 24}
+20:43:42 rw_4 {"type": "source", "sourceId": "source-a0dce4633bfc1d0a3724", "status": "complete", "cacheHit": true, "claims": 22}
+20:43:42 rw_4 {"type": "source", "sourceId": "source-34c0ed3d12c780210b7a", "status": "complete", "cacheHit": true, "claims": 14}
+20:43:42 rw_4 {"type": "case", "status": "running"}
+20:46:27 rw_4 {"type": "case", "status": "complete", "cacheHit": false}
+20:46:27 rw_4 OK 213.4 s; case cache hit: False
+20:46:27 quota remaining after: $255.260  spent: $20.431
+20:46:27 done
+EXIT 0

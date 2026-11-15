@@ -1,0 +1,265 @@
+sim1: 26 sources, needs intake
+sim2: 17 sources, needs intake
+qiso: 28 sources, cached facts
+== sim1
+  spend so far $0.00 (cap $6.00) before intake
+  baseline 12 actions; order {'shuffles': 20, 'game_changed': 20, 'plan_changed': 20}
+  spend so far $0.00 (cap $6.00) before fact-level job
+W1028 02:52:44.535000 59356 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 6590.29it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/Users/vedantsandhu/Desktop/Fall2026/COMPSCI2822R/Perturbation-Robust-Negotiation-Advisor/.venv/lib/python3.14/site-packages/torch/jit/_script.py:1485: FutureWarning: `torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 7754.65it/s]
+  fact job {'perturbed_facts': 12, 'baseline_action_facts': 12, 'candidates': 61, 'accepted': 57, 'levels': {'light': 17, 'moderate': 19, 'heavy': 21}, 'outcomes': {'stable': 57, 'rejected': 4}}; B4 {'readings': 57, 'outcomes': {'stable': 53, 'sensitive': 4}}
+  spend so far $0.13 (cap $6.00) before document-level job
+  doc job {'comparison': {'same-text': {'stable': 6, 'sensitive': 0, 'changed': 0}, 'reworded': {'stable': 6, 'sensitive': 0, 'changed': 0}}, 'extractions': {'baseline': 2, 'same-text': 6, 'reworded': 6}, 'candidates': 30}
+== sim2
+  spend so far $0.13 (cap $6.00) before intake
+  baseline 12 actions; order {'shuffles': 20, 'game_changed': 20, 'plan_changed': 20}
+  spend so far $0.13 (cap $6.00) before fact-level job
+  fact job {'perturbed_facts': 12, 'baseline_action_facts': 12, 'candidates': 58, 'accepted': 55, 'levels': {'light': 19, 'moderate': 20, 'heavy': 16}, 'outcomes': {'stable': 55, 'rejected': 3}}; B4 {'readings': 55, 'outcomes': {'stable': 55}}
+  spend so far $0.24 (cap $6.00) before document-level job
+  doc job {'comparison': {'same-text': {'stable': 0, 'sensitive': 0, 'changed': 0}, 'reworded': {'stable': 0, 'sensitive': 0, 'changed': 0}}, 'extractions': {'baseline': 2, 'same-text': 0, 'reworded': 0}, 'candidates': 24}
+== qiso
+  spend so far $0.24 (cap $6.00) before intake
+  baseline 12 actions; order {'shuffles': 20, 'game_changed': 20, 'plan_changed': 20}
+  spend so far $0.24 (cap $6.00) before fact-level job
+  fact job {'perturbed_facts': 12, 'baseline_action_facts': 12, 'candidates': 53, 'accepted': 46, 'levels': {'light': 15, 'moderate': 15, 'heavy': 16}, 'outcomes': {'stable': 46, 'rejected': 7}}; B4 {'readings': 46, 'outcomes': {'stable': 46}}
+  spend so far $0.45 (cap $6.00) before document-level job
+  doc job {'comparison': {'same-text': {'stable': 6, 'sensitive': 0, 'changed': 0}, 'reworded': {'stable': 6, 'sensitive': 0, 'changed': 0}}, 'extractions': {'baseline': 2, 'same-text': 6, 'reworded': 6}, 'candidates': 30}
+{
+ "started": "2026-10-28 02:52",
+ "model": "us.anthropic.claude-opus-5-5",
+ "remaining_before": 232.6647,
+ "builder": {
+  "ref": "3e2e21d",
+  "file": "/Users/vedantsandhu/Desktop/Fall2026/COMPSCI2822R/Perturbation-Robust-Negotiation-Advisor/runs/benchmark-2026-10-28-teammate/builder/game_builder.py"
+ },
+ "packs": {
+  "sim1": {
+   "intake": {
+    "cached": false,
+    "documents": 26,
+    "facts": 509,
+    "cache": {
+     "documentHits": 26,
+     "documentMisses": 0
+    },
+    "our_side": null,
+    "opponent": null,
+    "opening": "Role-neutral: confirm which side the team represents. In council-office talks, acknowledge the community's grievance over the abrupt exit, and frame talks around safe release linked to near-term hospital service continuity."
+   },
+   "baseline": {
+    "facts": 509,
+    "actions": 12,
+    "actions_us": 6,
+    "actions_opponent": 6,
+    "goals": 18,
+    "forbidden": 0,
+    "strategies": 1,
+    "best": {
+     "title": "Option 1",
+     "opening": "Health for All: The article reports that the UN is coordinating with Germany, Switzerland and other par... \u2194 Tribal leaders: HfA says it transferred the Country Director of Beta to Gamma City given worsening cond...",
+     "fallback": "Pause and review the outside option if the offer is rejected.",
+     "worstScore": 0.5,
+     "meanScore": 0.5
+    }
+   },
+   "order": {
+    "shuffles": 20,
+    "game_changed": 20,
+    "plan_changed": 20
+   },
+   "fact_job": {
+    "perturbed_facts": 12,
+    "baseline_action_facts": 12,
+    "candidates": 61,
+    "accepted": 57,
+    "levels": {
+     "light": 17,
+     "moderate": 19,
+     "heavy": 21
+    },
+    "outcomes": {
+     "stable": 57,
+     "rejected": 4
+    }
+   },
+   "noise_b4": {
+    "readings": 57,
+    "outcomes": {
+     "stable": 53,
+     "sensitive": 4
+    }
+   },
+   "doc_job": {
+    "comparison": {
+     "same-text": {
+      "stable": 6,
+      "sensitive": 0,
+      "changed": 0
+     },
+     "reworded": {
+      "stable": 6,
+      "sensitive": 0,
+      "changed": 0
+     }
+    },
+    "extractions": {
+     "baseline": 2,
+     "same-text": 6,
+     "reworded": 6
+    },
+    "candidates": 30
+   },
+   "spend_after": 0.13
+  },
+  "sim2": {
+   "intake": {
+    "cached": false,
+    "documents": 17,
+    "facts": 184,
+    "cache": {
+     "documentHits": 17,
+     "documentMisses": 0
+    },
+    "our_side": "Camp Commander",
+    "opponent": "Food Without Borders (FWB)",
+    "opening": "Open by acknowledging FWB's need for access and its neutrality concerns. Frame the talks around a safe, orderly and ongoing distribution, with coordination and escorts for security, and invite FWB's own proposal on how distribution is managed."
+   },
+   "baseline": {
+    "facts": 184,
+    "actions": 12,
+    "actions_us": 7,
+    "actions_opponent": 5,
+    "goals": 17,
+    "forbidden": 0,
+    "strategies": 1,
+    "best": {
+     "title": "Option 1",
+     "opening": "Camp Commander: The SML anticipates insisting on involvement when the organization arrives. \u2194 Food Without Borders: The CC agrees to communicate the militia's position to the organization.",
+     "fallback": "Pause and review the outside option if the offer is rejected.",
+     "worstScore": 0.59375,
+     "meanScore": 0.59375
+    }
+   },
+   "order": {
+    "shuffles": 20,
+    "game_changed": 20,
+    "plan_changed": 20
+   },
+   "fact_job": {
+    "perturbed_facts": 12,
+    "baseline_action_facts": 12,
+    "candidates": 58,
+    "accepted": 55,
+    "levels": {
+     "light": 19,
+     "moderate": 20,
+     "heavy": 16
+    },
+    "outcomes": {
+     "stable": 55,
+     "rejected": 3
+    }
+   },
+   "noise_b4": {
+    "readings": 55,
+    "outcomes": {
+     "stable": 55
+    }
+   },
+   "doc_job": {
+    "comparison": {
+     "same-text": {
+      "stable": 0,
+      "sensitive": 0,
+      "changed": 0
+     },
+     "reworded": {
+      "stable": 0,
+      "sensitive": 0,
+      "changed": 0
+     }
+    },
+    "extractions": {
+     "baseline": 2,
+     "same-text": 0,
+     "reworded": 0
+    },
+    "candidates": 24
+   },
+   "spend_after": 0.24
+  },
+  "qiso": {
+   "intake": {
+    "cached": true
+   },
+   "baseline": {
+    "facts": 487,
+    "actions": 12,
+    "actions_us": 6,
+    "actions_opponent": 6,
+    "goals": 18,
+    "forbidden": 0,
+    "strategies": 1,
+    "best": {
+     "title": "Option 1",
+     "opening": "Officer of the Border Authority of Sitwan: The post urges readers to share it and to report suspicious activity to Sitwan Heritage... \u2194 Mayor of Qiso: @SitwanFirst_Patriot questions whether the post is a threat and says they are screensho...",
+     "fallback": "Pause and review the outside option if the offer is rejected.",
+     "worstScore": 0.5,
+     "meanScore": 0.5
+    }
+   },
+   "order": {
+    "shuffles": 20,
+    "game_changed": 20,
+    "plan_changed": 20
+   },
+   "fact_job": {
+    "perturbed_facts": 12,
+    "baseline_action_facts": 12,
+    "candidates": 53,
+    "accepted": 46,
+    "levels": {
+     "light": 15,
+     "moderate": 15,
+     "heavy": 16
+    },
+    "outcomes": {
+     "stable": 46,
+     "rejected": 7
+    }
+   },
+   "noise_b4": {
+    "readings": 46,
+    "outcomes": {
+     "stable": 46
+    }
+   },
+   "doc_job": {
+    "comparison": {
+     "same-text": {
+      "stable": 6,
+      "sensitive": 0,
+      "changed": 0
+     },
+     "reworded": {
+      "stable": 6,
+      "sensitive": 0,
+      "changed": 0
+     }
+    },
+    "extractions": {
+     "baseline": 2,
+     "same-text": 6,
+     "reworded": 6
+    },
+    "candidates": 30
+   },
+   "spend_after": 0.45
+  }
+ },
+ "spent": 0.45
+}

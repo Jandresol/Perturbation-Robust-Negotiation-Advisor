@@ -1,0 +1,14 @@
+{
+ "tag": "reworded-2-moderate",
+ "condition": "reworded",
+ "brief": null,
+ "error": "A negotiation issue has no supported decision or position. Your saved brief is unchanged. The paid response is saved locally. Repeating this request rechecks it without another model call; automatic paid retries are disabled.",
+ "rewording": {
+  "id": "source:paraphrase_doc:moderate:0:0",
+  "level": "moderate",
+  "d_emb": 0.008915185928344727,
+  "nli_fwd": 0.9807120561599731,
+  "nli_bwd": 0.9807120561599731,
+  "seed": 0
+ }
+}

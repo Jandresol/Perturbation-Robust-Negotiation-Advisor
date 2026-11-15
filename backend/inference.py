@@ -147,7 +147,7 @@ class AnalysisService:
     def _key(self):
         return os.environ.get('HUIT_API_KEY') or os.environ.get('ANTHROPIC_API_KEY') or os.environ.get('API_KEY')
 
-    def _request(self, prompt):
+    def _request(self, prompt, replicate=0):
         key = self._key()
         if not key:
             raise InferenceError('Set HUIT_API_KEY in .env, then restart server.py. No model request was made.')
@@ -156,10 +156,12 @@ class AnalysisService:
                   'Never invent resources, positions, outside options or numerical utilities. Use null for unknowns. '
                   'Return only JSON matching the requested shape. Do not output chain of thought.')
         try:
-            task_kind = json.loads(prompt).get('task')
+            task = json.loads(prompt)
+            task_kind = task.get('task')
         except (ValueError, AttributeError):
-            task_kind = None
-        output_budget = {'case':20000, 'document':9000}.get(task_kind,4500)
+            task, task_kind = {}, None
+        # Two heavy rewrites of a long document plus thinking need far more than 4.5k tokens.
+        output_budget = {'case':20000, 'document':9000, 'rewording':16000}.get(task_kind,4500)
         if self.provider == 'openai':
             url = 'https://apis.huit.harvard.edu/ais-openai-direct/v2/chat/completions'
             body = {'model': self.model, 'max_completion_tokens': output_budget, 'response_format': {'type': 'json_object'},
@@ -173,12 +175,17 @@ class AnalysisService:
             body = {'anthropic_version': 'bedrock-2023-05-31', 'max_tokens': output_budget, 'system': system,
                     'output_config': {'effort': 'low'},
                     'messages': [{'role': 'user', 'content': [{'type': 'text', 'text': prompt}]}]}
+            if task_kind == 'rewording' and isinstance(task.get('schema'), dict):
+                # Rewording carries a real JSON Schema, so the gateway can enforce it (as negotiator/llm.py does).
+                body['output_config']['format'] = {'type': 'json_schema', 'schema': task['schema']}
             header = 'x-api-key'
         else:
             raise InferenceError('HUIT_PROVIDER must be openai or bedrock.')
         request = urllib.request.Request(url, data=json.dumps(body).encode(), headers={
             'Content-Type': 'application/json', header: key, 'User-Agent': 'NegotiationAdvisor/1.0'})
-        request_key = digest({'scope': os.environ.get('CACHE_SCOPE', 'local-project'), 'provider': self.provider, 'body': body})
+        # A replicate is an independent sample of an identical request (same-text control, B2).
+        request_key = digest({'scope': os.environ.get('CACHE_SCOPE', 'local-project'), 'provider': self.provider, 'body': body,
+                              **({'replicate': replicate} if replicate else {})})
         with self._db() as db:
             saved = db.execute('SELECT value FROM gateway_responses WHERE key=?', (request_key,)).fetchone()
         try:
@@ -234,9 +241,12 @@ class AnalysisService:
         with self.lock:
             return self.key_locks.setdefault(key, threading.Lock())
 
-    def artifact(self, kind, inputs, schema, validator):
+    def artifact(self, kind, inputs, schema, validator, replicate=0):
+        """Cached model output. Replicate 0 is the reading the app uses; replicate r > 0 is a separate,
+        independently sampled call on identical inputs, so same-text variance can be measured."""
         cache_key = digest({'scope': os.environ.get('CACHE_SCOPE', 'local-project'), 'version': VERSION,
-                            'provider': self.provider, 'model': self.model, 'kind': kind, 'schema': schema, 'inputs': inputs})
+                            'provider': self.provider, 'model': self.model, 'kind': kind, 'schema': schema, 'inputs': inputs,
+                            **({'replicate': replicate} if replicate else {})})
         # Serialize identical requests, including concurrent uploads, before cache miss/model call.
         # Different requests run concurrently.
         with self._key_lock(cache_key):
@@ -263,7 +273,7 @@ class AnalysisService:
             if saved:
                 output = json.loads(saved[0])
             else:
-                output, counts = self.transport(prompt)
+                output, counts = self.transport(prompt, replicate) if replicate else self.transport(prompt)
                 # Save paid output before validation. Invalid output is never a validated artifact.
                 with self._db() as db:
                     db.execute('INSERT OR REPLACE INTO model_responses VALUES (?,?,?)', (cache_key, json.dumps(output), time.time()))
@@ -380,8 +390,11 @@ class AnalysisService:
                 result['limitations'].append(f'{excluded} generated claim(s) could not be matched to original source text and were excluded, together with dependent arguments. Coverage is incomplete; inspect the source for missing constraints.')
             return result
         # Filename, upload bucket and our side are intentionally excluded from independent document extraction.
-        analysis, hit, key = self.artifact('document', {'text': text}, DOCUMENT_SCHEMA, validate)
+        replicate = source.get('replicate', 0)
+        analysis, hit, key = self.artifact('document', {'text': text}, DOCUMENT_SCHEMA, validate, replicate)
         text_hash = hashlib.sha256(text.encode()).hexdigest()
+        # Replicates of one text must not share claim IDs: their claims are different samples.
+        id_stem = text_hash[:16] + (f'-r{replicate}' if replicate else '')
         claims = []
         for i, claim in enumerate(analysis['claims']):
             quote = claim['quote']
@@ -390,9 +403,9 @@ class AnalysisService:
                 for unit in source.get(kind, []):
                     if quote in unit.get('text', ''):
                         location[field] = unit['number']; break
-            claims.append({**claim, 'id': f'f-{text_hash[:16]}-{i}', 'sourceId': source['id'],
+            claims.append({**claim, 'id': f'f-{id_stem}-{i}', 'sourceId': source['id'],
                            'quoteStart': text.index(quote), 'quoteEnd': text.index(quote) + len(quote), **location})
-        arguments = [{**arg, 'id': f'arg-{text_hash[:16]}-{i}',
+        arguments = [{**arg, 'id': f'arg-{id_stem}-{i}',
                       'premise_fact_ids': [claims[j]['id'] for j in arg['premise_claim_indexes']]}
                      for i, arg in enumerate(analysis['arguments'])]
         return {'sourceId': source['id'], 'documentId': f'doc-{text_hash}', 'textHash': text_hash,
@@ -605,7 +618,7 @@ class AnalysisService:
                 result['red_lines'] = [{'text':item['text'],'claim_ids':item['claim_ids']} for item in brief['our_constraints'] if item['status'] == 'supported' and item['claim_ids'] and item.get('force') not in ['concern','negotiating_position']]
             return result
         emit({'type':'case' , 'status':'running'})
-        case, case_hit, case_key = self.artifact('case', inputs, CASE_SCHEMA, validate_case)
+        case, case_hit, case_key = self.artifact('case', inputs, CASE_SCHEMA, validate_case, package.get('replicate', 0))
         if package.get('requireDetailedBrief') and not case.get('negotiation_issues'):
             raise InferenceError('The saved interpretation has no negotiation issue synthesis. Refresh the detailed brief; existing edits are retained.')
         # Preserve unrepresented numeric terms from the same original role paragraph as an issue.

@@ -1,0 +1,19 @@
+{
+ "workspace": "data/negotiation-workspace.json",
+ "source": {
+  "id": "source-b3bca91216ec94992b30",
+  "category": "role_card"
+ },
+ "k": 3,
+ "brief_model": "us.anthropic.claude-opus-5-5",
+ "reword_model": "us.anthropic.claude-opus-5-5",
+ "rewordings": {
+  "candidates": 6,
+  "accepted": 6,
+  "used": 3
+ },
+ "paid_calls": 16,
+ "quota_before": 241.98968,
+ "quota_after": 239.02894,
+ "spent_usd": 2.96
+}

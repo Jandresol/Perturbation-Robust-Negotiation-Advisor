@@ -1,0 +1,85 @@
+{
+  "config": {
+    "seed": 0,
+    "llm": {
+      "base_url": "https://apis.huit.harvard.edu/ais-bedrock-llm/v2",
+      "model": "us.anthropic.claude-opus-5-5",
+      "effort": "low",
+      "max_tokens": 16000
+    },
+    "reword": {
+      "k": 2,
+      "levels": [
+        "light",
+        "moderate",
+        "heavy"
+      ],
+      "operators": [
+        "paraphrase_fact",
+        "paraphrase_doc",
+        "register",
+        "reorder"
+      ],
+      "reorder_k": 4
+    },
+    "filter": {
+      "encoder": "BAAI/bge-base-en-v1.5",
+      "tau": 0.85,
+      "nli_model": "cross-encoder/nli-deberta-v3-base",
+      "nli_threshold": 0.5,
+      "window_sentences": 3,
+      "top_windows": 3
+    },
+    "noise": {
+      "rates": [
+        0.001,
+        0.002,
+        0.005,
+        0.01,
+        0.02,
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.3,
+        0.4
+      ]
+    },
+    "human_sample_rate": 0.05,
+    "game": {
+      "effort": "medium",
+      "min_relevance": 2,
+      "max_actions_per_side": 8,
+      "max_goals": 10,
+      "n_elicit": 5,
+      "value_range": 10
+    }
+  },
+  "units": 16,
+  "per_operator": {
+    "paraphrase_doc": {
+      "candidates": 96,
+      "accepted": 64,
+      "rejection_rate": 0.333
+    },
+    "register": {
+      "candidates": 96,
+      "accepted": 51,
+      "rejection_rate": 0.469
+    },
+    "reorder": {
+      "candidates": 4,
+      "accepted": 4,
+      "rejection_rate": 0.0
+    }
+  },
+  "reject_reasons": {
+    "paraphrase_doc/nli_fwd": 23,
+    "register/nli_fwd": 33,
+    "register/nli_bwd": 5,
+    "register/cosine": 2,
+    "paraphrase_doc/nli_bwd": 7,
+    "register/hard_facts": 5,
+    "paraphrase_doc/hard_facts": 2
+  }
+}

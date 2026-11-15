@@ -1,0 +1,470 @@
+{
+ "readings": [
+  "original",
+  "reworded-1-light",
+  "reworded-2-moderate",
+  "reworded-3-heavy",
+  "same-1",
+  "same-2",
+  "same-3"
+ ],
+ "summary": {
+  "same|same": {
+   "opening": {
+    "mean": 0.812,
+    "min": 0.755,
+    "n": 6
+   },
+   "fallback": {
+    "mean": 0.621,
+    "min": 0.541,
+    "n": 6
+   },
+   "objective": {
+    "mean": 0.935,
+    "min": 0.879,
+    "n": 6
+   },
+   "our_side": {
+    "mean": 0.989,
+    "min": 0.986,
+    "n": 6
+   },
+   "alternatives": {
+    "mean": 0.0,
+    "min": 0.0,
+    "n": 6
+   },
+   "red_lines": {
+    "mean": 0.406,
+    "min": 0.0,
+    "n": 6
+   },
+   "our_constraints": {
+    "mean": 0.406,
+    "min": 0.0,
+    "n": 6
+   },
+   "issues": {
+    "mean": 0.559,
+    "min": 0.222,
+    "n": 6
+   },
+   "tradeoffs": {
+    "mean": 0.122,
+    "min": 0.0,
+    "n": 6
+   }
+  },
+  "reworded|same": {
+   "opening": {
+    "mean": 0.797,
+    "min": 0.723,
+    "n": 12
+   },
+   "fallback": {
+    "mean": 0.688,
+    "min": 0.504,
+    "n": 12
+   },
+   "objective": {
+    "mean": 0.88,
+    "min": 0.796,
+    "n": 12
+   },
+   "our_side": {
+    "mean": 0.975,
+    "min": 0.95,
+    "n": 12
+   },
+   "alternatives": {
+    "mean": 0.083,
+    "min": 0.0,
+    "n": 12
+   },
+   "red_lines": {
+    "mean": 0.6,
+    "min": 0.4,
+    "n": 12
+   },
+   "our_constraints": {
+    "mean": 0.6,
+    "min": 0.4,
+    "n": 12
+   },
+   "issues": {
+    "mean": 0.482,
+    "min": 0.182,
+    "n": 12
+   },
+   "tradeoffs": {
+    "mean": 0.075,
+    "min": 0.0,
+    "n": 12
+   }
+  },
+  "reworded|reworded": {
+   "opening": {
+    "mean": 0.73,
+    "min": 0.708,
+    "n": 3
+   },
+   "fallback": {
+    "mean": 0.822,
+    "min": 0.759,
+    "n": 3
+   },
+   "objective": {
+    "mean": 0.859,
+    "min": 0.827,
+    "n": 3
+   },
+   "our_side": {
+    "mean": 0.973,
+    "min": 0.954,
+    "n": 3
+   },
+   "alternatives": {
+    "mean": 0.0,
+    "min": 0.0,
+    "n": 3
+   },
+   "red_lines": {
+    "mean": 0.5,
+    "min": 0.0,
+    "n": 3
+   },
+   "our_constraints": {
+    "mean": 0.5,
+    "min": 0.0,
+    "n": 3
+   },
+   "issues": {
+    "mean": 0.275,
+    "min": 0.182,
+    "n": 3
+   },
+   "tradeoffs": {
+    "mean": 0.0,
+    "min": 0.0,
+    "n": 3
+   }
+  },
+  "excess_change": {
+   "opening": 0.015,
+   "fallback": -0.067,
+   "objective": 0.055,
+   "our_side": 0.014,
+   "alternatives": -0.083,
+   "red_lines": -0.194,
+   "our_constraints": -0.194,
+   "issues": 0.077,
+   "tradeoffs": 0.047
+  }
+ },
+ "pairs": {
+  "original|reworded-1-light": {
+   "opening": 0.7518723011016846,
+   "fallback": 0.5971194505691528,
+   "objective": 0.9314491748809814,
+   "our_side": 1.0,
+   "alternatives": 0.0,
+   "red_lines": 0.5,
+   "our_constraints": 0.5,
+   "issues": 0.6,
+   "tradeoffs": 0.0
+  },
+  "original|reworded-2-moderate": {
+   "opening": 0.8835294246673584,
+   "fallback": 0.5495513677597046,
+   "objective": 0.8796470165252686,
+   "our_side": 0.9782453775405884,
+   "alternatives": 0.0,
+   "red_lines": 1.0,
+   "our_constraints": 1.0,
+   "issues": 0.36363636363636365,
+   "tradeoffs": 0.0
+  },
+  "original|reworded-3-heavy": {
+   "opening": 0.7860252857208252,
+   "fallback": 0.5076049566268921,
+   "objective": 0.8507323265075684,
+   "our_side": 0.9539879560470581,
+   "alternatives": 0.0,
+   "red_lines": 0.5,
+   "our_constraints": 0.5,
+   "issues": 0.6666666666666666,
+   "tradeoffs": 0.0
+  },
+  "original|same-1": {
+   "opening": 0.8628610372543335,
+   "fallback": 0.6217795610427856,
+   "objective": 1.0,
+   "our_side": 0.9856475591659546,
+   "alternatives": 0.0,
+   "red_lines": 0.5,
+   "our_constraints": 0.5,
+   "issues": 0.6666666666666666,
+   "tradeoffs": 0.0
+  },
+  "original|same-2": {
+   "opening": 0.8028966188430786,
+   "fallback": 0.5837339162826538,
+   "objective": 0.9101299047470093,
+   "our_side": 0.9871301651000977,
+   "alternatives": 0.0,
+   "red_lines": 0.0,
+   "our_constraints": 0.0,
+   "issues": 0.8,
+   "tradeoffs": 0.0
+  },
+  "original|same-3": {
+   "opening": 0.7931302785873413,
+   "fallback": 0.5411421656608582,
+   "objective": 0.9558577537536621,
+   "our_side": 1.0,
+   "alternatives": 0.0,
+   "red_lines": 0.0,
+   "our_constraints": 0.0,
+   "issues": 0.4,
+   "tradeoffs": 0.0
+  },
+  "reworded-1-light|reworded-2-moderate": {
+   "opening": 0.757607638835907,
+   "fallback": 0.7903350591659546,
+   "objective": 0.8273751139640808,
+   "our_side": 0.9782453775405884,
+   "alternatives": 0.0,
+   "red_lines": 1.0,
+   "our_constraints": 1.0,
+   "issues": 0.18181818181818182,
+   "tradeoffs": 0.0
+  },
+  "reworded-1-light|reworded-3-heavy": {
+   "opening": 0.7080298066139221,
+   "fallback": 0.7587659358978271,
+   "objective": 0.8278073668479919,
+   "our_side": 0.9539879560470581,
+   "alternatives": 0.0,
+   "red_lines": 0.5,
+   "our_constraints": 0.5,
+   "issues": 0.4444444444444444,
+   "tradeoffs": 0.0
+  },
+  "reworded-1-light|same-1": {
+   "opening": 0.8053574562072754,
+   "fallback": 0.6493706703186035,
+   "objective": 0.9314491748809814,
+   "our_side": 0.9856475591659546,
+   "alternatives": 1.0,
+   "red_lines": 0.5,
+   "our_constraints": 0.5,
+   "issues": 0.8888888888888888,
+   "tradeoffs": 0.5
+  },
+  "reworded-1-light|same-2": {
+   "opening": 0.794887125492096,
+   "fallback": 0.7916489839553833,
+   "objective": 0.920986533164978,
+   "our_side": 0.9871301651000977,
+   "alternatives": 0.0,
+   "red_lines": 0.8,
+   "our_constraints": 0.8,
+   "issues": 0.4,
+   "tradeoffs": 0.0
+  },
+  "reworded-1-light|same-3": {
+   "opening": 0.8049781918525696,
+   "fallback": 0.791318416595459,
+   "objective": 0.9563219547271729,
+   "our_side": 1.0,
+   "alternatives": 0.0,
+   "red_lines": 0.4,
+   "our_constraints": 0.4,
+   "issues": 0.4,
+   "tradeoffs": 0.0
+  },
+  "reworded-2-moderate|reworded-3-heavy": {
+   "opening": 0.7234514355659485,
+   "fallback": 0.918081521987915,
+   "objective": 0.9216994047164917,
+   "our_side": 0.987586259841919,
+   "alternatives": 0.0,
+   "red_lines": 0.0,
+   "our_constraints": 0.0,
+   "issues": 0.2,
+   "tradeoffs": 0.0
+  },
+  "reworded-2-moderate|same-1": {
+   "opening": 0.8251802325248718,
+   "fallback": 0.579694926738739,
+   "objective": 0.8796470165252686,
+   "our_side": 0.9704285264015198,
+   "alternatives": 0.0,
+   "red_lines": 0.5,
+   "our_constraints": 0.5,
+   "issues": 0.6,
+   "tradeoffs": 0.0
+  },
+  "reworded-2-moderate|same-2": {
+   "opening": 0.7679868936538696,
+   "fallback": 0.7179769277572632,
+   "objective": 0.7956809997558594,
+   "our_side": 0.9757951498031616,
+   "alternatives": 0.0,
+   "red_lines": 0.4,
+   "our_constraints": 0.4,
+   "issues": 0.18181818181818182,
+   "tradeoffs": 0.0
+  },
+  "reworded-2-moderate|same-3": {
+   "opening": 0.8253375291824341,
+   "fallback": 0.9143957495689392,
+   "objective": 0.853658139705658,
+   "our_side": 0.9782453775405884,
+   "alternatives": 0.0,
+   "red_lines": 0.4,
+   "our_constraints": 0.4,
+   "issues": 0.5454545454545454,
+   "tradeoffs": 0.4
+  },
+  "reworded-3-heavy|same-1": {
+   "opening": 0.7895843982696533,
+   "fallback": 0.504020094871521,
+   "objective": 0.8507323265075684,
+   "our_side": 0.9497796893119812,
+   "alternatives": 0.0,
+   "red_lines": 1.0,
+   "our_constraints": 1.0,
+   "issues": 0.25,
+   "tradeoffs": 0.0
+  },
+  "reworded-3-heavy|same-2": {
+   "opening": 0.8029624223709106,
+   "fallback": 0.7240952253341675,
+   "objective": 0.866348385810852,
+   "our_side": 0.9608078002929688,
+   "alternatives": 0.0,
+   "red_lines": 0.4,
+   "our_constraints": 0.4,
+   "issues": 0.4444444444444444,
+   "tradeoffs": 0.0
+  },
+  "reworded-3-heavy|same-3": {
+   "opening": 0.7229866981506348,
+   "fallback": 0.9261388778686523,
+   "objective": 0.8397219181060791,
+   "our_side": 0.9539879560470581,
+   "alternatives": 0.0,
+   "red_lines": 0.8,
+   "our_constraints": 0.8,
+   "issues": 0.4444444444444444,
+   "tradeoffs": 0.0
+  },
+  "same-1|same-2": {
+   "opening": 0.8724151849746704,
+   "fallback": 0.6625938415527344,
+   "objective": 0.9101299047470093,
+   "our_side": 0.986369788646698,
+   "alternatives": 0.0,
+   "red_lines": 0.8,
+   "our_constraints": 0.8,
+   "issues": 0.6666666666666666,
+   "tradeoffs": 0.4
+  },
+  "same-1|same-3": {
+   "opening": 0.7553642392158508,
+   "fallback": 0.5555905103683472,
+   "objective": 0.9558577537536621,
+   "our_side": 0.9856475591659546,
+   "alternatives": 0.0,
+   "red_lines": 0.8,
+   "our_constraints": 0.8,
+   "issues": 0.2222222222222222,
+   "tradeoffs": 0.0
+  },
+  "same-2|same-3": {
+   "opening": 0.7837743759155273,
+   "fallback": 0.7608836889266968,
+   "objective": 0.8789816498756409,
+   "our_side": 0.9871301651000977,
+   "alternatives": 0.0,
+   "red_lines": 0.3333333333333333,
+   "our_constraints": 0.3333333333333333,
+   "issues": 0.6,
+   "tradeoffs": 0.3333333333333333
+  }
+ },
+ "judge": {
+  "model": "claude-opus-5-5",
+  "prompt_hash": "ef916c99b5abe8c9",
+  "labels": {
+   "same-1": {
+    "id": "P1",
+    "opening_archetype": "Acknowledge burden, frame support, ask concerns",
+    "opening_cluster": 1,
+    "fallback_archetype": "Phased registration via municipal registers",
+    "fallback_cluster": 2
+   },
+   "reworded-2-moderate": {
+    "id": "P2",
+    "opening_archetype": "Acknowledge burden, propose joint register",
+    "opening_cluster": 1,
+    "fallback_archetype": "Alternative protocol venue like gym",
+    "fallback_cluster": 1
+   },
+   "reworded-1-light": {
+    "id": "P3",
+    "opening_archetype": "Acknowledge burden, invite logistics input",
+    "opening_cluster": 1,
+    "fallback_archetype": "Phased registration via municipal registers",
+    "fallback_cluster": 2
+   },
+   "original": {
+    "id": "P4",
+    "opening_archetype": "Acknowledge burden, propose joint plan",
+    "opening_cluster": 1,
+    "fallback_archetype": "Register first, sequence transfers later",
+    "fallback_cluster": 2
+   },
+   "same-2": {
+    "id": "P5",
+    "opening_archetype": "Acknowledge burden, legal requirement, invite input",
+    "opening_cluster": 1,
+    "fallback_archetype": "Register in place via shelter registers",
+    "fallback_cluster": 2
+   },
+   "reworded-3-heavy": {
+    "id": "P6",
+    "opening_archetype": "Acknowledge burden, propose joint register",
+    "opening_cluster": 1,
+    "fallback_archetype": "Alternative protocol venue like gym",
+    "fallback_cluster": 1
+   },
+   "same-3": {
+    "id": "P7",
+    "opening_archetype": "Acknowledge burden, propose joint registration",
+    "opening_cluster": 1,
+    "fallback_archetype": "Alternative protocol venue like gym",
+    "fallback_cluster": 1
+   }
+  },
+  "flip_rate": {
+   "same|same": {
+    "opening_cluster": 0,
+    "fallback_cluster": 0.5,
+    "pairs": 6
+   },
+   "reworded|same": {
+    "opening_cluster": 0,
+    "fallback_cluster": 0.583,
+    "pairs": 12
+   },
+   "reworded|reworded": {
+    "opening_cluster": 0,
+    "fallback_cluster": 0.667,
+    "pairs": 3
+   }
+  }
+ }
+}

@@ -1,0 +1,872 @@
+{
+ "tag": "reworded-1-light",
+ "condition": "reworded",
+ "brief": {
+  "opening": "Open by acknowledging the burden on Qiso and its residents. Present registration as the shared goal, linked to the welfare provisions and compensation. Invite the Mayor's input on practical logistics.",
+  "fallback": "If the Mayor resists police roundups, explore phased registration that uses the municipal shelter registers and the existing protocol venues. This must still keep whereabouts accounted for.",
+  "objective": "Work with the Mayor to get the refugees in Qiso registered and to the appropriate centers within two weeks.",
+  "our_side": "Officer of the Border Authority of Sitwan",
+  "alternatives": [
+   "Register pre-unrest seasonal workers who hold harvest permits separately from new arrivals. Permit holders are considered registered for the permit's duration and must re-register when it expires."
+  ],
+  "red_lines": [
+   "No undocumented non-citizens, whereabouts tracked at all times, and security paramount (role card red lines).",
+   "Registration and transfer must be completed within two weeks of arrival."
+  ],
+  "our_constraints": [
+   "No undocumented non-citizens, whereabouts tracked at all times, and security paramount (role card red lines).",
+   "Registration and transfer must be completed within two weeks of arrival."
+  ],
+  "issues": [
+   "Stadium containment by local police",
+   "Compensation for local detention costs",
+   "Building the detainee register",
+   "Transfer to RDFs and the welfare assurances offered",
+   "Treatment of pre-unrest seasonal agricultural workers"
+  ],
+  "tradeoffs": [
+   "Combine compensation with a verified register built partly from the existing shelter lists.",
+   "Vaccination in Qiso as part of registration."
+  ],
+  "facts": 492
+ },
+ "caseCacheHit": false,
+ "seconds": 97,
+ "caseAnalysis": {
+  "title": "Border Authority officer and Qiso Mayor: registration and transfer of Chiasans",
+  "summary": "A Sitwan Border Authority officer is sent to Qiso, a town on the Chiasa border. The role card says over 6,000 undocumented refugees are reportedly staying there. The officer must work with the Mayor to get them to the designated centers within two weeks. The officer's red lines are: no undocumented non-citizens, whereabouts accounted for at all times, and Sitwan's security is paramount. Shared protocols direct local detention in large venues and offer compensation of 6 SD per detained person per day. A letter attributed to the officer directs stadium containment by local police. The Chiasa-side voices online reject RDFs as prisons. Shared reporting cites an RDF capacity of 15,000 against far larger arrival figures. It also reports poor conditions and child-separation allegations. Arrival counts are disputed: the Border Authority says 40,000+, NGOs about 17,000. Local sentiment is polarized and shaped by rumor. The Mayor's own position is not documented.",
+  "our_side": "Officer of the Border Authority of Sitwan",
+  "opponent": "Mayor of Qiso",
+  "objective": "Work with the Mayor to get the refugees in Qiso registered and to the appropriate centers within two weeks.",
+  "outside_option": null,
+  "red_lines": [
+   {
+    "text": "No undocumented non-citizens, whereabouts tracked at all times, and security paramount (role card red lines).",
+    "claim_ids": [
+     "f-4932ce3952c3522a-16",
+     "f-4932ce3952c3522a-17",
+     "f-4932ce3952c3522a-18"
+    ]
+   },
+   {
+    "text": "Registration and transfer must be completed within two weeks of arrival.",
+    "claim_ids": [
+     "f-d776e0967001efc0-15"
+    ]
+   }
+  ],
+  "issues": [
+   {
+    "text": "The size of the Qiso population is uncertain. The role card reports over 6,000. The memo says nearly 6,000 and tells the officer to plan for the higher estimate. Online posts claim 20,000, citing QisoWatch.",
+    "claim_ids": [
+     "f-4932ce3952c3522a-12",
+     "f-d776e0967001efc0-0",
+     "f-d776e0967001efc0-3"
+    ]
+   },
+   {
+    "text": "Chiasa-side voices state that their people will not enter RDFs. Whether any Qiso refugees share this view is not documented.",
+    "claim_ids": [
+     "f-6aa55c648989d490-3",
+     "f-6aa55c648989d490-0"
+    ]
+   },
+   {
+    "text": "The Mayor's Office does not hold a complete list of refugees, so the protocol register requirement cannot yet be met from municipal records.",
+    "claim_ids": [
+     "f-4aadaddc1b6d67b3-6",
+     "f-c3d8300069e8934f-16"
+    ]
+   },
+   {
+    "text": "The shared memo bars sharing its contents with municipal officials. That limits what can be disclosed to the Mayor.",
+    "claim_ids": [
+     "f-d776e0967001efc0-21"
+    ]
+   }
+  ],
+  "situation": {
+   "immediate": {
+    "force": "descriptive",
+    "evidence_kind": "explicit_statement",
+    "text": "The role card tasks the officer with working with the Mayor to move the reportedly 6,000+ undocumented refugees in Qiso to centers within two weeks.",
+    "claim_ids": [
+     "f-4932ce3952c3522a-12",
+     "f-4932ce3952c3522a-13"
+    ],
+    "status": "supported",
+    "source_passage_ids": []
+   },
+   "actors": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "Border Authority officer (our side). Bound by the red lines and the two-week task.",
+     "claim_ids": [
+      "f-4932ce3952c3522a-13",
+      "f-4932ce3952c3522a-16"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "Mayor of Qiso. The officer's letter directs the Mayor to contain Chiasans in the stadium using local police. The Mayor's response is not documented.",
+     "claim_ids": [
+      "f-a6b5ffc2983bd909-5",
+      "f-a6b5ffc2983bd909-6"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "negotiating_position",
+     "evidence_kind": "demand",
+     "text": "@ChiasaZVoice, speaking for Chiasa online, says Chiasa will not allow its people to be imprisoned and that they will not enter RDFs.",
+     "claim_ids": [
+      "f-6aa55c648989d490-0",
+      "f-6aa55c648989d490-3"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "The President elevated the Border Authority to report directly to him. Its Director pledged that every person entering will be registered.",
+     "claim_ids": [
+      "f-e263c9e74a520fec-3",
+      "f-e263c9e74a520fec-11"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "concern",
+     "evidence_kind": "attributed_account",
+     "text": "Local residents are divided. Some demand that police keep Chiasans out of the market. A local parent wants the school gym back and supports any solution that gets everyone somewhere warm and dry.",
+     "claim_ids": [
+      "f-4545c4f2b6775dbc-8",
+      "f-6aa55c648989d490-15"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "concern",
+     "evidence_kind": "explicit_statement",
+     "text": "Local government associations say border towns bore the greatest burden and were not consulted.",
+     "claim_ids": [
+      "f-e263c9e74a520fec-15"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "tension": {
+    "force": "concern",
+    "evidence_kind": "attributed_account",
+    "text": "The law requires registration and tracking of all non-citizens, but online Chiasa-side voices reject RDFs, and reporting cites poor RDF conditions and limited capacity.",
+    "claim_ids": [
+     "f-ce512673904174e8-5",
+     "f-6aa55c648989d490-3",
+     "f-d4505465fc8ff518-11"
+    ],
+    "status": "supported",
+    "source_passage_ids": []
+   },
+   "background": {
+    "force": "descriptive",
+    "evidence_kind": "explicit_statement",
+    "text": "The Safe Borders Program followed the Lolai migration. Much of it was not initially put into effect. About 40,000 people have fled Chiasa, according to the role card.",
+    "claim_ids": [
+     "f-4932ce3952c3522a-5",
+     "f-4932ce3952c3522a-6",
+     "f-4932ce3952c3522a-7"
+    ],
+    "status": "supported",
+    "source_passage_ids": []
+   },
+   "uncertainty": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "attributed_account",
+     "text": "The number of refugees in Qiso is disputed: over 6,000 (role card), nearly 6,000 with a higher estimate to plan for (memo), and 20,000 (online claims).",
+     "claim_ids": [
+      "f-4932ce3952c3522a-12",
+      "f-d776e0967001efc0-3"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "descriptive",
+     "evidence_kind": "inference",
+     "text": "The Mayor's willingness to use police or the stadium is unknown.",
+     "claim_ids": [],
+     "status": "unknown",
+     "source_passage_ids": []
+    },
+    {
+     "force": "descriptive",
+     "evidence_kind": "attributed_account",
+     "text": "RDF capacity and conditions are contested. The Border Authority says challenges are being addressed. UNHCR awaits access for an independent assessment.",
+     "claim_ids": [
+      "f-d4505465fc8ff518-11",
+      "f-d4505465fc8ff518-13"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ]
+  },
+  "objective_claim_ids": [
+   "f-4932ce3952c3522a-13",
+   "f-4932ce3952c3522a-15"
+  ],
+  "outside_option_claim_ids": [],
+  "brief": {
+   "opening": {
+    "force": "negotiating_position",
+    "evidence_kind": "inference",
+    "text": "Open by acknowledging the burden on Qiso and its residents. Present registration as the shared goal, linked to the welfare provisions and compensation. Invite the Mayor's input on practical logistics.",
+    "claim_ids": [
+     "f-e263c9e74a520fec-15",
+     "f-a6b5ffc2983bd909-13",
+     "f-c3d8300069e8934f-15",
+     "f-a6b5ffc2983bd909-20"
+    ],
+    "status": "inferred",
+    "source_passage_ids": []
+   },
+   "fallback": {
+    "force": "negotiating_position",
+    "evidence_kind": "inference",
+    "text": "If the Mayor resists police roundups, explore phased registration that uses the municipal shelter registers and the existing protocol venues. This must still keep whereabouts accounted for.",
+    "claim_ids": [
+     "f-c3d8300069e8934f-12",
+     "f-c3d8300069e8934f-16",
+     "f-4932ce3952c3522a-17"
+    ],
+    "status": "inferred",
+    "source_passage_ids": []
+   },
+   "alternatives": [
+    {
+     "force": "negotiating_position",
+     "evidence_kind": "inference",
+     "text": "Register pre-unrest seasonal workers who hold harvest permits separately from new arrivals. Permit holders are considered registered for the permit's duration and must re-register when it expires.",
+     "claim_ids": [
+      "f-a6b5ffc2983bd909-8",
+      "f-c3d8300069e8934f-11"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    }
+   ],
+   "response_branches": [
+    {
+     "force": "negotiating_position",
+     "evidence_kind": "inference",
+     "text": "If the Mayor cites costs, refer to the compensation of 6 SD per detained person per day, payable within 90 days of a verified register. Note that additional costs are not guaranteed.",
+     "claim_ids": [
+      "f-c3d8300069e8934f-15"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    },
+    {
+     "force": "negotiating_position",
+     "evidence_kind": "inference",
+     "text": "If the Mayor raises RDF conditions or family separation, cite the minimum standards and the commitment to transport families together where operationally possible. Do not overstate either guarantee.",
+     "claim_ids": [
+      "f-ce512673904174e8-11",
+      "f-c3d8300069e8934f-20",
+      "f-ce512673904174e8-13"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    },
+    {
+     "force": "negotiating_position",
+     "evidence_kind": "inference",
+     "text": "If the Mayor raises community tension, frame registration as reducing rumor-driven conflict and pressure on the clinic.",
+     "claim_ids": [
+      "f-37356e5f2c1a549e-7",
+      "f-4545c4f2b6775dbc-8"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    }
+   ],
+   "critical_assumptions": [
+    {
+     "force": "concern",
+     "evidence_kind": "inference",
+     "text": "Assumes the RDFs have space for the Qiso population. Capacity is contested.",
+     "claim_ids": [
+      "f-a6b5ffc2983bd909-12"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    },
+    {
+     "force": "concern",
+     "evidence_kind": "inference",
+     "text": "Assumes the Mayor controls local police and will cooperate with them in this role.",
+     "claim_ids": [
+      "f-d776e0967001efc0-17"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    },
+    {
+     "force": "concern",
+     "evidence_kind": "inference",
+     "text": "Assumes the refugees can be located, given that some shelter in private homes and on farmland.",
+     "claim_ids": [
+      "f-a6b5ffc2983bd909-7"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    }
+   ],
+   "critical_claim_ids": [
+    "f-4932ce3952c3522a-13",
+    "f-c3d8300069e8934f-15",
+    "f-6aa55c648989d490-3"
+   ],
+   "our_constraints": [
+    {
+     "force": "rule",
+     "evidence_kind": "explicit_statement",
+     "text": "No undocumented non-citizens, whereabouts tracked at all times, and security paramount (role card red lines).",
+     "claim_ids": [
+      "f-4932ce3952c3522a-16",
+      "f-4932ce3952c3522a-17",
+      "f-4932ce3952c3522a-18"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "rule",
+     "evidence_kind": "explicit_statement",
+     "text": "Registration and transfer must be completed within two weeks of arrival.",
+     "claim_ids": [
+      "f-d776e0967001efc0-15"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "opponent_demands": [
+    {
+     "force": "negotiating_position",
+     "evidence_kind": "demand",
+     "text": "No Mayor demands are documented. Chiasa-side online voices reject RDFs, but they are a third party, not the Mayor.",
+     "claim_ids": [
+      "f-6aa55c648989d490-3"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "decision_authority": {
+    "force": "approval_requirement",
+    "evidence_kind": "explicit_statement",
+    "text": "The Border Authority reports directly to the President and has power to direct local governments. Whether the officer has personal authority to vary the terms is unknown.",
+    "claim_ids": [
+     "f-e263c9e74a520fec-3"
+    ],
+    "status": "supported",
+    "source_passage_ids": []
+   },
+   "tradeoffs": [
+    {
+     "proposal": "Combine compensation with a verified register built partly from the existing shelter lists.",
+     "benefit": "Payment depends on a verified register, so the Mayor has a reason to help build one.",
+     "risk": "The Mayor's Office holds lists for only about 500 shelter residents.",
+     "claim_ids": [
+      "f-c3d8300069e8934f-15",
+      "f-4aadaddc1b6d67b3-6"
+     ]
+    },
+    {
+     "proposal": "Vaccination in Qiso as part of registration.",
+     "benefit": "Addresses the public health fears reported locally.",
+     "risk": "Funding and feasibility of vaccinating in Qiso are unconfirmed.",
+     "claim_ids": [
+      "f-37356e5f2c1a549e-12",
+      "f-ce512673904174e8-21"
+     ]
+    }
+   ]
+  },
+  "negotiation_issues": [
+   {
+    "id": "I1",
+    "title": "Stadium containment by local police",
+    "decision": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "explicit_statement",
+      "text": "Whether the Mayor will use police to bring all Chiasans to the stadium and ensure none can leave.",
+      "claim_ids": [
+       "f-a6b5ffc2983bd909-5",
+       "f-a6b5ffc2983bd909-6"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_position": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "explicit_statement",
+      "text": "The Border Authority expects the Mayor's full cooperation, including police gathering all Chiasans in the stadium.",
+      "claim_ids": [
+       "f-d776e0967001efc0-17"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "counterpart_position": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "The Mayor's position is undocumented.",
+      "claim_ids": [],
+      "status": "unknown",
+      "source_passage_ids": []
+     }
+    ],
+    "our_reasons": [
+     {
+      "force": "rule",
+      "evidence_kind": "explicit_statement",
+      "text": "Protocols require large arrivals to be detained in a suitably large place and require local authorities to prevent people running away.",
+      "claim_ids": [
+       "f-c3d8300069e8934f-12",
+       "f-c3d8300069e8934f-13"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "counterpart_reasons": [],
+    "conditions": [
+     {
+      "force": "rule",
+      "evidence_kind": "explicit_statement",
+      "text": "The directive covers people in municipal buildings, religious buildings, agricultural land and private homes. The timeline is two weeks.",
+      "claim_ids": [
+       "f-a6b5ffc2983bd909-7",
+       "f-d776e0967001efc0-15"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "previous_alternatives": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "explicit_statement",
+      "text": "Protocols name a school gym as an alternative large venue. A parent reports the school gym is in use and wants it back.",
+      "claim_ids": [
+       "f-c3d8300069e8934f-12",
+       "f-6aa55c648989d490-15"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "dependencies": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "Depends on 'Compensation for local detention costs'.",
+      "claim_ids": [
+       "f-c3d8300069e8934f-15"
+      ],
+      "status": "inferred",
+      "source_passage_ids": []
+     }
+    ],
+    "questions": [
+     {
+      "force": "concern",
+      "evidence_kind": "inference",
+      "text": "What police capacity is available in Qiso? A resident says police are hard to access.",
+      "claim_ids": [
+       "f-b36ac65d4c9c2fcf-12"
+      ],
+      "status": "inferred",
+      "source_passage_ids": []
+     }
+    ],
+    "possible_arrangements": []
+   },
+   {
+    "id": "I2",
+    "title": "Compensation for local detention costs",
+    "decision": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "explicit_statement",
+      "text": "Whether the compensation offered is adequate for the Mayor.",
+      "claim_ids": [
+       "f-c3d8300069e8934f-15"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_position": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "explicit_statement",
+      "text": "The Border Authority commits to compensating local authorities for detention work.",
+      "claim_ids": [
+       "f-c3d8300069e8934f-15"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "counterpart_position": [],
+    "our_reasons": [],
+    "counterpart_reasons": [],
+    "conditions": [
+     {
+      "force": "rule",
+      "evidence_kind": "attributed_account",
+      "text": "The rate is 6 SD per detained person per day, paid within 90 days of a verified register. Additional costs are not guaranteed (per the letter summary).",
+      "claim_ids": [
+       "f-c3d8300069e8934f-15"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "previous_alternatives": [],
+    "dependencies": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "Depends on 'Building the detainee register'.",
+      "claim_ids": [
+       "f-c3d8300069e8934f-16"
+      ],
+      "status": "inferred",
+      "source_passage_ids": []
+     }
+    ],
+    "questions": [
+     {
+      "force": "concern",
+      "evidence_kind": "inference",
+      "text": "Does the officer have authority to cover additional costs?",
+      "claim_ids": [],
+      "status": "unknown",
+      "source_passage_ids": []
+     }
+    ],
+    "possible_arrangements": []
+   },
+   {
+    "id": "I3",
+    "title": "Building the detainee register",
+    "decision": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "explicit_statement",
+      "text": "How to create a written register of names, ages and gender where known, given that the Mayor's Office holds no complete list.",
+      "claim_ids": [
+       "f-c3d8300069e8934f-16",
+       "f-c3d8300069e8934f-17",
+       "f-4aadaddc1b6d67b3-6"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_position": [
+     {
+      "force": "rule",
+      "evidence_kind": "explicit_statement",
+      "text": "The register must be handed to the Border Authority on request.",
+      "claim_ids": [
+       "f-c3d8300069e8934f-17"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "counterpart_position": [],
+    "our_reasons": [],
+    "counterpart_reasons": [
+     {
+      "force": "concern",
+      "evidence_kind": "attributed_account",
+      "text": "Emergency International separately seeks refugee data to plan quantities and avoid duplicate distributions.",
+      "claim_ids": [
+       "f-4aadaddc1b6d67b3-4"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "conditions": [],
+    "previous_alternatives": [],
+    "dependencies": [],
+    "questions": [],
+    "possible_arrangements": []
+   },
+   {
+    "id": "I4",
+    "title": "Transfer to RDFs and the welfare assurances offered",
+    "decision": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "explicit_statement",
+      "text": "Busing registered people to RDFs with sufficient space.",
+      "claim_ids": [
+       "f-a6b5ffc2983bd909-12"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_position": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "explicit_statement",
+      "text": "The Border Authority commits to vaccination, shelter, food, clothing and healthcare, and to schooling for children.",
+      "claim_ids": [
+       "f-a6b5ffc2983bd909-13"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "counterpart_position": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "demand",
+      "text": "Chiasa-side online voices say they will not enter RDFs.",
+      "claim_ids": [
+       "f-6aa55c648989d490-3"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_reasons": [
+     {
+      "force": "rule",
+      "evidence_kind": "explicit_statement",
+      "text": "The Border Authority states RDFs register undocumented persons and manage their needs and whereabouts.",
+      "claim_ids": [
+       "f-ce512673904174e8-6"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "counterpart_reasons": [
+     {
+      "force": "concern",
+      "evidence_kind": "attributed_account",
+      "text": "Reports describe RDF facility rules separating children for daytime classes and an aid worker says gate staff lack information on children's whereabouts.",
+      "claim_ids": [
+       "f-91a55f5f87dc4750-6",
+       "f-91a55f5f87dc4750-8"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "conditions": [
+     {
+      "force": "rule",
+      "evidence_kind": "explicit_statement",
+      "text": "RDF standards: fenced and staffed 24 hours a day; residents leave only with the facility director's written permission; headcounts each morning and evening. Each resident gets 3.5 m² of covered space, 2,100 kcal per day in three meals, and 15 L of water per day. There is one toilet per 20 residents and one shower per 50.",
+      "claim_ids": [
+       "f-ce512673904174e8-7",
+       "f-ce512673904174e8-8",
+       "f-ce512673904174e8-9",
+       "f-ce512673904174e8-11",
+       "f-ce512673904174e8-14",
+       "f-ce512673904174e8-17",
+       "f-ce512673904174e8-18"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "previous_alternatives": [],
+    "dependencies": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "Not established by cited evidence: Depends on 'Stadium containment by local police'.",
+      "claim_ids": [],
+      "status": "unknown",
+      "source_passage_ids": []
+     }
+    ],
+    "questions": [
+     {
+      "force": "concern",
+      "evidence_kind": "inference",
+      "text": "Is there current RDF space for the Qiso population?",
+      "claim_ids": [],
+      "status": "unknown",
+      "source_passage_ids": []
+     }
+    ],
+    "possible_arrangements": []
+   },
+   {
+    "id": "I5",
+    "title": "Treatment of pre-unrest seasonal agricultural workers",
+    "decision": [
+     {
+      "force": "rule",
+      "evidence_kind": "explicit_statement",
+      "text": "Pre-unrest seasonal agricultural workers must also register. Permit holders must re-register when the permit expires or if they cannot return home.",
+      "claim_ids": [
+       "f-a6b5ffc2983bd909-8",
+       "f-c3d8300069e8934f-11"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_position": [],
+    "counterpart_position": [],
+    "our_reasons": [],
+    "counterpart_reasons": [],
+    "conditions": [],
+    "previous_alternatives": [],
+    "dependencies": [],
+    "questions": [
+     {
+      "force": "concern",
+      "evidence_kind": "inference",
+      "text": "How many workers in Qiso hold valid harvest permits?",
+      "claim_ids": [],
+      "status": "unknown",
+      "source_passage_ids": []
+     }
+    ],
+    "possible_arrangements": []
+   }
+  ],
+  "preparation_context": {
+   "immediate_decision": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "The officer must agree a registration and transfer plan with the Mayor within two weeks.",
+     "claim_ids": [
+      "f-4932ce3952c3522a-13",
+      "f-d776e0967001efc0-15"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "background": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "The officer's memory of the Lolai migration straining services shapes the officer's outlook.",
+     "claim_ids": [
+      "f-4932ce3952c3522a-2",
+      "f-4932ce3952c3522a-3"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "people_interests_power": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "The Border Authority has presidential backing and autonomy. Opposition legislators raise oversight concerns.",
+     "claim_ids": [
+      "f-e263c9e74a520fec-2",
+      "f-e263c9e74a520fec-12"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "pressures_disagreements": [
+    {
+     "force": "concern",
+     "evidence_kind": "attributed_account",
+     "text": "Vigilante responses at the market and a crowded clinic reflect local tension.",
+     "claim_ids": [
+      "f-c58dc640ba033881-10",
+      "f-37356e5f2c1a549e-7"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "no_agreement_consequences": [
+    {
+     "force": "rule",
+     "evidence_kind": "explicit_statement",
+     "text": "Citizens who knowingly shelter unregistered non-citizens and fail to report them may be fined.",
+     "claim_ids": [
+      "f-c3d8300069e8934f-24"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "team_questions": [
+    {
+     "force": "concern",
+     "evidence_kind": "inference",
+     "text": "What is the officer's authority beyond the standard compensation rate?",
+     "claim_ids": [],
+     "status": "unknown",
+     "source_passage_ids": []
+    }
+   ],
+   "counterpart_questions": [
+    {
+     "force": "concern",
+     "evidence_kind": "inference",
+     "text": "What are the Mayor's police capacity and estimate of refugee locations?",
+     "claim_ids": [],
+     "status": "unknown",
+     "source_passage_ids": []
+    }
+   ]
+  },
+  "coverage_gaps": [
+   "The Mayor's position and interests are not documented.",
+   "Current RDF occupancy and capacity figures were not extracted as claims."
+  ],
+  "evidence_selection": {
+   "selected": 128,
+   "total": 492
+  }
+ },
+ "rewording": {
+  "id": "source:paraphrase_doc:light:0:0",
+  "level": "light",
+  "d_emb": 0.0010365843772888184,
+  "nli_fwd": 0.987437903881073,
+  "nli_bwd": 0.9866198301315308,
+  "seed": 0
+ }
+}

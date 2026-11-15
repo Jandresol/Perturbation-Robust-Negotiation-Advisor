@@ -1,0 +1,59 @@
+{
+ "model": "us.anthropic.claude-fable-5-1",
+ "quota_before": 275.69089,
+ "quota_after": 255.2601,
+ "spent_usd": 20.4308,
+ "ledger": [
+  {
+   "kind": "case",
+   "model": "us.anthropic.claude-fable-5-1",
+   "n": 7,
+   "input_tokens": 226770,
+   "output_tokens": 109285
+  },
+  {
+   "kind": "document",
+   "model": "us.anthropic.claude-fable-5-1",
+   "n": 12,
+   "input_tokens": 23553,
+   "output_tokens": 53033
+  }
+ ],
+ "reword_usage": [
+  {
+   "model": "claude-fable-5-1",
+   "input_tokens": 1314,
+   "output_tokens": 1713,
+   "stop": "end_turn"
+  },
+  {
+   "model": "claude-fable-5-1",
+   "input_tokens": 1316,
+   "output_tokens": 1737,
+   "stop": "end_turn"
+  },
+  {
+   "model": "claude-fable-5-1",
+   "input_tokens": 1316,
+   "output_tokens": 1846,
+   "stop": "end_turn"
+  }
+ ],
+ "chosen_rewordings": [
+  "rolecard:paraphrase_doc:light:0:0",
+  "rolecard:paraphrase_doc:moderate:0:0",
+  "rolecard:paraphrase_doc:heavy:0:0",
+  "rolecard:paraphrase_doc:light:0:1"
+ ],
+ "b2_ok": {
+  "b2_r1": true,
+  "b2_r2": true,
+  "b2_r3": true
+ },
+ "rw_ok": {
+  "rw_1": false,
+  "rw_2": true,
+  "rw_3": true,
+  "rw_4": true
+ }
+}
