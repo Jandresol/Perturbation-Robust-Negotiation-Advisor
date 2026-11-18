@@ -1,0 +1,166 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage[margin=1.4cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,xcolor,microtype,titlesec,enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[colorlinks=true,urlcolor=blue!55!black,linkcolor=black,citecolor=black]{hyperref}
+
+\titleformat{\section}{\normalfont\bfseries\large}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection}{0.5em}{}
+\titlespacing{\section}{0pt}{1.0ex plus .2ex}{0.4ex}
+\titlespacing{\subsection}{0pt}{1.0ex plus .2ex}{0.3ex}
+\setlist[itemize]{leftmargin=1.05em,itemsep=0pt,topsep=0.2ex,parsep=0pt}
+\setlength{\columnsep}{0.75cm}
+\setlength{\parskip}{0.3ex}
+\renewcommand{\arraystretch}{1.05}
+\pagestyle{plain}
+% Text a teammate still has to write.
+\newcommand{\placeholder}[1]{\textcolor{red!60!black}{\textit{[#1]}}}
+
+\begin{document}
+
+\twocolumn[{%
+\begin{center}
+{\LARGE\bfseries Perturbation-Robust Negotiation Advisor}\\[0.4ex]
+{\large Checkpoint 2}\\[1ex]
+{Jasmine Andresol \quad\textbullet\quad Manasa Bala \quad\textbullet\quad Vedant Sandhu \quad\textbullet\quad COMPSCI 2822R \quad\textbullet\quad 28 October 2026}
+\end{center}
+\vspace{0.5ex}
+}]
+
+\section{Research Question}
+
+This project asks whether the advice produced by an LLM-assisted negotiation tool changes when the facts of a case are reworded without any change in meaning, and whether aggregating over such rewordings yields more stable and better advice than a single reading of the case. We assume that every meaning-preserving rewording describes the same underlying game (Assumption~M); any change in the resulting advice is therefore an error rather than a legitimate response to new information. We test three hypotheses:
+\begin{itemize}
+\item \textit{H1:} a pipeline that reads the case once changes its recommended plan under accepted rewordings.
+\item \textit{H2:} the size of this change is comparable to that produced by random noise at the same embedding distance.
+\item \textit{H3:} aggregating over $K$ rewordings outperforms both a single reading and repeated readings of the same text at equal compute.
+\end{itemize}
+
+The question has been refined in one respect since the proposal. LLM outputs are known to shift under meaning-preserving changes to a prompt~\cite{sclar}, but they also vary when the identical prompt is resampled~\cite{selfconsistency}. A wording effect can therefore be claimed only when it exceeds the variation observed across repeated runs on the same text. This same-text control (B2) is now central to the design. We measure stability at two points in the pipeline: the game produced by the game builder, and the model-written preparation brief that the negotiating team reads.
+
+\section{Current System}
+
+The pipeline has five stages: source intake, fact extraction, game construction, plan search, and an interface that supports the team during the negotiation. The perturbation engine introduces reworded inputs either before extraction (whole documents) or before game construction (individual facts), and compares the resulting advice with that obtained from the original text. All runs reported here used Claude Opus~5.5~\cite{opus} through Harvard's AWS Bedrock gateway, with every call cached for reproducibility.
+
+\subsection{Source Intake and Fact Extraction}
+Users upload PDF and DOCX files into three categories: shared information, side-specific information, and the team's role card. Text is extracted in the browser, page by page for PDF files using pdf.js~\cite{pdfjs} and in sections of about 4,000 characters for DOCX files using mammoth~\cite{mammoth}. A local server sends each document to an LLM through Harvard's HUIT gateway; the default model in the frontend build is GPT-4.1~mini~\cite{gpt41}. For each document, the model returns a summary, the entities involved, the arguments made, and a list of atomic claims. Each claim records its text, a verbatim quotation, its attribution, its modality (asserted, conditional, or uncertain), any conditions, and a category (goal, constraint, commitment, resource, timeline, condition, or context). Claims whose quotation cannot be located in the source are discarded. A synthesis call then uses the highest-ranked claims, prioritizing the role card and constraints, to identify the sides, objective, outside option, and red lines, and to draft a brief with an opening, a fallback, and trade-offs, each supported by cited claims. All validated outputs are cached in a SQLite database keyed by their inputs.
+
+\subsection{Game Builder and Solver}
+Our game builder converts a negotiation package into a two-player commitment game, which the solver searches to identify promising sequences of offers. Both components are deterministic and make no language-model calls. This separates game construction and optimization from the broader system's language-based advice.
+
+The builder first checks the package's facts, retaining only those with complete identifiers, text, and supporting quotations that appear verbatim in the referenced source. If no facts survive, it splits the source documents into sentences and retains up to 40 qualifying pieces. It then selects at most 12 actions, prioritizing commitments, resources, timelines, and goals while excluding prohibitions. Actions are assigned to sides using name matches, source privacy, and a balancing rule when ownership is ambiguous. Confirmed red lines linked to actions make those actions unavailable to the solver.
+
+A state $s\subseteq A$ represents the commitments already accepted. Commitments cannot be withdrawn, and each goal is satisfied only when all its required actions are present. Each side's utility is therefore
+\[U_i(s)=\textstyle\sum_g \mathrm{sat}(s,g)\,v_i(g),\]
+where $\mathrm{sat}(s,g)$ equals 1 when all actions required by goal $g$ are included in $s$, and 0 otherwise. The current implementation uses fixed utility estimates: our concessions cost us 1 and benefit the opponent 2, while their concessions receive the reverse values. Actions are also paired across sides, with each completed pair adding 3 to both players' utilities, so a reciprocal trade yields 4 for each side. A second scenario reduces the opponent's joint bonus to 1, providing a sensitivity check rather than a calibrated model of their preferences.
+
+The solver searches exactly within a horizon of two or three offers, depending on the action count. Each offer $x$ adds at most one new action from each side and is accepted only when the opponent's estimated utility does not decrease, $U_{\mathrm{opp}}(s\cup x)\ge U_{\mathrm{opp}}(s)$. The objective is to maximize our terminal utility, with ties favoring shorter paths and then larger opening offers. Search runs separately under both opponent scenarios, and each candidate is evaluated under both, using the prefix accepted before any rejection. Candidates whose average utility falls below the starting value are discarded. The system returns up to five plans ranked by their normalized worst-case utility, each with an opening offer and a walk-away fallback; if no plan improves on the starting state, it recommends walking away. Optimality applies to this bounded game and its stated assumptions; the fixed utilities and simplified acceptance rule limit conclusions about actual negotiation outcomes.
+
+\subsection{Perturbation Engine}
+The perturbation engine generates meaning-preserving rewordings, implementing an invariance test in the sense of CheckList~\cite{checklist}. Four operators are available. \texttt{paraphrase\_fact} rewrites a single atomic fact and preserves its identifier, \texttt{paraphrase\_doc} rewrites a whole source document, which is then re-extracted, \texttt{register} shifts a document between formal and plain tone, and \texttt{reorder} permutes the facts. Each LLM-based operator is asked for a light, moderate, or heavy rewording, and each candidate is generated by an independent call with its own seed.
+
+A candidate $r$ of an original text $o$ is accepted only if
+\[\cos(o,r)\ge\tau \wedge E(o{\Rightarrow}r)\ge\theta \wedge E(r{\Rightarrow}o)\ge\theta \wedge H(o)=H(r).\]
+Here $\cos$ is the cosine similarity between mean sentence embeddings computed with bge-base-en-v1.5~\cite{bge}, with $\tau=0.85$. $E$ is the entailment probability given by the nli-deberta-v3-base cross-encoder~\cite{sbert,deberta}, with $\theta=0.5$; requiring entailment in both directions rejects both added and omitted content. For longer texts, each sentence is scored against its three nearest windows of one to three sentences, and the weakest sentence determines $E$. $H$ is the set of hard facts extracted by deterministic rules: numbers and names, together with force words such as ``must'', ``may'', and ``only'' for facts tied to red lines. Each candidate records its distance from the original, $d_{\text{emb}}=1-\cos(o,r)$.
+
+Two controls accompany each run. The random-noise control (B4) applies character- and word-level noise to the original, tuned to match the $d_{\text{emb}}$ of the corresponding rewording, and is never filtered for meaning. The same-text control (B2) is implemented by a replicate index on every model stage, which forces a fresh sample on unchanged input. In the application, a fact-level job rewords up to 12 action-eligible facts and re-solves the game, and a document-level job rewords and re-extracts source documents alongside an equal number of same-text re-extractions. Each reading is classified as stable (same game and plan), sensitive (same plan, different game), or changed (different plan). All thresholds, models, and seeds are fixed in a single configuration file before testing.
+
+\subsection{Interface and Live Support}
+The interface has three views: Preparation, Negotiation, and Research. The Preparation view presents a printable brief, the case and its constraints, and the sources; the team can edit the inferred roles, confirm or dismiss red lines, and correct facts, giving a reason for each correction. During a negotiation, a 15-minute timer runs and the team records each exchange either by typing or by voice, using Web Speech transcription with clips stored locally. Each exchange is assigned a type (note, question, offer, acceptance, rejection, or new issue outside the game) and takes effect only after it has been reviewed and confirmed; an accepted offer becomes a binding commitment. After each confirmed exchange, a background worker updates the recommended next move by selecting a template according to the type of the last exchange and re-scoring the remaining plans, and it suggests questions drawn from facts that share vocabulary with the objective and the last exchange.
+
+\section{Evaluation}
+
+We evaluated the complete tool on three simulation packages: Sim~1, a health-worker detention case with 26 shared documents and no role card; Sim~2, a negotiation between a camp commander and the aid organization Food Without Borders (FWB), with 17 documents including a role card; and Qiso, a border-town case with 28 documents, which is the latest package and was used on the first live simulation day. Each package was processed through intake, the baseline game and plan, 20 random reorderings of the facts, both rewording jobs with their controls, and a brief-stability study, at a total model cost of about \$22.
+
+\begin{table}[t]
+\centering\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+ & Sim 1 & Sim 2 & Qiso \\
+\midrule
+Facts extracted & 509 & 184 & 487 \\
+Actions (ours / theirs) & 6 / 6 & 7 / 5 & 6 / 6 \\
+Goals & 18 & 17 & 18 \\
+Recommended plan & offer & offer & offer \\
+Reorderings changing the plan & 20/20 & 20/20 & 20/20 \\
+Fact rewordings accepted & 57/61 & 55/58 & 46/53 \\
+\quad of which stable & 57/57 & 55/55 & 46/46 \\
+Noise readings (B4) stable & 53/57 & 55/55 & 46/46 \\
+Same-text extractions stable & 6/6 & -- & 6/6 \\
+Reworded extractions stable & 6/6 & -- & 6/6 \\
+\bottomrule
+\end{tabular}
+\caption{\footnotesize Results for the builder and solver of Section~2.2 with Claude Opus~5.5. In Sim~2, all 24 document rewordings failed the entailment check, so no document-level readings were produced.}
+\label{tab:sims}
+\end{table}
+
+\subsection{Game-Level Stability}
+Table~\ref{tab:sims} summarizes the results. In every package the builder produced a two-sided game with 12 actions and recommended an offer sequence. None of the 158 accepted fact rewordings changed the game or the plan, and neither did any reworded or same-text document re-extraction. Matched noise changed the game in 4 of 57 Sim~1 readings, never the plan. In contrast, reordering the same facts changed both the game and the plan in all 20 trials for every package, because action ownership and goal pairing depend on list position and the extractor returns facts in its own order. The recommendation is therefore determined by fact order rather than by wording. Moreover, many actions are not commitments: the selected openings include sentences such as ``The post urges readers to share it'' (Qiso), and a militia leader's stated position in Sim~2 is assigned to our side. Because the builder relies on categories and positions rather than content, its invariance to rewording says little about the robustness of game inference.
+
+\subsection{Rewording Filter}
+Across the three fact-level jobs, the filter accepted 158 of 172 candidates (92\%), and a stronger requested rewording increased the median $d_{\text{emb}}$ in every package. Earlier benchmarks accepted 94--98\% of fact paraphrases, 67--72\% of document paraphrases, and 53--56\% of register shifts. The filter rejected all 12 meaning-changing probes in an independent review, including negation, a change from ``must'' to ``may'', and a change of a quantity from 22 to 20. The noise control matched each rewording's distance to within a median of 0.004.
+
+\subsection{Brief Stability}
+We compared three same-text repetitions of intake and brief generation with three runs in which the role card was reworded; because Sim~1 has no role card, the meeting with the tribal leaders was reworded instead. A separate model call clustered the resulting strategies.
+
+\begin{table}[t]
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+ & \multicolumn{2}{c}{Opening (cos)} & \multicolumn{2}{c}{Fallback (cos)} & \multicolumn{2}{c}{Fallback changed} \\
+ \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(l){6-7}
+ & same & rew. & same & rew. & same & rew. \\
+\midrule
+Sim 1 & .84 & .84 & .62 & .56 & 67\% & 100\% \\
+Sim 2 & .85 & .84 & .78 & .65 & 0\% & 50\% \\
+Qiso & .81 & .80 & .62 & .69 & 50\% & 58\% \\
+\bottomrule
+\end{tabular}
+\caption{\footnotesize Brief stability. ``Same'' compares pairs of same-text runs; ``rew.'' compares a reworded run with a same-text run. Cosine values are mean pairwise similarities; the last two columns give the share of pairs whose fallback strategy differs.}
+\label{tab:brief}
+\end{table}
+
+As Table~\ref{tab:brief} shows, rewording changed the opening no more than resampling the same text did; the mean similarity decreased by at most 0.015. The fallback varied substantially even across same-text runs, changing strategy in 50--67\% of pairs in Sim~1 and Qiso. In Sim~2, rewording the role card changed the fallback in half of the pairs, compared with none of the same-text pairs. This is the only candidate wording effect, based on two reworded readings. Red-line lists also varied on identical text, with an overlap of 0.17--0.41. Without the same-text control, both observations would have been misreported as brittleness.
+
+\subsection{First Live Simulation}
+During the live negotiation on the Qiso package, the recommended next move remained the same template sentence after each of the nine confirmed exchanges. Three factors combined to produce this behavior. The builder assigned all four actions to the Mayor, so the only available plan was to walk away; as a result, the session ran in source-rehearsal mode, which has no offer, acceptance, or rejection events; and every exchange was recorded as a note, whereas the template is chosen by exchange type. The rule-based advice therefore could not respond to the Mayor's trade openings. We have since prototyped one model call per confirmed exchange that conditions on the brief, the facts, and the conversation so far.
+
+\section{What We Keep and What We Change}
+
+We will retain the perturbation engine and its acceptance filter, the cached and seed-controlled model calls with a frozen configuration, same-text replicates at every model stage, exact plan search, and the source-grounded brief with its live event log.
+
+The principal change is to construct the game following the text-to-game pipeline of Benac et al.~\cite{benac}, who build commitment games from the position papers of a role-played climate negotiation with 22 parties and 45 goals. Their pipeline applies an LLM (GPT-5.2) in six stages, described in their Appendix~B:
+\begin{enumerate}[leftmargin=1.3em,itemsep=0pt,topsep=0.3ex,parsep=0pt]
+\item \textit{Issue extraction}: for each party, the outcomes it most wants to secure or avoid, as opposed to instruments such as signing a compact or funding a package.
+\item \textit{Goal canonicalization}: the issues are merged into a shared set of goal labels, and a goal is retained only if it can be traced to explicit evidence.
+\item \textit{Stance scoring}: each party--goal pair is scored on a five-level scale from strong support to strong opposition, yielding the preference matrix $G$.
+\item \textit{Action extraction}: each party's executable commitments are listed and near-duplicates are merged, defining its feasible action set.
+\item \textit{Action-to-goal mapping}: for each party, the actions that would materially contribute to each goal are identified, defining the required commitment set $\mathcal{C}_g$.
+\item \textit{Goal typing}: each goal is classified as all-or-nothing or linear, where a linear goal is satisfied in proportion to the fraction of $\mathcal{C}_g$ committed.
+\end{enumerate}
+Each stage is repeated and its outputs are reconciled, by clustering for the extraction stages and by majority voting for the others, to reduce sensitivity to wording. Across five games built from the same documents, the authors report a mean best-match cosine similarity of 0.791 for goal labels and 0.960 for each party's actions.
+
+Each stage addresses a weakness identified in Section~3. Action extraction replaces the selection of fact sentences by category and the assignment of owners by name and list position; issue extraction, canonicalization, mapping, and goal typing replace goals formed by pairing actions by position; stance scoring replaces the fixed utilities; and canonical labels reconciled by voting remove the dependence on fact order. The solver will adopt the protocol of the same paper, under which value is $G^{\top}S(C)$ at the end of play, proposers alternate, each offer adds at most $k$ commitments per player, and an offer is accepted when the partner's value does not decrease, consistent with~\cite{zhu}. The current solver generates only our offers; we will add the paper's Upper and Lower value estimates to test whether a plan depends on the acceptance model, and retain exact search as a reference.
+
+The following choices are ours. Because we see only our own role card, the opponent's stances will be inferred from the shared documents alone. Stances will be mapped to the values $+2$ to $-2$, and repeated opponent scores will be retained as samples, which relaxes the paper's assumption of perfect information. Every goal and action will be required to cite a fact with a verified quotation. To test H1 at the level of the game, we will report the paper's goal and action similarity measures for same-text and reworded readings, and we will obtain ground truth by rendering games from the paper's generator as text and rebuilding them.
+
+Finally, we will add an aggregator that ranks plans pooled across readings by mean and worst-case value, validated on generated games and on new simulation packages; condition live advice on each exchange's content; apply the noise control to the model stages; and complete the human audit of rewordings against a 95\% threshold.
+
+\begin{thebibliography}{99}\small
+\bibitem{benac} L.~Benac, J.~Raedler, Z.~Ma, F.~Doshi-Velez. A Benchmark for Multi-Party Negotiation Games from Real Negotiation Data. arXiv:2603.14066, 2026.
+\bibitem{sclar} M.~Sclar, Y.~Choi, Y.~Tsvetkov, A.~Suhr. Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design. ICLR, 2024.
+\bibitem{selfconsistency} X.~Wang et al. Self-Consistency Improves Chain of Thought Reasoning in Language Models. ICLR, 2023.
+\bibitem{opus} Anthropic. Claude Opus 5.5. 2026.
+\bibitem{pdfjs} Mozilla. PDF.js. \url{https://mozilla.github.io/pdf.js/}.
+\bibitem{mammoth} M.~Williamson. mammoth.js. \url{https://github.com/mwilliamson/mammoth.js}.
+\bibitem{gpt41} OpenAI. GPT-4.1. 2025.
+\bibitem{checklist} M.~T.~Ribeiro, T.~Wu, C.~Guestrin, S.~Singh. Beyond Accuracy: Behavioral Testing of NLP Models with CheckList. ACL, 2020.
+\bibitem{bge} S.~Xiao, Z.~Liu, P.~Zhang, N.~Muennighoff. C-Pack: Packaged Resources to Advance General Chinese Embedding. arXiv:2309.07597, 2023.
+\bibitem{sbert} N.~Reimers, I.~Gurevych. Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks. EMNLP, 2019.
+\bibitem{deberta} P.~He, J.~Gao, W.~Chen. DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing. ICLR, 2023.
+\bibitem{zhu} S.~Zhu, Y.~Wang, S.~Subramanian, P.~Poupart. Learning to Negotiate via Voluntary Commitment. AISTATS, 2025.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,992 @@
+{
+ "original": {
+  "runs": 24,
+  "passages": 12,
+  "original_runs": 24,
+  "extraction_changed": {
+   "k": 7,
+   "n": 24,
+   "rate": 0.2916666666666667
+  },
+  "game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "ownership_changed": {
+   "k": 5,
+   "n": 24,
+   "rate": 0.20833333333333334
+  },
+  "conditions_changed": {
+   "k": 4,
+   "n": 24,
+   "rate": 0.16666666666666666
+  },
+  "conditions_lost": {
+   "k": 4,
+   "n": 24,
+   "rate": 0.16666666666666666
+  },
+  "builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_extraction_changed": {
+   "k": 7,
+   "n": 24,
+   "rate": 0.2916666666666667
+  },
+  "original_game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_ownership_changed": {
+   "k": 5,
+   "n": 24,
+   "rate": 0.20833333333333334
+  },
+  "original_conditions_changed": {
+   "k": 4,
+   "n": 24,
+   "rate": 0.16666666666666666
+  },
+  "original_conditions_lost": {
+   "k": 4,
+   "n": 24,
+   "rate": 0.16666666666666666
+  },
+  "original_builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "action_distance": null,
+  "goal_distance": null,
+  "original_action_distance": null,
+  "original_goal_distance": null
+ },
+ "lexical": {
+  "runs": 24,
+  "passages": 12,
+  "original_runs": 24,
+  "extraction_changed": {
+   "k": 9,
+   "n": 24,
+   "rate": 0.375
+  },
+  "game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "ownership_changed": {
+   "k": 5,
+   "n": 24,
+   "rate": 0.20833333333333334
+  },
+  "conditions_changed": {
+   "k": 5,
+   "n": 24,
+   "rate": 0.20833333333333334
+  },
+  "conditions_lost": {
+   "k": 5,
+   "n": 24,
+   "rate": 0.20833333333333334
+  },
+  "builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_extraction_changed": {
+   "k": 7,
+   "n": 24,
+   "rate": 0.2916666666666667
+  },
+  "original_game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_ownership_changed": {
+   "k": 5,
+   "n": 24,
+   "rate": 0.20833333333333334
+  },
+  "original_conditions_changed": {
+   "k": 4,
+   "n": 24,
+   "rate": 0.16666666666666666
+  },
+  "original_conditions_lost": {
+   "k": 4,
+   "n": 24,
+   "rate": 0.16666666666666666
+  },
+  "original_builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "action_distance": null,
+  "goal_distance": null,
+  "original_action_distance": null,
+  "original_goal_distance": null
+ },
+ "passive": {
+  "runs": 18,
+  "passages": 9,
+  "original_runs": 18,
+  "extraction_changed": {
+   "k": 7,
+   "n": 18,
+   "rate": 0.3888888888888889
+  },
+  "game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "ownership_changed": {
+   "k": 7,
+   "n": 18,
+   "rate": 0.3888888888888889
+  },
+  "conditions_changed": {
+   "k": 2,
+   "n": 18,
+   "rate": 0.1111111111111111
+  },
+  "conditions_lost": {
+   "k": 2,
+   "n": 18,
+   "rate": 0.1111111111111111
+  },
+  "builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_extraction_changed": {
+   "k": 7,
+   "n": 18,
+   "rate": 0.3888888888888889
+  },
+  "original_game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_ownership_changed": {
+   "k": 5,
+   "n": 18,
+   "rate": 0.2777777777777778
+  },
+  "original_conditions_changed": {
+   "k": 4,
+   "n": 18,
+   "rate": 0.2222222222222222
+  },
+  "original_conditions_lost": {
+   "k": 4,
+   "n": 18,
+   "rate": 0.2222222222222222
+  },
+  "original_builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "action_distance": null,
+  "goal_distance": null,
+  "original_action_distance": null,
+  "original_goal_distance": null
+ },
+ "clause_order": {
+  "runs": 24,
+  "passages": 12,
+  "original_runs": 24,
+  "extraction_changed": {
+   "k": 7,
+   "n": 24,
+   "rate": 0.2916666666666667
+  },
+  "game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "ownership_changed": {
+   "k": 5,
+   "n": 24,
+   "rate": 0.20833333333333334
+  },
+  "conditions_changed": {
+   "k": 3,
+   "n": 24,
+   "rate": 0.125
+  },
+  "conditions_lost": {
+   "k": 3,
+   "n": 24,
+   "rate": 0.125
+  },
+  "builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_extraction_changed": {
+   "k": 7,
+   "n": 24,
+   "rate": 0.2916666666666667
+  },
+  "original_game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_ownership_changed": {
+   "k": 5,
+   "n": 24,
+   "rate": 0.20833333333333334
+  },
+  "original_conditions_changed": {
+   "k": 4,
+   "n": 24,
+   "rate": 0.16666666666666666
+  },
+  "original_conditions_lost": {
+   "k": 4,
+   "n": 24,
+   "rate": 0.16666666666666666
+  },
+  "original_builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "action_distance": null,
+  "goal_distance": null,
+  "original_action_distance": null,
+  "original_goal_distance": null
+ },
+ "split": {
+  "runs": 24,
+  "passages": 12,
+  "original_runs": 24,
+  "extraction_changed": {
+   "k": 10,
+   "n": 24,
+   "rate": 0.4166666666666667
+  },
+  "game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "ownership_changed": {
+   "k": 6,
+   "n": 24,
+   "rate": 0.25
+  },
+  "conditions_changed": {
+   "k": 5,
+   "n": 24,
+   "rate": 0.20833333333333334
+  },
+  "conditions_lost": {
+   "k": 5,
+   "n": 24,
+   "rate": 0.20833333333333334
+  },
+  "builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_extraction_changed": {
+   "k": 7,
+   "n": 24,
+   "rate": 0.2916666666666667
+  },
+  "original_game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_ownership_changed": {
+   "k": 5,
+   "n": 24,
+   "rate": 0.20833333333333334
+  },
+  "original_conditions_changed": {
+   "k": 4,
+   "n": 24,
+   "rate": 0.16666666666666666
+  },
+  "original_conditions_lost": {
+   "k": 4,
+   "n": 24,
+   "rate": 0.16666666666666666
+  },
+  "original_builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "action_distance": null,
+  "goal_distance": null,
+  "original_action_distance": null,
+  "original_goal_distance": null
+ },
+ "register": {
+  "runs": 22,
+  "passages": 11,
+  "original_runs": 22,
+  "extraction_changed": {
+   "k": 10,
+   "n": 22,
+   "rate": 0.45454545454545453
+  },
+  "game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "ownership_changed": {
+   "k": 5,
+   "n": 22,
+   "rate": 0.22727272727272727
+  },
+  "conditions_changed": {
+   "k": 6,
+   "n": 22,
+   "rate": 0.2727272727272727
+  },
+  "conditions_lost": {
+   "k": 6,
+   "n": 22,
+   "rate": 0.2727272727272727
+  },
+  "builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_extraction_changed": {
+   "k": 7,
+   "n": 22,
+   "rate": 0.3181818181818182
+  },
+  "original_game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_ownership_changed": {
+   "k": 5,
+   "n": 22,
+   "rate": 0.22727272727272727
+  },
+  "original_conditions_changed": {
+   "k": 4,
+   "n": 22,
+   "rate": 0.18181818181818182
+  },
+  "original_conditions_lost": {
+   "k": 4,
+   "n": 22,
+   "rate": 0.18181818181818182
+  },
+  "original_builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "action_distance": null,
+  "goal_distance": null,
+  "original_action_distance": null,
+  "original_goal_distance": null
+ },
+ "conditional": {
+  "runs": 14,
+  "passages": 7,
+  "original_runs": 14,
+  "extraction_changed": {
+   "k": 4,
+   "n": 14,
+   "rate": 0.2857142857142857
+  },
+  "game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "ownership_changed": {
+   "k": 3,
+   "n": 14,
+   "rate": 0.21428571428571427
+  },
+  "conditions_changed": {
+   "k": 1,
+   "n": 14,
+   "rate": 0.07142857142857142
+  },
+  "conditions_lost": {
+   "k": 1,
+   "n": 14,
+   "rate": 0.07142857142857142
+  },
+  "builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_extraction_changed": {
+   "k": 3,
+   "n": 14,
+   "rate": 0.21428571428571427
+  },
+  "original_game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_ownership_changed": {
+   "k": 3,
+   "n": 14,
+   "rate": 0.21428571428571427
+  },
+  "original_conditions_changed": {
+   "k": 0,
+   "n": 14,
+   "rate": 0.0
+  },
+  "original_conditions_lost": {
+   "k": 0,
+   "n": 14,
+   "rate": 0.0
+  },
+  "original_builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "action_distance": null,
+  "goal_distance": null,
+  "original_action_distance": null,
+  "original_goal_distance": null
+ },
+ "nominalise": {
+  "runs": 24,
+  "passages": 12,
+  "original_runs": 24,
+  "extraction_changed": {
+   "k": 11,
+   "n": 24,
+   "rate": 0.4583333333333333
+  },
+  "game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "ownership_changed": {
+   "k": 4,
+   "n": 24,
+   "rate": 0.16666666666666666
+  },
+  "conditions_changed": {
+   "k": 7,
+   "n": 24,
+   "rate": 0.2916666666666667
+  },
+  "conditions_lost": {
+   "k": 6,
+   "n": 24,
+   "rate": 0.25
+  },
+  "builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_extraction_changed": {
+   "k": 7,
+   "n": 24,
+   "rate": 0.2916666666666667
+  },
+  "original_game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_ownership_changed": {
+   "k": 5,
+   "n": 24,
+   "rate": 0.20833333333333334
+  },
+  "original_conditions_changed": {
+   "k": 4,
+   "n": 24,
+   "rate": 0.16666666666666666
+  },
+  "original_conditions_lost": {
+   "k": 4,
+   "n": 24,
+   "rate": 0.16666666666666666
+  },
+  "original_builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "action_distance": null,
+  "goal_distance": null,
+  "original_action_distance": null,
+  "original_goal_distance": null
+ },
+ "pronoun": {
+  "runs": 14,
+  "passages": 7,
+  "original_runs": 14,
+  "extraction_changed": {
+   "k": 5,
+   "n": 14,
+   "rate": 0.35714285714285715
+  },
+  "game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "ownership_changed": {
+   "k": 4,
+   "n": 14,
+   "rate": 0.2857142857142857
+  },
+  "conditions_changed": {
+   "k": 2,
+   "n": 14,
+   "rate": 0.14285714285714285
+  },
+  "conditions_lost": {
+   "k": 2,
+   "n": 14,
+   "rate": 0.14285714285714285
+  },
+  "builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_extraction_changed": {
+   "k": 4,
+   "n": 14,
+   "rate": 0.2857142857142857
+  },
+  "original_game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_ownership_changed": {
+   "k": 4,
+   "n": 14,
+   "rate": 0.2857142857142857
+  },
+  "original_conditions_changed": {
+   "k": 2,
+   "n": 14,
+   "rate": 0.14285714285714285
+  },
+  "original_conditions_lost": {
+   "k": 2,
+   "n": 14,
+   "rate": 0.14285714285714285
+  },
+  "original_builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "action_distance": null,
+  "goal_distance": null,
+  "original_action_distance": null,
+  "original_goal_distance": null
+ },
+ "doc_order": {
+  "runs": 24,
+  "passages": 12,
+  "original_runs": 24,
+  "extraction_changed": {
+   "k": 9,
+   "n": 24,
+   "rate": 0.375
+  },
+  "game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "ownership_changed": {
+   "k": 6,
+   "n": 24,
+   "rate": 0.25
+  },
+  "conditions_changed": {
+   "k": 3,
+   "n": 24,
+   "rate": 0.125
+  },
+  "conditions_lost": {
+   "k": 3,
+   "n": 24,
+   "rate": 0.125
+  },
+  "builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_extraction_changed": {
+   "k": 7,
+   "n": 24,
+   "rate": 0.2916666666666667
+  },
+  "original_game_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_advice_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_ownership_changed": {
+   "k": 5,
+   "n": 24,
+   "rate": 0.20833333333333334
+  },
+  "original_conditions_changed": {
+   "k": 4,
+   "n": 24,
+   "rate": 0.16666666666666666
+  },
+  "original_conditions_lost": {
+   "k": 4,
+   "n": 24,
+   "rate": 0.16666666666666666
+  },
+  "original_builder_ownership_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_opening_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "original_fallback_changed": {
+   "k": 0,
+   "n": 0,
+   "rate": null
+  },
+  "action_distance": null,
+  "goal_distance": null,
+  "original_action_distance": null,
+  "original_goal_distance": null
+ }
+}

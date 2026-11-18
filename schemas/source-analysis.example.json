@@ -1,0 +1,99 @@
+{
+  "packageId": "case-001",
+  "documents": [
+    {
+      "sourceId": "source-content-hash",
+      "documentId": "doc-text-hash",
+      "textHash": "sha256-of-extracted-text",
+      "analysisKey": "versioned-cache-key",
+      "cacheHit": false,
+      "analysis": {
+        "document_type": "role_card",
+        "summary": "Team A is instructed to negotiate an equipment exchange with Team B.",
+        "tags": [
+          "equipment",
+          "delivery"
+        ],
+        "entities": [
+          {
+            "name": "Team A",
+            "role": "represented organization"
+          }
+        ],
+        "represented_side": "Team A",
+        "claims": [
+          {
+            "id": "fact-001",
+            "sourceId": "source-content-hash",
+            "text": "The instructions assign Team A as our side.",
+            "quote": "You represent Team A.",
+            "quoteStart": 0,
+            "quoteEnd": 21,
+            "page": null,
+            "section": 1,
+            "attribution": "role instructions",
+            "modality": "asserted",
+            "conditions": [],
+            "category": "context"
+          }
+        ],
+        "arguments": [
+          {
+            "id": "arg-001",
+            "speaker": "role instructions",
+            "position": "Team A is the represented side.",
+            "kind": "attributed_position",
+            "premise_claim_indexes": [
+              0
+            ],
+            "premise_fact_ids": [
+              "fact-001"
+            ]
+          }
+        ],
+        "limitations": [
+          "No numerical utilities are explicitly supplied."
+        ]
+      }
+    }
+  ],
+  "caseAnalysis": {
+    "title": "Equipment negotiation",
+    "summary": "A case interpretation grounded in the linked document analyses.",
+    "our_side": "Team A",
+    "opponent": "Team B",
+    "objective": null,
+    "outside_option": null,
+    "red_lines": [],
+    "issues": [
+      {
+        "text": "Our objective is unspecified.",
+        "claim_ids": [
+          "fact-001"
+        ]
+      }
+    ]
+  },
+  "facts": [
+    {
+      "id": "fact-001",
+      "sourceId": "source-content-hash",
+      "text": "The instructions assign Team A as our side.",
+      "quote": "You represent Team A.",
+      "quoteStart": 0,
+      "quoteEnd": 21,
+      "page": null,
+      "section": 1,
+      "attribution": "role instructions",
+      "modality": "asserted",
+      "conditions": [],
+      "category": "context"
+    }
+  ],
+  "caseCacheHit": false,
+  "caseAnalysisKey": "case-cache-key",
+  "cache": {
+    "documentHits": 0,
+    "documentMisses": 1
+  }
+}

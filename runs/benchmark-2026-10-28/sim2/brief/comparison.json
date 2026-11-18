@@ -1,0 +1,396 @@
+{
+ "readings": [
+  "original",
+  "reworded-2-moderate",
+  "reworded-3-heavy",
+  "same-1",
+  "same-2",
+  "same-3"
+ ],
+ "summary": {
+  "same|same": {
+   "opening": {
+    "mean": 0.852,
+    "min": 0.807,
+    "n": 6
+   },
+   "fallback": {
+    "mean": 0.781,
+    "min": 0.696,
+    "n": 6
+   },
+   "objective": {
+    "mean": 0.939,
+    "min": 0.907,
+    "n": 6
+   },
+   "our_side": {
+    "mean": 1.0,
+    "min": 1.0,
+    "n": 6
+   },
+   "alternatives": {
+    "mean": 0.417,
+    "min": 0.0,
+    "n": 6
+   },
+   "red_lines": {
+    "mean": 0.167,
+    "min": 0.0,
+    "n": 6
+   },
+   "our_constraints": {
+    "mean": 0.311,
+    "min": 0.0,
+    "n": 6
+   },
+   "issues": {
+    "mean": 0.614,
+    "min": 0.182,
+    "n": 6
+   },
+   "tradeoffs": {
+    "mean": 0.365,
+    "min": 0.286,
+    "n": 6
+   }
+  },
+  "reworded|same": {
+   "opening": {
+    "mean": 0.84,
+    "min": 0.738,
+    "n": 8
+   },
+   "fallback": {
+    "mean": 0.653,
+    "min": 0.497,
+    "n": 8
+   },
+   "objective": {
+    "mean": 0.868,
+    "min": 0.801,
+    "n": 8
+   },
+   "our_side": {
+    "mean": 1.0,
+    "min": 1.0,
+    "n": 8
+   },
+   "alternatives": {
+    "mean": 0.188,
+    "min": 0.0,
+    "n": 8
+   },
+   "red_lines": {
+    "mean": 0.5,
+    "min": 0.0,
+    "n": 8
+   },
+   "our_constraints": {
+    "mean": 0.3,
+    "min": 0.0,
+    "n": 8
+   },
+   "issues": {
+    "mean": 0.589,
+    "min": 0.364,
+    "n": 8
+   },
+   "tradeoffs": {
+    "mean": 0.505,
+    "min": 0.0,
+    "n": 8
+   }
+  },
+  "reworded|reworded": {
+   "opening": {
+    "mean": 0.845,
+    "min": 0.845,
+    "n": 1
+   },
+   "fallback": {
+    "mean": 0.535,
+    "min": 0.535,
+    "n": 1
+   },
+   "objective": {
+    "mean": 0.906,
+    "min": 0.906,
+    "n": 1
+   },
+   "our_side": {
+    "mean": 1.0,
+    "min": 1.0,
+    "n": 1
+   },
+   "alternatives": {
+    "mean": 0.0,
+    "min": 0.0,
+    "n": 1
+   },
+   "red_lines": {
+    "mean": 1.0,
+    "min": 1.0,
+    "n": 1
+   },
+   "our_constraints": {
+    "mean": 0.333,
+    "min": 0.333,
+    "n": 1
+   },
+   "issues": {
+    "mean": 0.889,
+    "min": 0.889,
+    "n": 1
+   },
+   "tradeoffs": {
+    "mean": 0.8,
+    "min": 0.8,
+    "n": 1
+   }
+  },
+  "excess_change": {
+   "opening": 0.012,
+   "fallback": 0.128,
+   "objective": 0.071,
+   "our_side": 0.0,
+   "alternatives": 0.229,
+   "red_lines": -0.333,
+   "our_constraints": 0.011,
+   "issues": 0.025,
+   "tradeoffs": -0.14
+  }
+ },
+ "pairs": {
+  "original|reworded-2-moderate": {
+   "opening": 0.9086983799934387,
+   "fallback": 0.8024952411651611,
+   "objective": 0.9060932397842407,
+   "our_side": 1.0,
+   "alternatives": 0.5,
+   "red_lines": 1.0,
+   "our_constraints": 1.0,
+   "issues": 0.4,
+   "tradeoffs": 0.5714285714285714
+  },
+  "original|reworded-3-heavy": {
+   "opening": 0.8230748176574707,
+   "fallback": 0.5667479038238525,
+   "objective": 0.8364430069923401,
+   "our_side": 1.0,
+   "alternatives": 0.0,
+   "red_lines": 1.0,
+   "our_constraints": 0.3333333333333333,
+   "issues": 0.4444444444444444,
+   "tradeoffs": 0.6666666666666666
+  },
+  "original|same-1": {
+   "opening": 0.8071597814559937,
+   "fallback": 0.7730231285095215,
+   "objective": 0.9564439058303833,
+   "our_side": 1.0,
+   "alternatives": 1.0,
+   "red_lines": 1.0,
+   "our_constraints": 0.4,
+   "issues": 1.0,
+   "tradeoffs": 0.2857142857142857
+  },
+  "original|same-2": {
+   "opening": 0.9145016670227051,
+   "fallback": 0.8419575691223145,
+   "objective": 0.9335880279541016,
+   "our_side": 1.0,
+   "alternatives": 0.0,
+   "red_lines": 0.0,
+   "our_constraints": 0.0,
+   "issues": 0.6666666666666666,
+   "tradeoffs": 0.2857142857142857
+  },
+  "original|same-3": {
+   "opening": 0.8654101490974426,
+   "fallback": 0.8381538987159729,
+   "objective": 0.9074626564979553,
+   "our_side": 1.0,
+   "alternatives": 0.5,
+   "red_lines": 0.0,
+   "our_constraints": 0.6666666666666666,
+   "issues": 0.18181818181818182,
+   "tradeoffs": 0.2857142857142857
+  },
+  "reworded-2-moderate|reworded-3-heavy": {
+   "opening": 0.8449476957321167,
+   "fallback": 0.5351980924606323,
+   "objective": 0.9062808752059937,
+   "our_side": 1.0,
+   "alternatives": 0.0,
+   "red_lines": 1.0,
+   "our_constraints": 0.3333333333333333,
+   "issues": 0.8888888888888888,
+   "tradeoffs": 0.8
+  },
+  "reworded-2-moderate|same-1": {
+   "opening": 0.8065178990364075,
+   "fallback": 0.7215843200683594,
+   "objective": 0.9154353141784668,
+   "our_side": 1.0,
+   "alternatives": 0.5,
+   "red_lines": 1.0,
+   "our_constraints": 0.4,
+   "issues": 0.6,
+   "tradeoffs": 0.6666666666666666
+  },
+  "reworded-2-moderate|same-2": {
+   "opening": 0.8989209532737732,
+   "fallback": 0.7124143838882446,
+   "objective": 0.9344614744186401,
+   "our_side": 1.0,
+   "alternatives": 0.0,
+   "red_lines": 0.0,
+   "our_constraints": 0.0,
+   "issues": 0.6666666666666666,
+   "tradeoffs": 0.6666666666666666
+  },
+  "reworded-2-moderate|same-3": {
+   "opening": 0.8595253229141235,
+   "fallback": 0.7976291179656982,
+   "objective": 0.8760594725608826,
+   "our_side": 1.0,
+   "alternatives": 0.5,
+   "red_lines": 0.0,
+   "our_constraints": 0.3333333333333333,
+   "issues": 0.36363636363636365,
+   "tradeoffs": 0.6666666666666666
+  },
+  "reworded-3-heavy|same-1": {
+   "opening": 0.7376167178153992,
+   "fallback": 0.5842129588127136,
+   "objective": 0.8339084386825562,
+   "our_side": 1.0,
+   "alternatives": 0.0,
+   "red_lines": 1.0,
+   "our_constraints": 0.0,
+   "issues": 0.8888888888888888,
+   "tradeoffs": 0.0
+  },
+  "reworded-3-heavy|same-2": {
+   "opening": 0.8582355976104736,
+   "fallback": 0.5394607782363892,
+   "objective": 0.842796802520752,
+   "our_side": 1.0,
+   "alternatives": 0.0,
+   "red_lines": 0.0,
+   "our_constraints": 0.0,
+   "issues": 0.75,
+   "tradeoffs": 0.4
+  },
+  "reworded-3-heavy|same-3": {
+   "opening": 0.8280438184738159,
+   "fallback": 0.4965279996395111,
+   "objective": 0.8008899688720703,
+   "our_side": 1.0,
+   "alternatives": 0.0,
+   "red_lines": 0.0,
+   "our_constraints": 0.3333333333333333,
+   "issues": 0.6,
+   "tradeoffs": 0.4
+  },
+  "same-1|same-2": {
+   "opening": 0.8377645015716553,
+   "fallback": 0.695772111415863,
+   "objective": 0.9744223356246948,
+   "our_side": 1.0,
+   "alternatives": 0.0,
+   "red_lines": 0.0,
+   "our_constraints": 0.0,
+   "issues": 0.8888888888888888,
+   "tradeoffs": 0.3333333333333333
+  },
+  "same-1|same-3": {
+   "opening": 0.8241851329803467,
+   "fallback": 0.7353628277778625,
+   "objective": 0.9297703504562378,
+   "our_side": 1.0,
+   "alternatives": 0.5,
+   "red_lines": 0.0,
+   "our_constraints": 0.8,
+   "issues": 0.5454545454545454,
+   "tradeoffs": 0.3333333333333333
+  },
+  "same-2|same-3": {
+   "opening": 0.8629361987113953,
+   "fallback": 0.8040516972541809,
+   "objective": 0.930474042892456,
+   "our_side": 1.0,
+   "alternatives": 0.5,
+   "red_lines": 0.0,
+   "our_constraints": 0.0,
+   "issues": 0.4,
+   "tradeoffs": 0.6666666666666666
+  }
+ },
+ "judge": {
+  "model": "claude-opus-5-5",
+  "prompt_hash": "5ef40e1e6a5491a0",
+  "labels": {
+   "same-2": {
+    "id": "P1",
+    "opening_archetype": "Acknowledge needs, propose escorted coordinated access",
+    "opening_cluster": 1,
+    "fallback_archetype": "Route guard food via Ministries",
+    "fallback_cluster": 1
+   },
+   "reworded-3-heavy": {
+    "id": "P2",
+    "opening_archetype": "Acknowledge needs, propose escorted coordinated access",
+    "opening_cluster": 1,
+    "fallback_archetype": "Use existing registration data for assessment",
+    "fallback_cluster": 2
+   },
+   "reworded-2-moderate": {
+    "id": "P3",
+    "opening_archetype": "Acknowledge needs, propose escorted coordinated access",
+    "opening_cluster": 1,
+    "fallback_archetype": "Route guard food via Ministries",
+    "fallback_cluster": 1
+   },
+   "original": {
+    "id": "P4",
+    "opening_archetype": "Acknowledge needs, propose escorted coordinated access",
+    "opening_cluster": 1,
+    "fallback_archetype": "Route guard food via Ministries",
+    "fallback_cluster": 1
+   },
+   "same-3": {
+    "id": "P5",
+    "opening_archetype": "Acknowledge needs, propose escorted coordinated access",
+    "opening_cluster": 1,
+    "fallback_archetype": "Route guard food via Ministries",
+    "fallback_cluster": 1
+   },
+   "same-1": {
+    "id": "P6",
+    "opening_archetype": "Acknowledge needs, propose escorted coordinated access",
+    "opening_cluster": 1,
+    "fallback_archetype": "Route guard food via Ministries",
+    "fallback_cluster": 1
+   }
+  },
+  "flip_rate": {
+   "same|same": {
+    "opening_cluster": 0,
+    "fallback_cluster": 0,
+    "pairs": 6
+   },
+   "reworded|same": {
+    "opening_cluster": 0,
+    "fallback_cluster": 0.5,
+    "pairs": 8
+   },
+   "reworded|reworded": {
+    "opening_cluster": 0,
+    "fallback_cluster": 1,
+    "pairs": 1
+   }
+  }
+ }
+}

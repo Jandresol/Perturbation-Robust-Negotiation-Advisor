@@ -1,0 +1,64 @@
+{
+ "started": "2026-10-28 02:24",
+ "model": "us.anthropic.claude-opus-5-5",
+ "remaining_before": 242.79461,
+ "packs": {
+  "sim2": {
+   "intake": {
+    "cached": false,
+    "documents": 17,
+    "facts": 184,
+    "cache": {
+     "documentHits": 17,
+     "documentMisses": 0
+    },
+    "our_side": "Camp Commander",
+    "opponent": "Food Without Borders (FWB)",
+    "opening": "Open by acknowledging FWB's need for access and its neutrality concerns. Frame the talks around a safe, orderly and ongoing distribution, with coordination and escorts for security, and invite FWB's own proposal on how distribution is managed."
+   },
+   "baseline": {
+    "facts": 184,
+    "actions": 12,
+    "actions_us": 12,
+    "actions_opponent": 0,
+    "goals": 12,
+    "forbidden": 0,
+    "strategies": 1,
+    "best": {
+     "title": "Walk away",
+     "opening": "No improving offer under these assumptions.",
+     "fallback": "Pause and review the outside option if the offer is rejected.",
+     "worstScore": null,
+     "meanScore": null
+    }
+   },
+   "order": {
+    "shuffles": 20,
+    "game_changed": 0,
+    "plan_changed": 0
+   },
+   "doc_job": {
+    "comparison": {
+     "same-text": {
+      "stable": 0,
+      "sensitive": 0,
+      "changed": 0
+     },
+     "reworded": {
+      "stable": 0,
+      "sensitive": 0,
+      "changed": 0
+     }
+    },
+    "extractions": {
+     "baseline": 2,
+     "same-text": 0,
+     "reworded": 0
+    },
+    "candidates": 24
+   },
+   "spend_after": 0.8
+  }
+ },
+ "spent": 0.8
+}

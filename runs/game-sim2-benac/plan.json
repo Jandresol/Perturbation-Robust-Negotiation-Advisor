@@ -1,0 +1,257 @@
+{
+  "strategies": [
+    {
+      "id": "plan-5",
+      "title": "Option 5",
+      "opening": "Camp Commander: Provide guard protection for FWB staff and refrain from threats to their safety; Allow FWB to publicize its work or require clearance of communications through the Commander's office \u2194 FWB: Deliver food supplies for refugees to the camp; Provide food rations to guards and their families on an ongoing basis",
+      "fallback": "Pause and review the outside option if the offer is rejected.",
+      "actionIds": [
+        "b15",
+        "a7",
+        "a2",
+        "b8"
+      ],
+      "steps": [
+        [
+          "b15",
+          "a7",
+          "a2",
+          "b8"
+        ],
+        [
+          "b5",
+          "a6",
+          "b9"
+        ],
+        [
+          "b7",
+          "a8",
+          "a5"
+        ]
+      ],
+      "meanScore": 0.719298,
+      "worstScore": 0.631579,
+      "rawMean": 23.333333333333332,
+      "rawWorst": 15.0,
+      "baselineValue": 0.0,
+      "origin": "opp-sample-4",
+      "method": "game-solver",
+      "freshRescored": false,
+      "redLines": [],
+      "assumptions": [
+        "Commitments are binding and additive.",
+        "Goals and goal-action links were each extracted 3 times by a model; only those found in a majority of runs are kept.",
+        "Actions are chosen to bring about as much goal value as possible, within the solver's size limit.",
+        "Our values are the median of stances elicited from our role card."
+      ],
+      "ethicsFlags": [
+        "No automated ethics review has been run. Review this option before use."
+      ],
+      "branches": [
+        "After acceptance, offer 2: Camp Commander: Permit FWB to conduct a nutritional assessment under camp security arrangements \u2194 FWB: Hand over food distribution to existing guard/militia structures; Commit to sustained, ongoing food aid without withdrawing",
+        "After acceptance, offer 3: Camp Commander: Refrain from diverting food and distribute it equally to all refugees; Have guards organize and carry out food distribution through existing guard structures \u2194 FWB: Prioritize hiring local host-community residents",
+        "If rejected: pause this sequence. No commitment is added."
+      ]
+    },
+    {
+      "id": "plan-3",
+      "title": "Option 3",
+      "opening": "Camp Commander: Allow FWB to publicize its work or require clearance of communications through the Commander's office; Refrain from diverting food and distribute it equally to all refugees \u2194 FWB: Hand over food distribution to existing guard/militia structures; Deliver food supplies for refugees to the camp",
+      "fallback": "Pause and review the outside option if the offer is rejected.",
+      "actionIds": [
+        "b5",
+        "b15",
+        "a2",
+        "a8"
+      ],
+      "steps": [
+        [
+          "b5",
+          "b15",
+          "a2",
+          "a8"
+        ],
+        [
+          "a7",
+          "b8",
+          "b9"
+        ]
+      ],
+      "meanScore": 0.736842,
+      "worstScore": 0.614035,
+      "rawMean": 25.0,
+      "rawWorst": 13.333333333333332,
+      "baselineValue": 0.0,
+      "origin": "opp-sample-2",
+      "method": "game-solver",
+      "freshRescored": false,
+      "redLines": [],
+      "assumptions": [
+        "Commitments are binding and additive.",
+        "Goals and goal-action links were each extracted 3 times by a model; only those found in a majority of runs are kept.",
+        "Actions are chosen to bring about as much goal value as possible, within the solver's size limit.",
+        "Our values are the median of stances elicited from our role card."
+      ],
+      "ethicsFlags": [
+        "No automated ethics review has been run. Review this option before use."
+      ],
+      "branches": [
+        "After acceptance, offer 2: Camp Commander: Provide guard protection for FWB staff and refrain from threats to their safety \u2194 FWB: Provide food rations to guards and their families on an ongoing basis; Commit to sustained, ongoing food aid without withdrawing",
+        "If rejected: pause this sequence. No commitment is added."
+      ]
+    },
+    {
+      "id": "plan-7",
+      "title": "Option 7",
+      "opening": "Camp Commander: Provide guard protection for FWB staff and refrain from threats to their safety; Allow FWB to publicize its work or require clearance of communications through the Commander's office \u2194 FWB: Hand over food distribution to existing guard/militia structures; Deliver food supplies for refugees to the camp",
+      "fallback": "Pause and review the outside option if the offer is rejected.",
+      "actionIds": [
+        "b5",
+        "b15",
+        "a7",
+        "a2"
+      ],
+      "steps": [
+        [
+          "b5",
+          "b15",
+          "a7",
+          "a2"
+        ],
+        [
+          "b7",
+          "a8",
+          "a5",
+          "b9"
+        ]
+      ],
+      "meanScore": 0.705653,
+      "worstScore": 0.596491,
+      "rawMean": 22.037037037037038,
+      "rawWorst": 11.666666666666666,
+      "baselineValue": 0.0,
+      "origin": "opp-sample-6",
+      "method": "game-solver",
+      "freshRescored": false,
+      "redLines": [],
+      "assumptions": [
+        "Commitments are binding and additive.",
+        "Goals and goal-action links were each extracted 3 times by a model; only those found in a majority of runs are kept.",
+        "Actions are chosen to bring about as much goal value as possible, within the solver's size limit.",
+        "Our values are the median of stances elicited from our role card."
+      ],
+      "ethicsFlags": [
+        "No automated ethics review has been run. Review this option before use."
+      ],
+      "branches": [
+        "After acceptance, offer 2: Camp Commander: Refrain from diverting food and distribute it equally to all refugees; Have guards organize and carry out food distribution through existing guard structures \u2194 FWB: Prioritize hiring local host-community residents; Commit to sustained, ongoing food aid without withdrawing",
+        "If rejected: pause this sequence. No commitment is added."
+      ]
+    },
+    {
+      "id": "plan-6",
+      "title": "Option 6",
+      "opening": "Camp Commander: Provide guard protection for FWB staff and refrain from threats to their safety; Allow FWB to publicize its work or require clearance of communications through the Commander's office \u2194 FWB: Hand over food distribution to existing guard/militia structures; Deliver food supplies for refugees to the camp",
+      "fallback": "Pause and review the outside option if the offer is rejected.",
+      "actionIds": [
+        "b5",
+        "b15",
+        "a7",
+        "a2"
+      ],
+      "steps": [
+        [
+          "b5",
+          "b15",
+          "a7",
+          "a2"
+        ],
+        [
+          "b7",
+          "b8",
+          "a8",
+          "a5"
+        ],
+        [
+          "b9"
+        ]
+      ],
+      "meanScore": 0.623782,
+      "worstScore": 0.596491,
+      "rawMean": 14.259259259259258,
+      "rawWorst": 11.666666666666666,
+      "baselineValue": 0.0,
+      "origin": "opp-sample-5",
+      "method": "game-solver",
+      "freshRescored": false,
+      "redLines": [],
+      "assumptions": [
+        "Commitments are binding and additive.",
+        "Goals and goal-action links were each extracted 3 times by a model; only those found in a majority of runs are kept.",
+        "Actions are chosen to bring about as much goal value as possible, within the solver's size limit.",
+        "Our values are the median of stances elicited from our role card."
+      ],
+      "ethicsFlags": [
+        "No automated ethics review has been run. Review this option before use."
+      ],
+      "branches": [
+        "After acceptance, offer 2: Camp Commander: Refrain from diverting food and distribute it equally to all refugees; Have guards organize and carry out food distribution through existing guard structures \u2194 FWB: Prioritize hiring local host-community residents; Provide food rations to guards and their families on an ongoing basis",
+        "After acceptance, offer 3: FWB: Commit to sustained, ongoing food aid without withdrawing",
+        "If rejected: pause this sequence. No commitment is added."
+      ]
+    },
+    {
+      "id": "plan-2",
+      "title": "Option 2",
+      "opening": "Camp Commander: Provide guard protection for FWB staff and refrain from threats to their safety; Have guards organize and carry out food distribution through existing guard structures \u2194 FWB: Deliver food supplies for refugees to the camp; Provide food rations to guards and their families on an ongoing basis",
+      "fallback": "Pause and review the outside option if the offer is rejected.",
+      "actionIds": [
+        "b15",
+        "a7",
+        "b8",
+        "a5"
+      ],
+      "steps": [
+        [
+          "b15",
+          "a7",
+          "b8",
+          "a5"
+        ],
+        [
+          "b5",
+          "b7",
+          "a2",
+          "a8"
+        ],
+        [
+          "b9"
+        ]
+      ],
+      "meanScore": 0.670565,
+      "worstScore": 0.473684,
+      "rawMean": 18.703703703703706,
+      "rawWorst": 0.0,
+      "baselineValue": 0.0,
+      "origin": "opp-sample-1",
+      "method": "game-solver",
+      "freshRescored": false,
+      "redLines": [],
+      "assumptions": [
+        "Commitments are binding and additive.",
+        "Goals and goal-action links were each extracted 3 times by a model; only those found in a majority of runs are kept.",
+        "Actions are chosen to bring about as much goal value as possible, within the solver's size limit.",
+        "Our values are the median of stances elicited from our role card."
+      ],
+      "ethicsFlags": [
+        "No automated ethics review has been run. Review this option before use."
+      ],
+      "branches": [
+        "After acceptance, offer 2: Camp Commander: Allow FWB to publicize its work or require clearance of communications through the Commander's office; Refrain from diverting food and distribute it equally to all refugees \u2194 FWB: Hand over food distribution to existing guard/militia structures; Prioritize hiring local host-community residents",
+        "After acceptance, offer 3: FWB: Commit to sustained, ongoing food aid without withdrawing",
+        "If rejected: pause this sequence. No commitment is added."
+      ]
+    }
+  ],
+  "rejected": []
+}

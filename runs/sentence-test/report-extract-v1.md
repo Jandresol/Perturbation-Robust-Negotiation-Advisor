@@ -1,0 +1,25 @@
+| strategy | passages | ownership or conditions: variant | original | inferred game: variant | original | opening or fallback: variant | original |
+|---|---|---|---|---|---|---|---|
+| original | 12 | 3/12 (25%) |  | – |  | – |  |
+| lexical | 12 | 4/12 (33%) | 3/12 (25%) | – | – | – | – |
+| passive | 9 | 5/9 (56%) | 3/9 (33%) | – | – | – | – |
+| clause_order | 12 | 4/12 (33%) | 3/12 (25%) | – | – | – | – |
+| split | 12 | 5/12 (42%) | 3/12 (25%) | – | – | – | – |
+| register | 11 | 4/11 (36%) | 3/11 (27%) | – | – | – | – |
+| conditional | 7 | 1/7 (14%) | 1/7 (14%) | – | – | – | – |
+| nominalise | 12 | 4/12 (33%) | 3/12 (25%) | – | – | – | – |
+| pronoun | 7 | 3/7 (43%) | 2/7 (29%) | – | – | – | – |
+| doc_order | 12 | 6/12 (50%) | 3/12 (25%) | – | – | – | – |
+
+| strategy | ownership_changed | conditions_changed | conditions_lost | builder_ownership_changed | opening_changed | fallback_changed | action_distance | goal_distance |
+|---|---|---|---|---|---|---|---|---|
+| original | 2/12 (17%) | 2/12 (17%) | 2/12 (17%) | – | – | – | – | – |
+| lexical | 2/12 (17%) | 3/12 (25%) | 3/12 (25%) | – | – | – | – | – |
+| passive | 5/9 (56%) | 2/9 (22%) | 2/9 (22%) | – | – | – | – | – |
+| clause_order | 3/12 (25%) | 1/12 (8%) | 1/12 (8%) | – | – | – | – | – |
+| split | 4/12 (33%) | 2/12 (17%) | 2/12 (17%) | – | – | – | – | – |
+| register | 2/11 (18%) | 2/11 (18%) | 2/11 (18%) | – | – | – | – | – |
+| conditional | 1/7 (14%) | 0/7 (0%) | 0/7 (0%) | – | – | – | – | – |
+| nominalise | 1/12 (8%) | 3/12 (25%) | 3/12 (25%) | – | – | – | – | – |
+| pronoun | 2/7 (29%) | 1/7 (14%) | 1/7 (14%) | – | – | – | – | – |
+| doc_order | 4/12 (33%) | 2/12 (17%) | 2/12 (17%) | – | – | – | – | – |

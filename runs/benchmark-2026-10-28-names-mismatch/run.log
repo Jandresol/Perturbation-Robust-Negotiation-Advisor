@@ -1,0 +1,29 @@
+sim1: 26 sources, needs intake
+sim2: 17 sources, needs intake
+qiso: 28 sources, cached facts
+== sim1
+  spend so far $0.00 (cap $20.00) before intake
+  baseline 2 actions; order {'shuffles': 20, 'game_changed': 0, 'plan_changed': 0}
+  spend so far $2.95 (cap $20.00) before fact-level job
+W1028 01:53:04.860000 57017 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 6893.17it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/Users/vedantsandhu/Desktop/Fall2026/COMPSCI2822R/Perturbation-Robust-Negotiation-Advisor/.venv/lib/python3.14/site-packages/torch/jit/_script.py:1485: FutureWarning: `torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 7309.36it/s]
+  fact job {'perturbed_facts': 12, 'baseline_action_facts': 2, 'candidates': 61, 'accepted': 56, 'levels': {'light': 17, 'moderate': 18, 'heavy': 21}, 'outcomes': {'stable': 56, 'rejected': 5}}; B4 {'readings': 56, 'outcomes': {'stable': 56}}
+  spend so far $3.29 (cap $20.00) before document-level job
+  doc job {'comparison': {'same-text': {'stable': 6, 'sensitive': 0, 'changed': 0}, 'reworded': {'stable': 4, 'sensitive': 2, 'changed': 0}}, 'extractions': {'baseline': 2, 'same-text': 6, 'reworded': 6}, 'candidates': 30}
+== sim2
+  spend so far $5.69 (cap $20.00) before intake
+Traceback (most recent call last):
+  File "/Users/vedantsandhu/Desktop/Fall2026/COMPSCI2822R/Perturbation-Robust-Negotiation-Advisor/scripts/benchmark_sims.py", line 244, in <module>
+    main()
+    ~~~~^^
+  File "/Users/vedantsandhu/Desktop/Fall2026/COMPSCI2822R/Perturbation-Robust-Negotiation-Advisor/scripts/benchmark_sims.py", line 202, in main
+    base = build_peer_game(package)
+  File "/Users/vedantsandhu/Desktop/Fall2026/COMPSCI2822R/Perturbation-Robust-Negotiation-Advisor/backend/engines.py", line 38, in build_peer_game
+    built = build_game(package)
+  File "/Users/vedantsandhu/Desktop/Fall2026/COMPSCI2822R/Perturbation-Robust-Negotiation-Advisor/game_builder.py", line 48, in build_game
+    raise ValueError("No facts could be turned into commitments. Add a claim about what a side can provide or must deliver.")
+ValueError: No facts could be turned into commitments. Add a claim about what a side can provide or must deliver.

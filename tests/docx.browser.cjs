@@ -1,0 +1,22 @@
+const {chromium}=require('playwright');const assert=require('node:assert/strict');const path=require('node:path');
+(async()=>{
+const browser=await chromium.launch({executablePath:process.env.CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});
+const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('http://127.0.0.1:8000');
+await page.getByRole('button',{name:'Upload source package',exact:true}).click();
+await page.locator('#pdf-files').setInputFiles(['shared-brief.pdf','role-brief.docx','empty.docx'].map(f=>path.resolve('tests/fixtures',f)));
+await page.waitForFunction(()=>!document.getElementById('pdf-files').disabled);
+assert.match(await page.locator('#pdf-results').innerText(),/No readable text found/);
+assert.equal(await page.locator('#pdf-create').isDisabled(),false);
+await page.getByRole('button',{name:'Continue with sources',exact:true}).click();
+let p=await page.evaluate(()=>JSON.parse(localStorage.getItem('negotiation-workspace-v1')).package);
+assert.equal(p.sources.length,2);const word=p.sources.find(s=>s.format==='docx');assert.ok(word);assert.match(word.text,/\$12,000/);assert.ok(word.sections.length);assert.equal(word.pages.length,0);
+assert.ok(p.preparation.candidates.filter(c=>c.sourceId===word.id).every(c=>c.page===null&&c.section===1));
+await page.locator('[data-prep-tab=documents]').click();await page.locator(`[data-document="${word.id}"]`).click();
+assert.match(await page.locator('.reader-main').innerText(),/Text section/);assert.match(await page.locator('#document-text').innerText(),/independent review/);
+assert.equal(await page.evaluate(()=>window.docxExecuted),undefined);
+await page.locator('#document-search').fill('Budget');assert.match(await page.locator('#document-search-results').innerText(),/section 1/);
+await page.reload();p=await page.evaluate(()=>JSON.parse(localStorage.getItem('negotiation-workspace-v1')).package);assert.match(p.sources.find(s=>s.format==='docx').text,/independent review/);
+await page.getByRole('button',{name:'Upload documents',exact:true}).click();await page.locator('#pdf-files').setInputFiles({name:'corrupt.docx',mimeType:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',buffer:Buffer.from('not a zip')});
+await page.waitForFunction(()=>document.getElementById('pdf-results').textContent.includes('Could not read'));
+assert.equal(await page.locator('#pdf-create').isDisabled(),true);assert.deepEqual(errors,[]);await browser.close();console.log('PASS: mixed PDF/DOCX extraction, tables, section provenance, persistence, escaped text, empty/corrupt DOCX handling');
+})().catch(e=>{console.error(e);process.exit(1)});

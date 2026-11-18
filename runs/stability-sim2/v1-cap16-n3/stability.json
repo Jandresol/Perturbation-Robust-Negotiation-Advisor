@@ -1,0 +1,41 @@
+{
+  "report": {
+    "builds": 4,
+    "action_similarity": 0.8029985477526983,
+    "goal_similarity": 0.8242420156796774,
+    "goal_jaccard": 0.3105119825708061,
+    "action_jaccard": 0.29211816305469557,
+    "red_line_jaccard": 0.4253968253968254,
+    "g_us_l1": 0.078125,
+    "top_plan_jaccard": 0.2563852813852814,
+    "top_plan_regret": 0.28750755346865187,
+    "goals_per_build": [
+      14,
+      10,
+      13,
+      14
+    ]
+  },
+  "game": {
+    "model": "us.anthropic.claude-opus-5-5",
+    "effort": "medium",
+    "max_tokens": 16000,
+    "n_runs": 3,
+    "min_relevance": 2,
+    "max_goals": 16,
+    "max_actions_per_side": 6,
+    "max_candidates_per_side": 12,
+    "action_min_runs": 1,
+    "stance_values": [
+      10,
+      5,
+      0,
+      -5,
+      -10
+    ],
+    "opp_samples": 8,
+    "max_offers": 3,
+    "max_actions_per_offer": 2,
+    "parallel": 6
+  }
+}

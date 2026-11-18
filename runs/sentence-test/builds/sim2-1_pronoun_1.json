@@ -1,0 +1,1090 @@
+{
+ "actions": [
+  {
+   "id": "b4",
+   "owner": "opponent",
+   "label": "Carry out distribution through guard and militia structures or include militia personnel",
+   "factId": "f-125ebd95ea0fbf65-5",
+   "factIds": [
+    "f-125ebd95ea0fbf65-5",
+    "f-125ebd95ea0fbf65-6",
+    "f-9da1a420d981c85a-0",
+    "f-9da1a420d981c85a-1",
+    "f-a33a4c5ad0849b83-3",
+    "f-b48523b8f72b8642-12"
+   ],
+   "runs": 3
+  },
+  {
+   "id": "b13",
+   "owner": "opponent",
+   "label": "Require FWB documentation and accountability procedures to be followed in distribution",
+   "factId": "f-9da1a420d981c85a-10",
+   "factIds": [
+    "f-9da1a420d981c85a-10",
+    "f-9da1a420d981c85a-2",
+    "f-a33a4c5ad0849b83-5"
+   ],
+   "runs": 1
+  },
+  {
+   "id": "b3",
+   "owner": "opponent",
+   "label": "Accept food rations being used as payment in kind",
+   "factId": "f-125ebd95ea0fbf65-10",
+   "factIds": [
+    "f-125ebd95ea0fbf65-10",
+    "f-125ebd95ea0fbf65-3",
+    "f-125ebd95ea0fbf65-9",
+    "f-bec0bcff4dfb918c-10"
+   ],
+   "runs": 3
+  },
+  {
+   "id": "b5",
+   "owner": "opponent",
+   "label": "Deliver food aid to the camp on an ongoing, recurring schedule",
+   "factId": "f-9eddaf4cc2d6e8d9-0",
+   "factIds": [
+    "f-9eddaf4cc2d6e8d9-0",
+    "f-9eddaf4cc2d6e8d9-1",
+    "f-bec0bcff4dfb918c-14",
+    "f-bec0bcff4dfb918c-9",
+    "f-fdb24b80ae5cc849-11"
+   ],
+   "runs": 3
+  },
+  {
+   "id": "a16",
+   "owner": "us",
+   "label": "Keep FWB outputs subject to camp administration clearance and limit publicity",
+   "factId": "f-b48523b8f72b8642-14",
+   "factIds": [
+    "f-b48523b8f72b8642-14",
+    "f-bec0bcff4dfb918c-6",
+    "f-d2b460c6986468ce-10",
+    "f-d2b460c6986468ce-5",
+    "f-fe00635bfe1d1183-0"
+   ],
+   "runs": 1
+  },
+  {
+   "id": "a11",
+   "owner": "us",
+   "label": "Allow FWB staff unescorted free movement inside the camp",
+   "factId": "f-125ebd95ea0fbf65-8",
+   "factIds": [
+    "f-125ebd95ea0fbf65-8",
+    "f-b48523b8f72b8642-0",
+    "f-b48523b8f72b8642-1",
+    "f-b48523b8f72b8642-11",
+    "f-b48523b8f72b8642-3",
+    "f-d2b460c6986468ce-8",
+    "f-d2b460c6986468ce-9"
+   ],
+   "runs": 2
+  },
+  {
+   "id": "a6",
+   "owner": "us",
+   "label": "Permit FWB nutritional assessments under escort",
+   "factId": "f-125ebd95ea0fbf65-12",
+   "factIds": [
+    "f-125ebd95ea0fbf65-12",
+    "f-125ebd95ea0fbf65-13",
+    "f-125ebd95ea0fbf65-15",
+    "f-125ebd95ea0fbf65-19",
+    "f-fe00635bfe1d1183-11"
+   ],
+   "runs": 3
+  },
+  {
+   "id": "b9",
+   "owner": "opponent",
+   "label": "Provide food rations or compensation for guards and their families",
+   "factId": "f-125ebd95ea0fbf65-0",
+   "factIds": [
+    "f-125ebd95ea0fbf65-0",
+    "f-125ebd95ea0fbf65-11",
+    "f-9da1a420d981c85a-11",
+    "f-9eddaf4cc2d6e8d9-2",
+    "f-a33a4c5ad0849b83-4",
+    "f-a33a4c5ad0849b83-9",
+    "f-bec0bcff4dfb918c-0",
+    "f-bec0bcff4dfb918c-2"
+   ],
+   "runs": 3
+  },
+  {
+   "id": "b11",
+   "owner": "opponent",
+   "label": "Extend food assistance to host-community families",
+   "factId": "f-125ebd95ea0fbf65-2",
+   "factIds": [
+    "f-125ebd95ea0fbf65-2",
+    "f-9681bb3bf4541680-1",
+    "f-9681bb3bf4541680-6"
+   ],
+   "runs": 2
+  },
+  {
+   "id": "a5",
+   "owner": "us",
+   "label": "Have guard structures organize and implement distribution block by block",
+   "factId": "f-125ebd95ea0fbf65-5",
+   "factIds": [
+    "f-125ebd95ea0fbf65-5",
+    "f-125ebd95ea0fbf65-6",
+    "f-9da1a420d981c85a-0",
+    "f-9da1a420d981c85a-1",
+    "f-a33a4c5ad0849b83-12",
+    "f-a33a4c5ad0849b83-3",
+    "f-b48523b8f72b8642-12",
+    "f-fe00635bfe1d1183-10",
+    "f-fe00635bfe1d1183-6"
+   ],
+   "runs": 3
+  },
+  {
+   "id": "a9",
+   "owner": "us",
+   "label": "Share camp registration data with FWB",
+   "factId": "f-125ebd95ea0fbf65-12",
+   "factIds": [
+    "f-125ebd95ea0fbf65-12",
+    "f-125ebd95ea0fbf65-14",
+    "f-9da1a420d981c85a-2"
+   ],
+   "runs": 3
+  },
+  {
+   "id": "a13",
+   "owner": "us",
+   "label": "Allow FWB to document and report without administrative clearance",
+   "factId": "f-b48523b8f72b8642-14",
+   "factIds": [
+    "f-b48523b8f72b8642-14",
+    "f-bec0bcff4dfb918c-6",
+    "f-d2b460c6986468ce-5",
+    "f-fe00635bfe1d1183-0"
+   ],
+   "runs": 1
+  }
+ ],
+ "game": {
+  "maxOffers": 3,
+  "maxActionsPerSide": 2,
+  "goals": [
+   {
+    "id": "g1",
+    "label": "FWB staff and outsiders move freely and unescorted inside the camp",
+    "type": "all",
+    "actionIds": [
+     "a11"
+    ],
+    "usValue": -10,
+    "opponentValue": 5.75,
+    "factIds": [
+     "f-125ebd95ea0fbf65-13",
+     "f-125ebd95ea0fbf65-7",
+     "f-125ebd95ea0fbf65-8",
+     "f-ad36d16f8f67e478-1",
+     "f-b48523b8f72b8642-0",
+     "f-b48523b8f72b8642-1",
+     "f-b48523b8f72b8642-11",
+     "f-b48523b8f72b8642-13",
+     "f-b48523b8f72b8642-14",
+     "f-b48523b8f72b8642-2",
+     "f-b48523b8f72b8642-6",
+     "f-b48523b8f72b8642-7",
+     "f-b48523b8f72b8642-9",
+     "f-bec0bcff4dfb918c-3"
+    ],
+    "runs": 3
+   },
+   {
+    "id": "g2",
+    "label": "Food aid reaches the camp on an ongoing basis",
+    "type": "all",
+    "actionIds": [
+     "b5"
+    ],
+    "usValue": 10,
+    "opponentValue": 8.45,
+    "factIds": [
+     "f-125ebd95ea0fbf65-10",
+     "f-9da1a420d981c85a-3",
+     "f-bec0bcff4dfb918c-13",
+     "f-bec0bcff4dfb918c-14",
+     "f-c124474ab100cd79-7",
+     "f-c124474ab100cd79-8",
+     "f-fdb24b80ae5cc849-11",
+     "f-fdb24b80ae5cc849-12"
+    ],
+    "runs": 3
+   },
+   {
+    "id": "g3",
+    "label": "Nutritional assessments and data collection on refugee needs are carried out",
+    "type": "linear",
+    "actionIds": [
+     "a6",
+     "a9"
+    ],
+    "usValue": -5,
+    "opponentValue": 7.033,
+    "factIds": [
+     "f-125ebd95ea0fbf65-12",
+     "f-125ebd95ea0fbf65-13",
+     "f-125ebd95ea0fbf65-14",
+     "f-125ebd95ea0fbf65-15",
+     "f-125ebd95ea0fbf65-19",
+     "f-9da1a420d981c85a-10",
+     "f-9da1a420d981c85a-2",
+     "f-a33a4c5ad0849b83-5",
+     "f-fe00635bfe1d1183-11"
+    ],
+    "runs": 3
+   },
+   {
+    "id": "g5",
+    "label": "Aid food is diverted, skimmed or confiscated by camp authorities or militia",
+    "type": "linear",
+    "actionIds": [
+     "b4",
+     "a5"
+    ],
+    "usValue": 5,
+    "opponentValue": -8.85,
+    "factIds": [
+     "f-125ebd95ea0fbf65-0",
+     "f-bec0bcff4dfb918c-0",
+     "f-bec0bcff4dfb918c-12",
+     "f-bec0bcff4dfb918c-13",
+     "f-fdb24b80ae5cc849-12",
+     "f-fe00635bfe1d1183-7",
+     "f-fe00635bfe1d1183-8"
+    ],
+    "runs": 3
+   },
+   {
+    "id": "g7",
+    "label": "Commander's authority and image of strength are maintained",
+    "type": "linear",
+    "actionIds": [
+     "b4",
+     "a16",
+     "a5"
+    ],
+    "usValue": 10,
+    "opponentValue": -1.9,
+    "factIds": [
+     "f-a33a4c5ad0849b83-1",
+     "f-b48523b8f72b8642-10",
+     "f-bec0bcff4dfb918c-15",
+     "f-bec0bcff4dfb918c-4",
+     "f-bec0bcff4dfb918c-5",
+     "f-fdb24b80ae5cc849-10",
+     "f-fdb24b80ae5cc849-9"
+    ],
+    "runs": 3
+   },
+   {
+    "id": "g8",
+    "label": "Control over the public narrative and outsider access to information",
+    "type": "all",
+    "actionIds": [
+     "a16"
+    ],
+    "usValue": 10,
+    "opponentValue": -5.9,
+    "factIds": [
+     "f-125ebd95ea0fbf65-12",
+     "f-125ebd95ea0fbf65-14",
+     "f-125ebd95ea0fbf65-16",
+     "f-125ebd95ea0fbf65-17",
+     "f-125ebd95ea0fbf65-19",
+     "f-b48523b8f72b8642-14",
+     "f-bec0bcff4dfb918c-11",
+     "f-bec0bcff4dfb918c-6",
+     "f-d2b460c6986468ce-10",
+     "f-d2b460c6986468ce-5",
+     "f-fe00635bfe1d1183-0"
+    ],
+    "runs": 3
+   },
+   {
+    "id": "g11",
+    "label": "FWB staff and assistants are safe from threats and violence",
+    "type": "all",
+    "actionIds": [
+     "b9"
+    ],
+    "usValue": 0,
+    "opponentValue": 9.15,
+    "factIds": [
+     "f-9da1a420d981c85a-12",
+     "f-9da1a420d981c85a-13",
+     "f-c124474ab100cd79-2"
+    ],
+    "runs": 3
+   },
+   {
+    "id": "g12",
+    "label": "Food functions as camp currency and payment",
+    "type": "all",
+    "actionIds": [
+     "b3"
+    ],
+    "usValue": 5,
+    "opponentValue": -5.583,
+    "factIds": [
+     "f-125ebd95ea0fbf65-3",
+     "f-125ebd95ea0fbf65-9",
+     "f-a50fd47b8bbf40ba-0",
+     "f-ad36d16f8f67e478-5",
+     "f-bec0bcff4dfb918c-10",
+     "f-d6e7fbff1df28e2f-0"
+    ],
+    "runs": 3
+   },
+   {
+    "id": "g13",
+    "label": "Guard and militia structures control food distribution",
+    "type": "linear",
+    "actionIds": [
+     "b4",
+     "a5"
+    ],
+    "usValue": 10,
+    "opponentValue": -6.95,
+    "factIds": [
+     "f-125ebd95ea0fbf65-5",
+     "f-125ebd95ea0fbf65-6",
+     "f-9da1a420d981c85a-0",
+     "f-9da1a420d981c85a-1",
+     "f-a33a4c5ad0849b83-11",
+     "f-a33a4c5ad0849b83-13",
+     "f-a33a4c5ad0849b83-2",
+     "f-a33a4c5ad0849b83-3",
+     "f-b48523b8f72b8642-12",
+     "f-bec0bcff4dfb918c-5",
+     "f-fdb24b80ae5cc849-8",
+     "f-fe00635bfe1d1183-10",
+     "f-fe00635bfe1d1183-6"
+    ],
+    "runs": 3
+   },
+   {
+    "id": "g14",
+    "label": "Guards and their families are fed and compensated",
+    "type": "linear",
+    "actionIds": [
+     "b3",
+     "b9"
+    ],
+    "usValue": 10,
+    "opponentValue": -2.617,
+    "factIds": [
+     "f-125ebd95ea0fbf65-11",
+     "f-9da1a420d981c85a-11",
+     "f-9da1a420d981c85a-14",
+     "f-9da1a420d981c85a-9",
+     "f-9eddaf4cc2d6e8d9-2",
+     "f-a33a4c5ad0849b83-4",
+     "f-a33a4c5ad0849b83-7",
+     "f-a33a4c5ad0849b83-9",
+     "f-bec0bcff4dfb918c-0",
+     "f-bec0bcff4dfb918c-1",
+     "f-bec0bcff4dfb918c-2",
+     "f-bec0bcff4dfb918c-9",
+     "f-c124474ab100cd79-7",
+     "f-fe00635bfe1d1183-8"
+    ],
+    "runs": 3
+   },
+   {
+    "id": "g15",
+    "label": "Host town stability, economy and priority for local actors",
+    "type": "all",
+    "actionIds": [
+     "b11"
+    ],
+    "usValue": 5,
+    "opponentValue": 2.4,
+    "factIds": [
+     "f-125ebd95ea0fbf65-2",
+     "f-9681bb3bf4541680-3",
+     "f-9681bb3bf4541680-4",
+     "f-9681bb3bf4541680-5",
+     "f-9681bb3bf4541680-6",
+     "f-9681bb3bf4541680-7",
+     "f-9681bb3bf4541680-8"
+    ],
+    "runs": 3
+   },
+   {
+    "id": "g17",
+    "label": "Refugees face abuse or collective punishment, including food withholding",
+    "type": "all",
+    "actionIds": [
+     "b4"
+    ],
+    "usValue": 0,
+    "opponentValue": -9.35,
+    "factIds": [
+     "f-9da1a420d981c85a-5",
+     "f-9eddaf4cc2d6e8d9-3",
+     "f-bec0bcff4dfb918c-11",
+     "f-bec0bcff4dfb918c-16",
+     "f-fe00635bfe1d1183-10",
+     "f-fe00635bfe1d1183-9"
+    ],
+    "runs": 3
+   },
+   {
+    "id": "g18",
+    "label": "Refugees receive intended food fairly and equally",
+    "type": "all",
+    "actionIds": [
+     "b13"
+    ],
+    "usValue": -5,
+    "opponentValue": 9.0,
+    "factIds": [
+     "f-125ebd95ea0fbf65-4",
+     "f-b48523b8f72b8642-11",
+     "f-bec0bcff4dfb918c-0",
+     "f-bec0bcff4dfb918c-16",
+     "f-fe00635bfe1d1183-7",
+     "f-fe00635bfe1d1183-8",
+     "f-fe00635bfe1d1183-9"
+    ],
+    "runs": 3
+   },
+   {
+    "id": "g19",
+    "label": "Refugees stay contained in the camp rather than reaching the capital",
+    "type": "all",
+    "actionIds": [
+     "b5"
+    ],
+    "usValue": 10,
+    "opponentValue": -2.35,
+    "factIds": [
+     "f-bcfb0316ddb36d07-1",
+     "f-bcfb0316ddb36d07-2",
+     "f-bec0bcff4dfb918c-8",
+     "f-bec0bcff4dfb918c-9"
+    ],
+    "runs": 3
+   },
+   {
+    "id": "g22",
+    "label": "Commander retains the Senior Militia Leader's trust",
+    "type": "linear",
+    "actionIds": [
+     "b4",
+     "a16",
+     "b9",
+     "a5"
+    ],
+    "usValue": 10,
+    "opponentValue": -1.483,
+    "factIds": [
+     "f-a33a4c5ad0849b83-12",
+     "f-a33a4c5ad0849b83-13",
+     "f-b48523b8f72b8642-4",
+     "f-c124474ab100cd79-2",
+     "f-fdb24b80ae5cc849-14",
+     "f-fe00635bfe1d1183-12"
+    ],
+    "runs": 2
+   },
+   {
+    "id": "g23",
+    "label": "FWB meets donor documentation and accountability requirements",
+    "type": "linear",
+    "actionIds": [
+     "b13",
+     "a6",
+     "a9",
+     "a13"
+    ],
+    "usValue": -5,
+    "opponentValue": 7.117,
+    "factIds": [
+     "f-125ebd95ea0fbf65-12",
+     "f-9da1a420d981c85a-10",
+     "f-9da1a420d981c85a-2",
+     "f-b48523b8f72b8642-14",
+     "f-fe00635bfe1d1183-0"
+    ],
+    "runs": 2
+   },
+   {
+    "id": "g24",
+    "label": "FWB's operating methods and protocols are respected",
+    "type": "linear",
+    "actionIds": [
+     "b13",
+     "a11",
+     "a13"
+    ],
+    "usValue": -5,
+    "opponentValue": 6.967,
+    "factIds": [
+     "f-9da1a420d981c85a-10",
+     "f-a33a4c5ad0849b83-5",
+     "f-fdb24b80ae5cc849-7",
+     "f-fe00635bfe1d1183-11",
+     "f-fe00635bfe1d1183-5"
+    ],
+    "runs": 2
+   },
+   {
+    "id": "g25",
+    "label": "Food is withheld from people labelled as suspected terrorists",
+    "type": "all",
+    "actionIds": [
+     "b4"
+    ],
+    "usValue": 5,
+    "opponentValue": -7.833,
+    "factIds": [
+     "f-bec0bcff4dfb918c-16",
+     "f-fe00635bfe1d1183-7",
+     "f-fe00635bfe1d1183-9"
+    ],
+    "runs": 2
+   },
+   {
+    "id": "g26",
+    "label": "Guard loyalty and discipline hold",
+    "type": "linear",
+    "actionIds": [
+     "b3",
+     "b9"
+    ],
+    "usValue": 10,
+    "opponentValue": 0.133,
+    "factIds": [
+     "f-125ebd95ea0fbf65-11",
+     "f-9eddaf4cc2d6e8d9-3",
+     "f-9eddaf4cc2d6e8d9-4",
+     "f-9eddaf4cc2d6e8d9-5",
+     "f-bec0bcff4dfb918c-1",
+     "f-bec0bcff4dfb918c-15",
+     "f-bec0bcff4dfb918c-2"
+    ],
+    "runs": 2
+   }
+  ],
+  "forbiddenActions": [],
+  "opponentReadings": [
+   {
+    "id": "opp-sample-1",
+    "values": {
+     "g1": 10,
+     "g2": 10,
+     "g3": 5,
+     "g5": -10,
+     "g7": -5,
+     "g8": -5,
+     "g11": 10,
+     "g12": -10,
+     "g13": -10,
+     "g14": 0,
+     "g15": 5,
+     "g17": -10,
+     "g18": 10,
+     "g19": 0,
+     "g22": -10,
+     "g23": 10,
+     "g24": 0,
+     "g25": -10,
+     "g26": -5
+    }
+   },
+   {
+    "id": "opp-sample-2",
+    "values": {
+     "g1": 0,
+     "g2": 10,
+     "g3": 5,
+     "g5": 0,
+     "g7": -5,
+     "g8": -5,
+     "g11": 5,
+     "g12": -5,
+     "g13": -5,
+     "g14": -5,
+     "g15": -5,
+     "g17": -10,
+     "g18": 5,
+     "g19": -5,
+     "g22": 0,
+     "g23": 10,
+     "g24": 5,
+     "g25": -10,
+     "g26": 0
+    }
+   },
+   {
+    "id": "opp-sample-3",
+    "values": {
+     "g1": 0,
+     "g2": 10,
+     "g3": 10,
+     "g5": -10,
+     "g7": -5,
+     "g8": -5,
+     "g11": 10,
+     "g12": -10,
+     "g13": -10,
+     "g14": -5,
+     "g15": 0,
+     "g17": -10,
+     "g18": 5,
+     "g19": 0,
+     "g22": 0,
+     "g23": 10,
+     "g24": 5,
+     "g25": -5,
+     "g26": 0
+    }
+   },
+   {
+    "id": "opp-sample-4",
+    "values": {
+     "g1": 5,
+     "g2": 10,
+     "g3": 5,
+     "g5": -10,
+     "g7": 0,
+     "g8": -5,
+     "g11": 10,
+     "g12": -5,
+     "g13": -10,
+     "g14": 0,
+     "g15": 0,
+     "g17": -10,
+     "g18": 10,
+     "g19": 0,
+     "g22": -5,
+     "g23": 5,
+     "g24": 10,
+     "g25": -5,
+     "g26": 5
+    }
+   },
+   {
+    "id": "opp-sample-5",
+    "values": {
+     "g1": 10,
+     "g2": 10,
+     "g3": 5,
+     "g5": -5,
+     "g7": 0,
+     "g8": -5,
+     "g11": 10,
+     "g12": 0,
+     "g13": -10,
+     "g14": 0,
+     "g15": 5,
+     "g17": -10,
+     "g18": 5,
+     "g19": -5,
+     "g22": 0,
+     "g23": 5,
+     "g24": 10,
+     "g25": -10,
+     "g26": 0
+    }
+   },
+   {
+    "id": "opp-sample-6",
+    "values": {
+     "g1": 10,
+     "g2": 10,
+     "g3": 10,
+     "g5": -10,
+     "g7": 0,
+     "g8": 5,
+     "g11": 10,
+     "g12": -5,
+     "g13": -10,
+     "g14": -10,
+     "g15": 5,
+     "g17": -10,
+     "g18": 10,
+     "g19": 0,
+     "g22": 0,
+     "g23": 10,
+     "g24": 5,
+     "g25": -5,
+     "g26": -5
+    }
+   },
+   {
+    "id": "opp-sample-7",
+    "values": {
+     "g1": 10,
+     "g2": 10,
+     "g3": 5,
+     "g5": -5,
+     "g7": 0,
+     "g8": -5,
+     "g11": 10,
+     "g12": -5,
+     "g13": -10,
+     "g14": -5,
+     "g15": 5,
+     "g17": -10,
+     "g18": 10,
+     "g19": 0,
+     "g22": 0,
+     "g23": 10,
+     "g24": 10,
+     "g25": -10,
+     "g26": -5
+    }
+   },
+   {
+    "id": "opp-sample-8",
+    "values": {
+     "g1": 10,
+     "g2": 10,
+     "g3": 10,
+     "g5": -5,
+     "g7": 5,
+     "g8": -10,
+     "g11": 5,
+     "g12": 0,
+     "g13": -10,
+     "g14": -5,
+     "g15": 5,
+     "g17": -10,
+     "g18": 10,
+     "g19": -10,
+     "g22": -5,
+     "g23": 10,
+     "g24": 0,
+     "g25": -10,
+     "g26": -5
+    }
+   }
+  ],
+  "batna": {
+   "us": -5,
+   "opp": -5
+  },
+  "bottomLine": -5,
+  "redLines": [
+   {
+    "kind": "forbidden",
+    "actionId": "a1",
+    "label": "Allow FWB and its chosen local assistants to manage disbursement directly",
+    "quote": "If they hire local independent laborers for the food distribution, you cannot trust those people not to stir unrest and even potentially support hidden terrorists by sharing items or information.",
+    "owner": "us"
+   },
+   {
+    "kind": "forbidden",
+    "actionId": "a12",
+    "label": "Accept FWB will not feed guards and drop demand for food as guard pay",
+    "quote": "If they see the refugees eating better than they are, they may well rebel, and it may be your head. Or someone in your family's head.",
+    "owner": "us"
+   },
+   {
+    "kind": "forbidden",
+    "actionId": "a7",
+    "label": "Prioritize local actors as distribution assistants",
+    "quote": "If they hire local independent laborers for the food distribution, you cannot trust those people not to stir unrest and even potentially support hidden terrorists by sharing items or information.",
+    "owner": "us"
+   },
+   {
+    "kind": "forbidden",
+    "actionId": "b7",
+    "label": "Hire or prioritize local host-community actors such as MASHA as assistants and suppliers",
+    "quote": "If they hire local independent laborers for the food distribution, you cannot trust those people not to stir unrest and even potentially support hidden terrorists by sharing items or information.",
+    "owner": "opponent"
+   },
+   {
+    "kind": "forbidden",
+    "actionId": "b8",
+    "label": "Manage food disbursement with FWB staff and FWB-chosen local assistants",
+    "quote": "If they hire local independent laborers for the food distribution, you cannot trust those people not to stir unrest and even potentially support hidden terrorists by sharing items or information.",
+    "owner": "opponent"
+   }
+  ],
+  "assumptions": [
+   "Commitments are binding and additive.",
+   "Goals and goal-action links were each extracted 3 times by a model; only those found in a majority of runs are kept.",
+   "Actions are chosen to bring about as much goal value as possible, within the solver's size limit.",
+   "Our values are the median of stances elicited from our role card.",
+   "The opponent column is the expected value of an elicited stance distribution (shared documents only); each opponent reading is one draw from it, independently per goal.",
+   "Stance labels map to numbers by a fixed scale (game.stance_values), not a measured utility.",
+   "Red lines and must-haves come from our role card, each with a verbatim quote. No plan may include a red-line action, leave out a must-have, or pass through a state worth less to us than our BATNA (the bottom line)."
+  ],
+  "model": "us.anthropic.claude-opus-5-5"
+ },
+ "strategies": [
+  {
+   "id": "plan-4",
+   "title": "Option 4",
+   "opening": "Camp Commander: Permit FWB nutritional assessments under escort; Have guard structures organize and implement distribution block by block \u2194 Food Without Borders: Provide food rations or compensation for guards and their families; Extend food assistance to host-community families",
+   "fallback": "Pause and review the outside option if the offer is rejected.",
+   "actionIds": [
+    "a6",
+    "b9",
+    "b11",
+    "a5"
+   ],
+   "steps": [
+    [
+     "a6",
+     "b9",
+     "b11",
+     "a5"
+    ],
+    [
+     "b3",
+     "b5",
+     "a13"
+    ],
+    [
+     "a16",
+     "a9"
+    ]
+   ],
+   "meanScore": 0.638889,
+   "worstScore": 0.230769,
+   "rawMean": 53.05555555555556,
+   "rawWorst": 0.0,
+   "baselineValue": 0.0,
+   "origin": "opp-sample-3",
+   "method": "game-solver",
+   "freshRescored": false,
+   "redLines": [],
+   "assumptions": [
+    "Commitments are binding and additive.",
+    "Goals and goal-action links were each extracted 3 times by a model; only those found in a majority of runs are kept.",
+    "Actions are chosen to bring about as much goal value as possible, within the solver's size limit.",
+    "Our values are the median of stances elicited from our role card."
+   ],
+   "ethicsFlags": [
+    "No automated ethics review has been run. Review this option before use."
+   ],
+   "branches": [
+    "After acceptance, offer 2: Camp Commander: Allow FWB to document and report without administrative clearance \u2194 Food Without Borders: Accept food rations being used as payment in kind; Deliver food aid to the camp on an ongoing, recurring schedule",
+    "After acceptance, offer 3: Camp Commander: Keep FWB outputs subject to camp administration clearance and limit publicity; Share camp registration data with FWB",
+    "If rejected: pause this sequence. No commitment is added."
+   ]
+  },
+  {
+   "id": "plan-3",
+   "title": "Option 3",
+   "opening": "Camp Commander: Keep FWB outputs subject to camp administration clearance and limit publicity; Permit FWB nutritional assessments under escort \u2194 Food Without Borders: Require FWB documentation and accountability procedures to be followed in distribution; Accept food rations being used as payment in kind",
+   "fallback": "Pause and review the outside option if the offer is rejected.",
+   "actionIds": [
+    "b13",
+    "b3",
+    "a16",
+    "a6"
+   ],
+   "steps": [
+    [
+     "b13",
+     "b3",
+     "a16",
+     "a6"
+    ],
+    [
+     "b5",
+     "b11",
+     "a5",
+     "a13"
+    ],
+    [
+     "b9"
+    ]
+   ],
+   "meanScore": 0.621439,
+   "worstScore": 0.230769,
+   "rawMean": 50.78703703703704,
+   "rawWorst": 0.0,
+   "baselineValue": 0.0,
+   "origin": "opp-sample-2",
+   "method": "game-solver",
+   "freshRescored": false,
+   "redLines": [],
+   "assumptions": [
+    "Commitments are binding and additive.",
+    "Goals and goal-action links were each extracted 3 times by a model; only those found in a majority of runs are kept.",
+    "Actions are chosen to bring about as much goal value as possible, within the solver's size limit.",
+    "Our values are the median of stances elicited from our role card."
+   ],
+   "ethicsFlags": [
+    "No automated ethics review has been run. Review this option before use."
+   ],
+   "branches": [
+    "After acceptance, offer 2: Camp Commander: Have guard structures organize and implement distribution block by block; Allow FWB to document and report without administrative clearance \u2194 Food Without Borders: Deliver food aid to the camp on an ongoing, recurring schedule; Extend food assistance to host-community families",
+    "After acceptance, offer 3: Food Without Borders: Provide food rations or compensation for guards and their families",
+    "If rejected: pause this sequence. No commitment is added."
+   ]
+  },
+  {
+   "id": "plan-2",
+   "title": "Option 2",
+   "opening": "Camp Commander: Permit FWB nutritional assessments under escort; Have guard structures organize and implement distribution block by block \u2194 Food Without Borders: Provide food rations or compensation for guards and their families; Extend food assistance to host-community families",
+   "fallback": "Pause and review the outside option if the offer is rejected.",
+   "actionIds": [
+    "a6",
+    "b9",
+    "b11",
+    "a5"
+   ],
+   "steps": [
+    [
+     "a6",
+     "b9",
+     "b11",
+     "a5"
+    ],
+    [
+     "b13",
+     "b3"
+    ],
+    [
+     "b5",
+     "a16"
+    ]
+   ],
+   "meanScore": 0.611467,
+   "worstScore": 0.230769,
+   "rawMean": 49.49074074074074,
+   "rawWorst": 0.0,
+   "baselineValue": 0.0,
+   "origin": "opp-sample-1",
+   "method": "game-solver",
+   "freshRescored": false,
+   "redLines": [],
+   "assumptions": [
+    "Commitments are binding and additive.",
+    "Goals and goal-action links were each extracted 3 times by a model; only those found in a majority of runs are kept.",
+    "Actions are chosen to bring about as much goal value as possible, within the solver's size limit.",
+    "Our values are the median of stances elicited from our role card."
+   ],
+   "ethicsFlags": [
+    "No automated ethics review has been run. Review this option before use."
+   ],
+   "branches": [
+    "After acceptance, offer 2: Food Without Borders: Require FWB documentation and accountability procedures to be followed in distribution; Accept food rations being used as payment in kind",
+    "After acceptance, offer 3: Camp Commander: Keep FWB outputs subject to camp administration clearance and limit publicity \u2194 Food Without Borders: Deliver food aid to the camp on an ongoing, recurring schedule",
+    "If rejected: pause this sequence. No commitment is added."
+   ]
+  },
+  {
+   "id": "plan-1",
+   "title": "Option 1",
+   "opening": "Camp Commander: Permit FWB nutritional assessments under escort \u2194 Food Without Borders: Accept food rations being used as payment in kind; Extend food assistance to host-community families",
+   "fallback": "Pause and review the outside option if the offer is rejected.",
+   "actionIds": [
+    "b3",
+    "a6",
+    "b11"
+   ],
+   "steps": [
+    [
+     "b3",
+     "a6",
+     "b11"
+    ],
+    [
+     "b5",
+     "a5",
+     "a13"
+    ],
+    [
+     "a16",
+     "b9"
+    ]
+   ],
+   "meanScore": 0.565171,
+   "worstScore": 0.230769,
+   "rawMean": 43.47222222222222,
+   "rawWorst": 0.0,
+   "baselineValue": 0.0,
+   "origin": "baseline",
+   "method": "game-solver",
+   "freshRescored": false,
+   "redLines": [],
+   "assumptions": [
+    "Commitments are binding and additive.",
+    "Goals and goal-action links were each extracted 3 times by a model; only those found in a majority of runs are kept.",
+    "Actions are chosen to bring about as much goal value as possible, within the solver's size limit.",
+    "Our values are the median of stances elicited from our role card."
+   ],
+   "ethicsFlags": [
+    "No automated ethics review has been run. Review this option before use."
+   ],
+   "branches": [
+    "After acceptance, offer 2: Camp Commander: Have guard structures organize and implement distribution block by block; Allow FWB to document and report without administrative clearance \u2194 Food Without Borders: Deliver food aid to the camp on an ongoing, recurring schedule",
+    "After acceptance, offer 3: Camp Commander: Keep FWB outputs subject to camp administration clearance and limit publicity \u2194 Food Without Borders: Provide food rations or compensation for guards and their families",
+    "If rejected: pause this sequence. No commitment is added."
+   ]
+  },
+  {
+   "id": "plan-9",
+   "title": "Option 9",
+   "opening": "Camp Commander: Keep FWB outputs subject to camp administration clearance and limit publicity; Permit FWB nutritional assessments under escort \u2194 Food Without Borders: Provide food rations or compensation for guards and their families; Extend food assistance to host-community families",
+   "fallback": "Pause and review the outside option if the offer is rejected.",
+   "actionIds": [
+    "a16",
+    "a6",
+    "b9",
+    "b11"
+   ],
+   "steps": [
+    [
+     "a16",
+     "a6",
+     "b9",
+     "b11"
+    ],
+    [
+     "b13",
+     "b3",
+     "a5"
+    ],
+    [
+     "b5"
+    ]
+   ],
+   "meanScore": 0.536681,
+   "worstScore": 0.230769,
+   "rawMean": 39.76851851851852,
+   "rawWorst": 0.0,
+   "baselineValue": 0.0,
+   "origin": "opp-sample-8",
+   "method": "game-solver",
+   "freshRescored": false,
+   "redLines": [],
+   "assumptions": [
+    "Commitments are binding and additive.",
+    "Goals and goal-action links were each extracted 3 times by a model; only those found in a majority of runs are kept.",
+    "Actions are chosen to bring about as much goal value as possible, within the solver's size limit.",
+    "Our values are the median of stances elicited from our role card."
+   ],
+   "ethicsFlags": [
+    "No automated ethics review has been run. Review this option before use."
+   ],
+   "branches": [
+    "After acceptance, offer 2: Camp Commander: Have guard structures organize and implement distribution block by block \u2194 Food Without Borders: Require FWB documentation and accountability procedures to be followed in distribution; Accept food rations being used as payment in kind",
+    "After acceptance, offer 3: Food Without Borders: Deliver food aid to the camp on an ongoing, recurring schedule",
+    "If rejected: pause this sequence. No commitment is added."
+   ]
+  }
+ ],
+ "rejected": []
+}

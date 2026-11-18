@@ -1,0 +1,601 @@
+{
+ "runs": {
+  "b2_r1": {
+   "opening": "Open by acknowledging the heavy burden on Qiso and the Border Authority's commitment to support and compensate the town, then request the Mayor's headcount, locations, stadium security/sanitation plan, police numbers and any registers, and propose agreeing a day-by-day timeline for stadium containment, registration and DoD bus transfers that completes within two weeks.",
+   "fallback": "If the Mayor resists stadium-only containment, consider phased registration and staged transfers using other suitably large detention sites permitted by the Protocols (school gym, stadium, etc.), provided every person is registered, detained and accounted for and transfers still finish within two weeks; any deviation from the standard compensation rate requires Deputy Director approval.",
+   "alternatives": [
+    "Offer to prioritize the bus-and-register sequence so detainees spend minimal time in the stadium (register, then immediately transport families together), reducing Qiso's holding burden; feasibility depends on DoD bus availability and RDF space, which are not confirmed for Qiso.",
+    "Explore having the Mayor submit documented additional costs (security, sanitation) for consideration under the letter's provision, while being clear these cannot be guaranteed and are not within the officer's authority."
+   ],
+   "red_lines": [
+    "No undocumented non-citizens may remain; all must be registered and their whereabouts accounted for at all times; Sitwan's security is paramount.",
+    "Compensation may be offered only at the standard Protocol rate (6 SD per detained person per day, payable within 90 days against a verified register); additional costs may be submitted but cannot be guaranteed.",
+    "Registration and transfer must be complete within two weeks of arrival; situation reports due within 48 hours and daily; the deployment memo may not be shared with municipal officials."
+   ],
+   "our_constraints": [
+    "No undocumented non-citizens may remain; all must be registered and their whereabouts accounted for at all times; Sitwan's security is paramount.",
+    "Compensation may be offered only at the standard Protocol rate (6 SD per detained person per day, payable within 90 days against a verified register); additional costs may be submitted but cannot be guaranteed.",
+    "Registration and transfer must be complete within two weeks of arrival; situation reports due within 48 hours and daily; the deployment memo may not be shared with municipal officials."
+   ],
+   "issues": [
+    "Containment of all Chiasans in the municipal stadium using local police",
+    "Two-week timeline for registration and transfer",
+    "Compensation to Qiso for detention work",
+    "Headcount and register of Chiasans in Qiso",
+    "Treatment of Chiasan seasonal agricultural workers present before the unrest"
+   ],
+   "tradeoffs": [
+    "Agree a stadium plan where the Border Authority handles registration on site and arranges rapid DoD bus departures, minimizing days Qiso must hold detainees.",
+    "Support the Mayor in submitting documented extra costs (security, sanitation) for consideration alongside the 6 SD/day claim.",
+    "Use the Mayor's existing lists/registers as the basis for the verified register, speeding compensation claims.",
+    "Commit to transporting families together and emphasize RDF welfare standards and vaccination in exchange for the Mayor's help reaching Chiasans in private homes and religious buildings.",
+    "Clarify that residents may continue providing emergency humanitarian aid (food, first aid) during the containment period while long-term sheltering ends."
+   ],
+   "objective": "Work with the Mayor to register all undocumented Chiasans in Qiso and move them to appropriate Refugee Detention Facilities within two weeks, in compliance with the Safe Borders Program",
+   "outside_option": "",
+   "our_side": "Border Authority officer of Sitwan",
+   "n_facts": 123,
+   "rc_claims": 18
+  },
+  "b2_r2": {
+   "opening": "Open by acknowledging the heavy burden on Qiso and the Border Authority's commitment to support and compensate the town, then frame the legal requirement to register every Chiasan and move them to RDFs within two weeks, requesting the Mayor's headcount, stadium plan, police numbers and registers to build a joint timeline.",
+   "fallback": "If the Mayor resists the stadium plan, hold firm on registration and accounted whereabouts within the two-week deadline while exploring phased containment sequencing and documenting additional municipal costs for submission (not guaranteed), keeping the standard 6 SD rate as the authorized offer.",
+   "alternatives": [
+    "Explore using the Mayor's existing lists or registers to prioritize registration of persons in municipal and religious buildings first, then private homes, to show early progress within the deadline.",
+    "Emphasize RDF welfare commitments (vaccination, shelter, food, healthcare, schooling, families together where possible) to address humanitarian concerns the Mayor may raise about removal."
+   ],
+   "red_lines": [
+    "No undocumented non-citizens allowed regardless of how or when they arrived; whereabouts accounted for at all times; Sitwan's safety paramount.",
+    "Two weeks from arrival to complete registration and transfer; situation report within 48 hours and daily.",
+    "Compensation authority limited to the standard Protocol rate (6 SD per detained person per day); additional costs only 'for consideration', not guaranteed.",
+    "The deployment memo may not be shared with municipal officials, press or public."
+   ],
+   "our_constraints": [
+    "No undocumented non-citizens allowed regardless of how or when they arrived; whereabouts accounted for at all times; Sitwan's safety paramount.",
+    "Two weeks from arrival to complete registration and transfer; situation report within 48 hours and daily.",
+    "Compensation authority limited to the standard Protocol rate (6 SD per detained person per day); additional costs only 'for consideration', not guaranteed.",
+    "The deployment memo may not be shared with municipal officials, press or public."
+   ],
+   "issues": [
+    "Agreeing a registration and transfer timeline within the two-week deadline",
+    "Stadium containment and police deployment",
+    "Compensation for detention and additional municipal costs",
+    "Scope of persons to be registered, including private homes and seasonal workers",
+    "RDF destination capacity and transport"
+   ],
+   "tradeoffs": [
+    "Agree a sequenced timeline within the two weeks in exchange for the Mayor's full police cooperation and registers.",
+    "Document and submit Qiso's additional costs (security, sanitation) alongside the verified register.",
+    "Commit to transporting families together where operationally possible and to the Refugee Facility Requirements welfare minimums.",
+    "Use the Mayor's own lists to speed registration and verify the register needed for compensation."
+   ],
+   "objective": "Work with the Mayor of Qiso to register and move all undocumented Chiasan refugees in Qiso to appropriate Refugee Detention Facilities within two weeks, consistent with the Safe Borders Program.",
+   "outside_option": "",
+   "our_side": "Border Authority officer of Sitwan",
+   "n_facts": 122,
+   "rc_claims": 17
+  },
+  "b2_r3": {
+   "opening": "Open by acknowledging the heavy burden on Qiso and the Authority's pledge of support, then request the Mayor's headcount, locations, registers, police numbers and stadium plan, and propose jointly fixing a timeline that completes registration and transfer within two weeks with the standard 6 SD per person per day compensation.",
+   "fallback": "If the Mayor resists immediate full stadium containment, hold to registration of everyone and accounted whereabouts, invite the Mayor to submit documented additional costs for consideration (not guaranteed), and keep the two-week completion as the firm endpoint.",
+   "alternatives": [
+    "Sequence transfers in phases by location (municipal buildings, religious buildings, farmland, private homes) with DoD buses and families kept together, so stadium time per person is minimized while every person is registered.",
+    "Emphasize RDF welfare standards (vaccination, 3.5 sqm shelter, 2,100 kcal/day, schooling) and the public-health rationale to frame transfer as provision for refugees, not only enforcement."
+   ],
+   "red_lines": [
+    "No undocumented non-citizens may be allowed in Sitwan regardless of how or when they arrived.",
+    "Whereabouts of non-citizens must be accounted for at all times; Sitwan's safety and security is paramount.",
+    "Registration and transfer must be completed within two weeks of arrival, with a situation report within 48 hours and daily thereafter.",
+    "The deployment memo and its intelligence content must not be shared with municipal officials, press or public."
+   ],
+   "our_constraints": [
+    "No undocumented non-citizens may be allowed in Sitwan regardless of how or when they arrived.",
+    "Whereabouts of non-citizens must be accounted for at all times; Sitwan's safety and security is paramount.",
+    "Registration and transfer must be completed within two weeks of arrival, with a situation report within 48 hours and daily thereafter.",
+    "The deployment memo and its intelligence content must not be shared with municipal officials, press or public."
+   ],
+   "issues": [
+    "Containing all Chiasans in the municipal stadium using local police",
+    "Agreeing a timeline that completes registration and transfer within two weeks",
+    "Compensation to Qiso for detention and related costs",
+    "Registering Chiasans in private homes, religious buildings, farmland and seasonal workers",
+    "Headcount, locations and registers",
+    "Transfer logistics and RDF capacity"
+   ],
+   "tradeoffs": [
+    "Agree a phased pickup schedule by location so detainees spend minimal time in the stadium, in exchange for full police cooperation and a complete register.",
+    "Accept the Mayor's own lists as the starting register to accelerate verification and compensation claims.",
+    "Commit to forwarding documented additional municipal costs (sanitation, security) for consideration.",
+    "Highlight that families are transported and housed together wherever operationally possible, and children schooled, to ease local resistance to removal."
+   ],
+   "objective": "Work with the Mayor to register all Chiasan nationals in Qiso and move them to appropriate Refugee Detention Facilities within two weeks, with whereabouts accounted for at all times",
+   "outside_option": "",
+   "our_side": "officer of the Border Authority in Sitwan",
+   "n_facts": 122,
+   "rc_claims": 17
+  },
+  "rw_2": {
+   "opening": "Open by acknowledging the heavy burden on Qiso and the Authority's commitment to support and compensate it, then set out the legal requirement that all Chiasans be registered and transferred, propose agreeing a two-week timeline, and request the Mayor's estimate, locations, police numbers, stadium plan and existing lists.",
+   "fallback": "If the Mayor resists the stadium or timeline, the only documented flexibility is in sequencing within the two weeks and using other suitably large detention places permitted by the Protocols (e.g., school gym), while still completing full transfer within the deadline and keeping whereabouts accounted for.",
+   "alternatives": [
+    "Phase registration and bus transfers starting with Chiasans in municipal and religious buildings, so detention time in the stadium (and compensation days) is minimized; verify with the Deputy Director that phasing is acceptable.",
+    "Invite the Mayor to submit documented additional costs (security, sanitation) for consideration, making clear these cannot be guaranteed."
+   ],
+   "red_lines": [
+    "The officer may not permit any undocumented non-citizens to remain in Sitwan, regardless of how or when they arrived.",
+    "Whereabouts of non-citizens must be accounted for at all times; Sitwan's safety and security come above everything else.",
+    "Registration and transfer must be completed within two weeks of arrival; the memo may not be shared with municipal officials, press or public.",
+    "Compensation is authorized only at the standard Protocol rate; additional costs are for consideration and cannot be guaranteed."
+   ],
+   "our_constraints": [
+    "The officer may not permit any undocumented non-citizens to remain in Sitwan, regardless of how or when they arrived.",
+    "Whereabouts of non-citizens must be accounted for at all times; Sitwan's safety and security come above everything else.",
+    "Registration and transfer must be completed within two weeks of arrival; the memo may not be shared with municipal officials, press or public.",
+    "Compensation is authorized only at the standard Protocol rate; additional costs are for consideration and cannot be guaranteed."
+   ],
+   "issues": [
+    "Agreeing a timeline to register and transfer all Chiasans within two weeks of arrival",
+    "Stadium containment and police deployment to gather all Chiasans",
+    "Compensation to Qiso for detention work",
+    "Scope of removal: private homes, religious buildings, agricultural land and seasonal workers",
+    "Head count and planning estimate (6,000 vs 8,000–10,000)",
+    "Transfer logistics and RDF capacity"
+   ],
+   "tradeoffs": [
+    "Mayor commits police and the stadium plan in exchange for prompt start of bus transfers to shorten detention duration.",
+    "Mayor provides existing lists/registers and a verified detention register; Authority processes compensation claims at 6 SD/person/day within 90 days.",
+    "Use additional suitably large places (e.g., school gym) alongside the stadium if the stadium cannot hold the higher estimate.",
+    "Officer forwards Mayor's documented additional costs (security, sanitation) to the Authority for consideration."
+   ],
+   "objective": "Work with the Mayor so that the undocumented Chiasan refugees in Qiso are registered and moved to appropriate Refugee Detention Facilities within two weeks of arrival.",
+   "outside_option": "",
+   "our_side": "officer of the Border Authority in Sitwan",
+   "n_facts": 123,
+   "rc_claims": 18
+  },
+  "rw_3": {
+   "opening": "Open by acknowledging the heavy burden on Qiso and the Authority's assurance of support, then request the Mayor's headcount estimate, locations, available police, stadium plan and registers, and propose agreeing a phased timeline that completes registration and transfer within two weeks with compensation at the published 6 SD rate.",
+   "fallback": "If the Mayor resists full stadium containment, explore sequencing (registration first at multiple suitable large sites such as school gyms per protocol, then transport in waves) provided every person's location remains known and no one remains unregistered beyond two weeks; any arrangement beyond the standard rate needs Deputy Director approval.",
+   "alternatives": [
+    "Offer to submit the town's documented additional costs (security, sanitation) for Border Authority consideration, making clear they are not guaranteed.",
+    "Emphasize that transferees receive vaccination, shelter, food, clothing, healthcare and schooling at RDFs and that families travel together where operationally possible, addressing welfare concerns the Mayor or residents may raise."
+   ],
+   "red_lines": [
+    "No undocumented non-citizens may remain in Sitwan; their location must be known at all times; Sitwan's security comes first.",
+    "Compensation offers are limited to the standard protocol rate; the restricted memo and its intelligence content may not be shared with municipal officials, press or public.",
+    "Registration and transfer must be completed within two weeks of arrival, with a situation report within 48 hours and daily thereafter."
+   ],
+   "our_constraints": [
+    "No undocumented non-citizens may remain in Sitwan; their location must be known at all times; Sitwan's security comes first.",
+    "Compensation offers are limited to the standard protocol rate; the restricted memo and its intelligence content may not be shared with municipal officials, press or public.",
+    "Registration and transfer must be completed within two weeks of arrival, with a situation report within 48 hours and daily thereafter."
+   ],
+   "issues": [
+    "Agreeing a registration and transfer timeline within two weeks of arrival",
+    "Stadium containment and local police use",
+    "Compensation for detention work and additional costs",
+    "Scope of registration: private homes, religious buildings, farmland and seasonal workers",
+    "Headcount and register information from the Mayor",
+    "RDF destination capacity and welfare assurances"
+   ],
+   "tradeoffs": [
+    "Phased transfer schedule within the two-week deadline in exchange for the Mayor committing police to full stadium containment.",
+    "Prompt verified register and compensation claim processing in exchange for the Mayor sharing existing lists of Chiasans.",
+    "Submit the town's security and sanitation costs for additional consideration in exchange for a complete stadium plan.",
+    "Permit continued humanitarian emergency aid (food, first aid) by residents during the containment period while ending private sheltering.",
+    "Assure families are transported and housed together where operationally possible, in return for cooperation in moving Chiasans from private homes."
+   ],
+   "objective": "Coordinate with the Mayor so the undocumented Chiasan refugees in Qiso are registered and moved to appropriate centers (RDFs) within two weeks, as legally required and for Sitwan's security and the refugees' care.",
+   "outside_option": "",
+   "our_side": "Border Authority officer (Sitwan)",
+   "n_facts": 121,
+   "rc_claims": 16
+  },
+  "rw_4": {
+   "opening": "Open by acknowledging the heavy burden on Qiso and the Authority's intent to support the town, then set out the legal requirement that all Chiasans be registered and transferred within two weeks, the stadium containment request, the 6 SD/day compensation with 90-day payment, and the RDF care commitments, and ask the Mayor for the estimate, stadium plan, police numbers and lists.",
+   "fallback": "If the Mayor resists stadium containment, explore a phased sequence within the two-week deadline (registration first, then staged bus transfers as RDF space is confirmed) while insisting whereabouts are accounted for throughout; offer to submit the town's additional costs for consideration without guaranteeing them.",
+   "alternatives": [
+    "Register and collect Chiasans at multiple known sites (municipal and religious buildings, farmland) with a written register and police monitoring, rather than one stadium, provided no one is unregistered and none can leave unaccounted; protocol permits 'a school gym, a stadium, etc.' but the letter calls the stadium the only place large enough, so feasibility must be verified.",
+    "Prioritize transfer of groups in private homes and pre-unrest seasonal workers whose permits have expired, using the fine provisions for knowing shelterers as a lever only if voluntary reporting fails; emergency humanitarian aid by residents remains lawful."
+   ],
+   "red_lines": [
+    "Red line: no undocumented non-citizens may be allowed in Sitwan regardless of how or when they arrived.",
+    "Red line: whereabouts of these non-citizens must be accounted for at all times.",
+    "Red line: Sitwan's safety and security is paramount.",
+    "Two-week deadline from arrival; compensation authorized only at the standard protocol rate; the deployment memo may not be shared with municipal officials, press or public."
+   ],
+   "our_constraints": [
+    "Red line: no undocumented non-citizens may be allowed in Sitwan regardless of how or when they arrived.",
+    "Red line: whereabouts of these non-citizens must be accounted for at all times.",
+    "Red line: Sitwan's safety and security is paramount.",
+    "Two-week deadline from arrival; compensation authorized only at the standard protocol rate; the deployment memo may not be shared with municipal officials, press or public."
+   ],
+   "issues": [
+    "Agreeing a timeline to register and transfer all Chiasans in Qiso within two weeks",
+    "Stadium containment and police enforcement in Qiso",
+    "Compensation for detention work at 6 SD per person per day",
+    "Removing Chiasans sheltered in private homes and registering pre-unrest seasonal workers",
+    "RDF capacity and bus transport for 6,000–10,000 people"
+   ],
+   "tradeoffs": [
+    "Commit to transporting families together and to RDF welfare standards (vaccination, 3.5 sqm shelter, 2,100 kcal/day, schooling) in exchange for the Mayor's active help locating Chiasans in private homes.",
+    "Agree to forward the town's itemized additional costs (stadium security, sanitation) for Authority consideration in exchange for police commitment to stadium containment.",
+    "Accept the Mayor's existing lists/registers as the starting verified register to speed compensation claims and registration.",
+    "Offer DoD bus scheduling so detention in the stadium is as short as possible, reducing the town's sanitation and security load."
+   ],
+   "objective": "Work with the Mayor to register and bring all Chiasan refugees in Qiso to the appropriate Refugee Detention Facilities within two weeks",
+   "outside_option": "",
+   "our_side": "Border Authority officer (Sitwan)",
+   "n_facts": 125,
+   "rc_claims": 20
+  }
+ },
+ "pairs": {
+  "b2_r1|b2_r2": {
+   "opening": 0.8622061014175415,
+   "fallback": 0.7498701810836792,
+   "objective": 0.9643377065658569,
+   "alternatives": 0.0,
+   "red_lines": 0.8571428571428571,
+   "our_constraints": 0.8571428571428571,
+   "issues": 0.2,
+   "tradeoffs": 0.2222222222222222
+  },
+  "b2_r1|b2_r3": {
+   "opening": 0.8723036050796509,
+   "fallback": 0.7583858370780945,
+   "objective": 0.9188045263290405,
+   "alternatives": 0.0,
+   "red_lines": 0.5714285714285714,
+   "our_constraints": 0.5714285714285714,
+   "issues": 0.5454545454545454,
+   "tradeoffs": 0.4444444444444444
+  },
+  "b2_r1|rw_2": {
+   "opening": 0.8581417202949524,
+   "fallback": 0.8051354885101318,
+   "objective": 0.9232274889945984,
+   "alternatives": 0.5,
+   "red_lines": 0.5714285714285714,
+   "our_constraints": 0.5714285714285714,
+   "issues": 0.5454545454545454,
+   "tradeoffs": 0.2222222222222222
+  },
+  "b2_r1|rw_3": {
+   "opening": 0.8903248310089111,
+   "fallback": 0.8386463522911072,
+   "objective": 0.840859055519104,
+   "alternatives": 0.5,
+   "red_lines": 0.6666666666666666,
+   "our_constraints": 0.6666666666666666,
+   "issues": 0.36363636363636365,
+   "tradeoffs": 0.2
+  },
+  "b2_r1|rw_4": {
+   "opening": 0.8472878932952881,
+   "fallback": 0.7480432987213135,
+   "objective": 0.898507297039032,
+   "alternatives": 0.0,
+   "red_lines": 0.0,
+   "our_constraints": 0.0,
+   "issues": 0.2,
+   "tradeoffs": 0.4444444444444444
+  },
+  "b2_r2|b2_r3": {
+   "opening": 0.8096376657485962,
+   "fallback": 0.8490605354309082,
+   "objective": 0.8957152366638184,
+   "alternatives": 0.0,
+   "red_lines": 0.75,
+   "our_constraints": 0.75,
+   "issues": 0.5454545454545454,
+   "tradeoffs": 0.25
+  },
+  "b2_r2|rw_2": {
+   "opening": 0.894463300704956,
+   "fallback": 0.7290922403335571,
+   "objective": 0.927885115146637,
+   "alternatives": 0.0,
+   "red_lines": 0.5,
+   "our_constraints": 0.5,
+   "issues": 0.5454545454545454,
+   "tradeoffs": 0.0
+  },
+  "b2_r2|rw_3": {
+   "opening": 0.8284927606582642,
+   "fallback": 0.7541912198066711,
+   "objective": 0.8472905158996582,
+   "alternatives": 0.5,
+   "red_lines": 0.5714285714285714,
+   "our_constraints": 0.5714285714285714,
+   "issues": 0.9090909090909091,
+   "tradeoffs": 0.2222222222222222
+  },
+  "b2_r2|rw_4": {
+   "opening": 0.902111291885376,
+   "fallback": 0.8212010860443115,
+   "objective": 0.8876043558120728,
+   "alternatives": 0.0,
+   "red_lines": 0.25,
+   "our_constraints": 0.25,
+   "issues": 0.6,
+   "tradeoffs": 0.25
+  },
+  "b2_r3|rw_2": {
+   "opening": 0.8590160608291626,
+   "fallback": 0.7557216882705688,
+   "objective": 0.9160716533660889,
+   "alternatives": 0.0,
+   "red_lines": 0.5,
+   "our_constraints": 0.5,
+   "issues": 0.6666666666666666,
+   "tradeoffs": 0.25
+  },
+  "b2_r3|rw_3": {
+   "opening": 0.9378552436828613,
+   "fallback": 0.7744791507720947,
+   "objective": 0.8244493007659912,
+   "alternatives": 0.0,
+   "red_lines": 0.7142857142857143,
+   "our_constraints": 0.7142857142857143,
+   "issues": 0.6666666666666666,
+   "tradeoffs": 0.0
+  },
+  "b2_r3|rw_4": {
+   "opening": 0.8518080711364746,
+   "fallback": 0.8100545406341553,
+   "objective": 0.9541089534759521,
+   "alternatives": 0.0,
+   "red_lines": 0.5,
+   "our_constraints": 0.5,
+   "issues": 0.5454545454545454,
+   "tradeoffs": 0.5
+  },
+  "rw_2|rw_3": {
+   "opening": 0.881070613861084,
+   "fallback": 0.7678277492523193,
+   "objective": 0.889370322227478,
+   "alternatives": 0.5,
+   "red_lines": 0.2857142857142857,
+   "our_constraints": 0.2857142857142857,
+   "issues": 0.6666666666666666,
+   "tradeoffs": 0.0
+  },
+  "rw_2|rw_4": {
+   "opening": 0.9190317988395691,
+   "fallback": 0.7505196332931519,
+   "objective": 0.910618007183075,
+   "alternatives": 0.0,
+   "red_lines": 0.25,
+   "our_constraints": 0.25,
+   "issues": 0.36363636363636365,
+   "tradeoffs": 0.0
+  },
+  "rw_3|rw_4": {
+   "opening": 0.8696126937866211,
+   "fallback": 0.7542290687561035,
+   "objective": 0.8197271823883057,
+   "alternatives": 0.0,
+   "red_lines": 0.0,
+   "our_constraints": 0.0,
+   "issues": 0.7272727272727273,
+   "tradeoffs": 0.4444444444444444
+  }
+ },
+ "summary": {
+  "B2-B2": {
+   "opening": {
+    "mean": 0.848,
+    "min": 0.81,
+    "n": 3
+   },
+   "fallback": {
+    "mean": 0.786,
+    "min": 0.75,
+    "n": 3
+   },
+   "objective": {
+    "mean": 0.926,
+    "min": 0.896,
+    "n": 3
+   },
+   "alternatives": {
+    "mean": 0.0,
+    "min": 0.0,
+    "n": 3
+   },
+   "red_lines": {
+    "mean": 0.726,
+    "min": 0.571,
+    "n": 3
+   },
+   "our_constraints": {
+    "mean": 0.726,
+    "min": 0.571,
+    "n": 3
+   },
+   "issues": {
+    "mean": 0.43,
+    "min": 0.2,
+    "n": 3
+   },
+   "tradeoffs": {
+    "mean": 0.306,
+    "min": 0.222,
+    "n": 3
+   }
+  },
+  "RW-B2": {
+   "opening": {
+    "mean": 0.874,
+    "min": 0.828,
+    "n": 9
+   },
+   "fallback": {
+    "mean": 0.782,
+    "min": 0.729,
+    "n": 9
+   },
+   "objective": {
+    "mean": 0.891,
+    "min": 0.824,
+    "n": 9
+   },
+   "alternatives": {
+    "mean": 0.167,
+    "min": 0.0,
+    "n": 9
+   },
+   "red_lines": {
+    "mean": 0.475,
+    "min": 0.0,
+    "n": 9
+   },
+   "our_constraints": {
+    "mean": 0.475,
+    "min": 0.0,
+    "n": 9
+   },
+   "issues": {
+    "mean": 0.56,
+    "min": 0.2,
+    "n": 9
+   },
+   "tradeoffs": {
+    "mean": 0.232,
+    "min": 0.0,
+    "n": 9
+   }
+  },
+  "RW-RW": {
+   "opening": {
+    "mean": 0.89,
+    "min": 0.87,
+    "n": 3
+   },
+   "fallback": {
+    "mean": 0.758,
+    "min": 0.751,
+    "n": 3
+   },
+   "objective": {
+    "mean": 0.873,
+    "min": 0.82,
+    "n": 3
+   },
+   "alternatives": {
+    "mean": 0.167,
+    "min": 0.0,
+    "n": 3
+   },
+   "red_lines": {
+    "mean": 0.179,
+    "min": 0.0,
+    "n": 3
+   },
+   "our_constraints": {
+    "mean": 0.179,
+    "min": 0.0,
+    "n": 3
+   },
+   "issues": {
+    "mean": 0.586,
+    "min": 0.364,
+    "n": 3
+   },
+   "tradeoffs": {
+    "mean": 0.148,
+    "min": 0.0,
+    "n": 3
+   }
+  }
+ },
+ "rewordings_used": [
+  {
+   "id": "rolecard:paraphrase_doc:light:0:0",
+   "level": "light",
+   "d_emb": 0.0013240575790405273,
+   "cos": 0.9986759424209595,
+   "nli_fwd": 0.9919044971466064,
+   "nli_bwd": 0.99299556016922
+  },
+  {
+   "id": "rolecard:paraphrase_doc:moderate:0:0",
+   "level": "moderate",
+   "d_emb": 0.004208922386169434,
+   "cos": 0.9957910776138306,
+   "nli_fwd": 0.9919348955154419,
+   "nli_bwd": 0.9889389276504517
+  },
+  {
+   "id": "rolecard:paraphrase_doc:heavy:0:0",
+   "level": "heavy",
+   "d_emb": 0.009443163871765137,
+   "cos": 0.9905568361282349,
+   "nli_fwd": 0.991132915019989,
+   "nli_bwd": 0.9964397549629211
+  },
+  {
+   "id": "rolecard:paraphrase_doc:light:0:1",
+   "level": "light",
+   "d_emb": 0.0007300376892089844,
+   "cos": 0.999269962310791,
+   "nli_fwd": 0.9893862009048462,
+   "nli_bwd": 0.9893862009048462
+  }
+ ],
+ "judge": {
+  "model": "claude-fable-5-1",
+  "prompt_hash": "258da620366e0eb2",
+  "items": [
+   {
+    "id": "P1",
+    "opening_archetype": "Acknowledge, gather facts, propose two-week timeline",
+    "opening_cluster": 1,
+    "fallback_archetype": "Phased sequencing via alternative sites",
+    "fallback_cluster": 1,
+    "run": "rw_3"
+   },
+   {
+    "id": "P2",
+    "opening_archetype": "Acknowledge, gather facts, propose two-week timeline",
+    "opening_cluster": 1,
+    "fallback_archetype": "Phased sequencing via alternative sites",
+    "fallback_cluster": 1,
+    "run": "b2_r1"
+   },
+   {
+    "id": "P3",
+    "opening_archetype": "Acknowledge, state legal terms, request facts",
+    "opening_cluster": 2,
+    "fallback_archetype": "Phased sequencing plus cost submission",
+    "fallback_cluster": 2,
+    "run": "rw_4"
+   },
+   {
+    "id": "P4",
+    "opening_archetype": "Acknowledge, state legal terms, request facts",
+    "opening_cluster": 2,
+    "fallback_archetype": "Phased sequencing via alternative sites",
+    "fallback_cluster": 1,
+    "run": "rw_2"
+   },
+   {
+    "id": "P5",
+    "opening_archetype": "Acknowledge, state legal terms, request facts",
+    "opening_cluster": 2,
+    "fallback_archetype": "Phased sequencing plus cost submission",
+    "fallback_cluster": 2,
+    "run": "b2_r2"
+   },
+   {
+    "id": "P6",
+    "opening_archetype": "Acknowledge, gather facts, propose two-week timeline",
+    "opening_cluster": 1,
+    "fallback_archetype": "Hold firm, invite cost submission only",
+    "fallback_cluster": 3,
+    "run": "b2_r3"
+   }
+  ]
+ }
+}

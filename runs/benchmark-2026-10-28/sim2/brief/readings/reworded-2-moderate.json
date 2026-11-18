@@ -1,0 +1,1127 @@
+{
+ "tag": "reworded-2-moderate",
+ "condition": "reworded",
+ "brief": {
+  "opening": "Open by acknowledging FWB's need for access and its neutrality concern. Frame the shared interest in a calm, orderly distribution, citing the camp's security realities, and invite discussion of a coordinated, escorted distribution model.",
+  "fallback": "If FWB keeps refusing to feed guards, explore whether guard food needs can be addressed through other channels while FWB aid flows. The role card mentions the Ministry of Health and Ministry of Defense as possible channels. Avoid seizure, which the role card says would end all aid.",
+  "objective": "Reach a satisfactory deal that includes ongoing FWB food aid, helps keep guards fed and refugees calm and inside the camp, and avoids weakening the commander's authority.",
+  "our_side": "Camp Commander",
+  "alternatives": [
+   "Explore using the camp's existing registration data to reduce the scope or delays of the nutritional assessment, if FWB's donor requirement allows it.",
+   "Explore whether MASHA's existing clearance model could serve as a template for FWB access."
+  ],
+  "red_lines": [],
+  "our_constraints": [
+   "Guards may revolt if refugees eat better than they do. Discipline may break down if guards believe the commander can no longer care for them.",
+   "Major unrest or visible abuse would carry a political cost for Alpha and for those in charge of camp security.",
+   "Independent FWB support could weaken the commander's authority, and the commander distrusts independent local laborers."
+  ],
+  "issues": [
+   "Food for guards and their families",
+   "Who runs the distribution",
+   "FWB access and movement in camp",
+   "Nutritional assessment requested by FWB",
+   "Duration of aid and how to approach the deal"
+  ],
+  "tradeoffs": [
+   "Escorted, coordinated FWB presence instead of unrestricted movement.",
+   "Share existing registration data to streamline the assessment.",
+   "Ongoing aid commitment in exchange for an agreed distribution process."
+  ],
+  "facts": 182
+ },
+ "caseCacheHit": false,
+ "seconds": 121,
+ "caseAnalysis": {
+  "title": "Camp Alpha Commander and FWB: food distribution, guard food and access terms",
+  "summary": "We represent the Camp Commander of Alpha's largest refugee camp, with 160,000 refugees and about 700 guards. Food Without Borders (FWB) seeks to distribute food in the camp. The role card says the commander can barely pay guards and has kept them by handing over some refugee food stocks. Guards may revolt if refugees eat better than they do. In a prior meeting, FWB reportedly refused to feed guards on neutrality grounds, insisted on FWB-managed distribution and requested nutritional assessments for a donor requirement. The camp side insisted on distribution through guard structures and on escorted FWB presence. The militia leader (SML) demands that militia men be involved and paid, and shared documents record proposals to skim food, distribute it unequally and imply threats. Officials warn that unrest or visible abuse would carry a political cost. The role card treats seizing the food as ending all future aid and finds a deal with ongoing aid appealing.",
+  "our_side": "Camp Commander",
+  "opponent": "Food Without Borders (FWB)",
+  "objective": "Reach a satisfactory deal that includes ongoing FWB food aid, helps keep guards fed and refugees calm and inside the camp, and avoids weakening the commander's authority.",
+  "outside_option": null,
+  "red_lines": [],
+  "issues": [
+   {
+    "text": "The role card states no explicit red lines or authorization limits. The camp side's insistence on guard-run distribution comes from meeting minutes, not the role card.",
+    "claim_ids": [
+     "f-125ebd95ea0fbf65-5",
+     "f-1343fdbf6c7acdba-13"
+    ]
+   },
+   {
+    "text": "SML's instruction 'take the food' is ambiguous between accepting the aid and seizing it. The role card says seizure would end all future aid.",
+    "claim_ids": [
+     "f-fdb24b80ae5cc849-12",
+     "f-1343fdbf6c7acdba-12"
+    ]
+   },
+   {
+    "text": "Shared transcripts record SML stating an intent to skim food and distribute it unequally, and CC proposing an implicit threat. Officials warn that visible abuse carries a political cost.",
+    "claim_ids": [
+     "f-fe00635bfe1d1183-8",
+     "f-fe00635bfe1d1183-9",
+     "f-9da1a420d981c85a-12",
+     "f-1343fdbf6c7acdba-11"
+    ]
+   },
+   {
+    "text": "FWB's nutritional assessment is reportedly for a donor requirement. The camp authors doubt this but concede it 'may be true'.",
+    "claim_ids": [
+     "f-125ebd95ea0fbf65-12"
+    ]
+   }
+  ],
+  "situation": {
+   "immediate": {
+    "force": "descriptive",
+    "evidence_kind": "explicit_statement",
+    "text": "A new FWB negotiator has contacted the commander. Per the camp-side minutes, the prior meeting ended with FWB refusing to feed guards and both sides insisting on control of distribution.",
+    "claim_ids": [
+     "f-125ebd95ea0fbf65-0",
+     "f-125ebd95ea0fbf65-4",
+     "f-125ebd95ea0fbf65-5"
+    ],
+    "status": "supported",
+    "source_passage_ids": [
+     "passage-1343fdbf6c7acdba-9"
+    ]
+   },
+   "actors": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "Camp Commander (our side): underpaid guards, fear of guard revolt and concern about losing authority.",
+     "claim_ids": [
+      "f-1343fdbf6c7acdba-0",
+      "f-1343fdbf6c7acdba-1",
+      "f-1343fdbf6c7acdba-4"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "negotiating_position",
+     "evidence_kind": "attributed_account",
+     "text": "FWB, as reported in the minutes: will not feed guards; wants FWB staff or FWB-chosen local assistants to manage distribution; requests nutritional assessments.",
+     "claim_ids": [
+      "f-125ebd95ea0fbf65-0",
+      "f-125ebd95ea0fbf65-4",
+      "f-125ebd95ea0fbf65-12"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "negotiating_position",
+     "evidence_kind": "demand",
+     "text": "SML (militia leader) demands that militia men be involved in distribution and properly compensated, settled before FWB arrives, and rejects FWB procedures.",
+     "claim_ids": [
+      "f-a33a4c5ad0849b83-3",
+      "f-a33a4c5ad0849b83-4",
+      "f-a33a4c5ad0849b83-5",
+      "f-a33a4c5ad0849b83-6"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "concern",
+     "evidence_kind": "explicit_statement",
+     "text": "Alpha government and officials rely on the commander to keep refugees from flooding the capital, and warn that unrest or visible abuse carries a political cost.",
+     "claim_ids": [
+      "f-1343fdbf6c7acdba-8",
+      "f-1343fdbf6c7acdba-11"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "concern",
+     "evidence_kind": "explicit_statement",
+     "text": "The Mayor's Office reports rising prices and resident frustration, and an expectation that local actors be prioritized in camp activities.",
+     "claim_ids": [
+      "f-9681bb3bf4541680-1",
+      "f-9681bb3bf4541680-2",
+      "f-9681bb3bf4541680-5"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "MASHA is a local organization that already has a working relationship with the camp side. Its access clears through Camp Admin.",
+     "claim_ids": [
+      "f-125ebd95ea0fbf65-16",
+      "f-d2b460c6986468ce-5"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "tension": {
+    "force": "concern",
+    "evidence_kind": "explicit_statement",
+    "text": "The commander needs FWB food to keep guards fed and refugees calm. FWB's neutrality stance and independent distribution conflict with feeding guards and with the commander's authority.",
+    "claim_ids": [
+     "f-1343fdbf6c7acdba-9",
+     "f-1343fdbf6c7acdba-4",
+     "f-125ebd95ea0fbf65-0"
+    ],
+    "status": "supported",
+    "source_passage_ids": []
+   },
+   "background": {
+    "force": "descriptive",
+    "evidence_kind": "explicit_statement",
+    "text": "According to CC and the role card: the generator is failing, petrol has gone unpaid for weeks and Ministry of Defense funds are needed. Some refugees swap rations for essentials, and those rations are resold locally.",
+    "claim_ids": [
+     "f-c124474ab100cd79-3",
+     "f-c124474ab100cd79-4",
+     "f-1343fdbf6c7acdba-16",
+     "f-1343fdbf6c7acdba-10"
+    ],
+    "status": "supported",
+    "source_passage_ids": []
+   },
+   "uncertainty": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "attributed_account",
+     "text": "It is unclear whether FWB has any flexibility on guard food or on distribution roles. The minutes only report that FWB 'seems' unwilling to consider food as payment.",
+     "claim_ids": [
+      "f-125ebd95ea0fbf65-9"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    },
+    {
+     "force": "descriptive",
+     "evidence_kind": "attributed_account",
+     "text": "Whether the donor assessment requirement is genuine is unconfirmed.",
+     "claim_ids": [
+      "f-125ebd95ea0fbf65-12"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "descriptive",
+     "evidence_kind": "attributed_account",
+     "text": "Funding for guard pay is uncertain. SML's promised payments have slipped before, and JJP says it has little aid.",
+     "claim_ids": [
+      "f-18840c3722260b3f-1",
+      "f-1343fdbf6c7acdba-15"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ]
+  },
+  "objective_claim_ids": [
+   "f-1343fdbf6c7acdba-9",
+   "f-1343fdbf6c7acdba-13",
+   "f-1343fdbf6c7acdba-4"
+  ],
+  "outside_option_claim_ids": [],
+  "brief": {
+   "opening": {
+    "force": "negotiating_position",
+    "evidence_kind": "inference",
+    "text": "Open by acknowledging FWB's need for access and its neutrality concern. Frame the shared interest in a calm, orderly distribution, citing the camp's security realities, and invite discussion of a coordinated, escorted distribution model.",
+    "claim_ids": [
+     "f-b48523b8f72b8642-11",
+     "f-125ebd95ea0fbf65-7",
+     "f-1343fdbf6c7acdba-11"
+    ],
+    "status": "inferred",
+    "source_passage_ids": []
+   },
+   "fallback": {
+    "force": "negotiating_position",
+    "evidence_kind": "inference",
+    "text": "If FWB keeps refusing to feed guards, explore whether guard food needs can be addressed through other channels while FWB aid flows. The role card mentions the Ministry of Health and Ministry of Defense as possible channels. Avoid seizure, which the role card says would end all aid.",
+    "claim_ids": [
+     "f-1343fdbf6c7acdba-12",
+     "f-1343fdbf6c7acdba-15",
+     "f-1343fdbf6c7acdba-16"
+    ],
+    "status": "inferred",
+    "source_passage_ids": []
+   },
+   "alternatives": [
+    {
+     "force": "negotiating_position",
+     "evidence_kind": "inference",
+     "text": "Explore using the camp's existing registration data to reduce the scope or delays of the nutritional assessment, if FWB's donor requirement allows it.",
+     "claim_ids": [
+      "f-125ebd95ea0fbf65-14",
+      "f-125ebd95ea0fbf65-12"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    },
+    {
+     "force": "negotiating_position",
+     "evidence_kind": "inference",
+     "text": "Explore whether MASHA's existing clearance model could serve as a template for FWB access.",
+     "claim_ids": [
+      "f-125ebd95ea0fbf65-16",
+      "f-d2b460c6986468ce-5"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    }
+   ],
+   "response_branches": [
+    {
+     "force": "negotiating_position",
+     "evidence_kind": "inference",
+     "text": "If FWB insists on independent staff, ask which coordination and escort arrangements it can accept.",
+     "claim_ids": [
+      "f-125ebd95ea0fbf65-4",
+      "f-125ebd95ea0fbf65-7"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    },
+    {
+     "force": "negotiating_position",
+     "evidence_kind": "inference",
+     "text": "If FWB cites neutrality on guard food, ask whether any non-food support or a separate channel is possible. Do not assume it is.",
+     "claim_ids": [
+      "f-125ebd95ea0fbf65-0"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    },
+    {
+     "force": "concern",
+     "evidence_kind": "inference",
+     "text": "If pressed to threaten FWB as SML suggests, note that the role card treats incidents and visible abuse as costly and as ending future aid.",
+     "claim_ids": [
+      "f-9da1a420d981c85a-12",
+      "f-1343fdbf6c7acdba-11",
+      "f-1343fdbf6c7acdba-12"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    }
+   ],
+   "critical_assumptions": [
+    {
+     "force": "concern",
+     "evidence_kind": "inference",
+     "text": "That ongoing FWB aid is achievable only through a negotiated, not coerced, outcome.",
+     "claim_ids": [
+      "f-1343fdbf6c7acdba-12",
+      "f-1343fdbf6c7acdba-13"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    },
+    {
+     "force": "concern",
+     "evidence_kind": "inference",
+     "text": "That guard discipline can hold while guard food is unresolved.",
+     "claim_ids": [
+      "f-1343fdbf6c7acdba-1",
+      "f-1343fdbf6c7acdba-2"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    },
+    {
+     "force": "concern",
+     "evidence_kind": "inference",
+     "text": "That SML will accept terms the commander negotiates.",
+     "claim_ids": [
+      "f-a33a4c5ad0849b83-13",
+      "f-fdb24b80ae5cc849-14"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    }
+   ],
+   "critical_claim_ids": [
+    "f-125ebd95ea0fbf65-0",
+    "f-1343fdbf6c7acdba-1",
+    "f-1343fdbf6c7acdba-12"
+   ],
+   "our_constraints": [
+    {
+     "force": "concern",
+     "evidence_kind": "explicit_statement",
+     "text": "Guards may revolt if refugees eat better than they do. Discipline may break down if guards believe the commander can no longer care for them.",
+     "claim_ids": [
+      "f-1343fdbf6c7acdba-1",
+      "f-1343fdbf6c7acdba-2"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "concern",
+     "evidence_kind": "explicit_statement",
+     "text": "Major unrest or visible abuse would carry a political cost for Alpha and for those in charge of camp security.",
+     "claim_ids": [
+      "f-1343fdbf6c7acdba-11"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "concern",
+     "evidence_kind": "explicit_statement",
+     "text": "Independent FWB support could weaken the commander's authority, and the commander distrusts independent local laborers.",
+     "claim_ids": [
+      "f-1343fdbf6c7acdba-4",
+      "f-1343fdbf6c7acdba-5"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "opponent_demands": [
+    {
+     "force": "negotiating_position",
+     "evidence_kind": "attributed_account",
+     "text": "FWB will not provide food to guards (reported).",
+     "claim_ids": [
+      "f-125ebd95ea0fbf65-0"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "negotiating_position",
+     "evidence_kind": "attributed_account",
+     "text": "FWB staff or FWB-chosen local assistants must manage disbursement (reported).",
+     "claim_ids": [
+      "f-125ebd95ea0fbf65-4"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "negotiating_position",
+     "evidence_kind": "attributed_account",
+     "text": "FWB requests additional nutritional assessments (reported).",
+     "claim_ids": [
+      "f-125ebd95ea0fbf65-12"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "decision_authority": {
+    "force": "approval_requirement",
+    "evidence_kind": "inference",
+    "text": "Authority is unclear. SML instructs the commander and counts on him to ensure the militia position is respected, but no formal approval rule is stated.",
+    "claim_ids": [
+     "f-a33a4c5ad0849b83-13",
+     "f-fdb24b80ae5cc849-14"
+    ],
+    "status": "inferred",
+    "source_passage_ids": []
+   },
+   "tradeoffs": [
+    {
+     "proposal": "Escorted, coordinated FWB presence instead of unrestricted movement.",
+     "benefit": "Addresses the camp's security concerns while giving FWB the access it says it needs.",
+     "risk": "FWB's acceptance of escorts is unknown, and SML rejects FWB procedures.",
+     "claim_ids": [
+      "f-125ebd95ea0fbf65-7",
+      "f-b48523b8f72b8642-11",
+      "f-a33a4c5ad0849b83-5"
+     ]
+    },
+    {
+     "proposal": "Share existing registration data to streamline the assessment.",
+     "benefit": "Could reduce assessment delays and the tensions those delays may cause.",
+     "risk": "May not meet the donor requirement.",
+     "claim_ids": [
+      "f-125ebd95ea0fbf65-14",
+      "f-125ebd95ea0fbf65-15"
+     ]
+    },
+    {
+     "proposal": "Ongoing aid commitment in exchange for an agreed distribution process.",
+     "benefit": "The role card says ongoing aid is very appealing.",
+     "risk": "FWB's position on duration is not documented.",
+     "claim_ids": [
+      "f-1343fdbf6c7acdba-13"
+     ]
+    }
+   ]
+  },
+  "negotiation_issues": [
+   {
+    "id": "I1",
+    "title": "Food for guards and their families",
+    "decision": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "explicit_statement",
+      "text": "Whether any food or support reaches guards, given FWB's neutrality refusal.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-0"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_position": [
+     {
+      "force": "concern",
+      "evidence_kind": "explicit_statement",
+      "text": "The role card says FWB food would help pay the guards.",
+      "claim_ids": [
+       "f-1343fdbf6c7acdba-9"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "counterpart_position": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "attributed_account",
+      "text": "FWB will not provide food to guards and seems unwilling to consider food as payment (reported).",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-0",
+       "f-125ebd95ea0fbf65-9"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_reasons": [
+     {
+      "force": "concern",
+      "evidence_kind": "explicit_statement",
+      "text": "The commander can barely pay guards and has kept them by handing over some refugee food stocks. Guards may revolt.",
+      "claim_ids": [
+       "f-1343fdbf6c7acdba-0",
+       "f-1343fdbf6c7acdba-1"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "counterpart_reasons": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "attributed_account",
+      "text": "FWB cites neutrality (per the minutes summary).",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-0"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "conditions": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "explicit_statement",
+      "text": "160,000 refugees and about 700 guards. The petrol company has gone unpaid for weeks, and SML's payment is promised for next week.",
+      "claim_ids": [
+       "f-1343fdbf6c7acdba-7",
+       "f-c124474ab100cd79-4",
+       "f-18840c3722260b3f-1"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "previous_alternatives": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "attributed_account",
+      "text": "The camp side proposed food as payment for guards. FWB reportedly rejected it.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-9",
+       "f-125ebd95ea0fbf65-11"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "dependencies": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "Linked to 'Who runs the distribution'.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-6"
+      ],
+      "status": "inferred",
+      "source_passage_ids": []
+     }
+    ],
+    "questions": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "Does FWB's neutrality policy allow any non-food or indirect support relevant to guard welfare?",
+      "claim_ids": [],
+      "status": "unknown",
+      "source_passage_ids": []
+     }
+    ],
+    "possible_arrangements": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "Guard needs could be addressed through Alpha ministries while FWB aid goes to refugees. Ministry willingness is unverified.",
+      "claim_ids": [
+       "f-1343fdbf6c7acdba-15",
+       "f-1343fdbf6c7acdba-16"
+      ],
+      "status": "inferred",
+      "source_passage_ids": []
+     }
+    ]
+   },
+   {
+    "id": "I2",
+    "title": "Who runs the distribution",
+    "decision": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "explicit_statement",
+      "text": "Whether distribution is run by FWB staff and its chosen assistants or through guard structures.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-4",
+       "f-125ebd95ea0fbf65-5"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_position": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "explicit_statement",
+      "text": "In the prior meeting, the camp side insisted that guards organize and implement distribution.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-5",
+       "f-125ebd95ea0fbf65-6"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "counterpart_position": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "attributed_account",
+      "text": "FWB staff or FWB-chosen local assistants must manage disbursement.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-4"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_reasons": [
+     {
+      "force": "concern",
+      "evidence_kind": "explicit_statement",
+      "text": "Independent support could weaken authority, and independent laborers might foment unrest.",
+      "claim_ids": [
+       "f-1343fdbf6c7acdba-4",
+       "f-1343fdbf6c7acdba-5"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "counterpart_reasons": [
+     {
+      "force": "concern",
+      "evidence_kind": "attributed_account",
+      "text": "FWB says it needs access in order to distribute food.",
+      "claim_ids": [
+       "f-b48523b8f72b8642-11"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "conditions": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "demand",
+      "text": "SML demands that militia men be involved and compensated, settled before arrival. SML also states intentions to skim food and distribute it unequally, which the role card warns could carry political cost if visible.",
+      "claim_ids": [
+       "f-a33a4c5ad0849b83-3",
+       "f-a33a4c5ad0849b83-4",
+       "f-a33a4c5ad0849b83-6",
+       "f-fe00635bfe1d1183-8",
+       "f-fe00635bfe1d1183-9",
+       "f-1343fdbf6c7acdba-11"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "previous_alternatives": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "attributed_account",
+      "text": "Guard-run distribution was proposed at the prior meeting. FWB insisted on its own management, and no agreement was reported.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-6",
+       "f-125ebd95ea0fbf65-4"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "dependencies": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "Linked to 'FWB access and movement in camp'.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-7"
+      ],
+      "status": "inferred",
+      "source_passage_ids": []
+     }
+    ],
+    "questions": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "Would FWB accept guard roles limited to crowd security while FWB staff hand out food?",
+      "claim_ids": [],
+      "status": "unknown",
+      "source_passage_ids": []
+     }
+    ],
+    "possible_arrangements": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "A hybrid split in which guards provide security and FWB distributes. Acceptance by FWB and SML is unverified.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-7",
+       "f-b48523b8f72b8642-11"
+      ],
+      "status": "inferred",
+      "source_passage_ids": []
+     }
+    ]
+   },
+   {
+    "id": "I3",
+    "title": "FWB access and movement in camp",
+    "decision": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "explicit_statement",
+      "text": "The terms of FWB's physical presence in the camp.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-7"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_position": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "explicit_statement",
+      "text": "The camp side requires FWB presence to be coordinated and escorted at all times. Unrestricted movement is unacceptable under current conditions.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-7",
+       "f-125ebd95ea0fbf65-8"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "counterpart_position": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "attributed_account",
+      "text": "FWB says it needs access to distribute food.",
+      "claim_ids": [
+       "f-b48523b8f72b8642-11"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_reasons": [
+     {
+      "force": "concern",
+      "evidence_kind": "explicit_statement",
+      "text": "Security concerns and risk of unrest. The incident log records a knife, firearm components and urging of disruption during distribution.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-7",
+       "f-ad36d16f8f67e478-2"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "counterpart_reasons": [],
+    "conditions": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "explicit_statement",
+      "text": "MASHA's access clears through Camp Admin. Block F access for its volunteers awaits the guard lead's confirmation.",
+      "claim_ids": [
+       "f-d2b460c6986468ce-5",
+       "f-d2b460c6986468ce-9"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "previous_alternatives": [],
+    "dependencies": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "Linked to 'Who runs the distribution'.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-5"
+      ],
+      "status": "inferred",
+      "source_passage_ids": []
+     }
+    ],
+    "questions": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "Which escort arrangements are compatible with FWB's operating rules?",
+      "claim_ids": [],
+      "status": "unknown",
+      "source_passage_ids": []
+     }
+    ],
+    "possible_arrangements": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "A clearance process modeled on the MASHA arrangement. FWB's acceptance is unverified.",
+      "claim_ids": [
+       "f-d2b460c6986468ce-5"
+      ],
+      "status": "inferred",
+      "source_passage_ids": []
+     }
+    ]
+   },
+   {
+    "id": "I4",
+    "title": "Nutritional assessment requested by FWB",
+    "decision": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "attributed_account",
+      "text": "Whether and how an assessment is conducted.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-12"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_position": [
+     {
+      "force": "concern",
+      "evidence_kind": "explicit_statement",
+      "text": "The camp side sees the assessment as security-risky and highly resource demanding, and points to its existing registration data.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-13",
+       "f-125ebd95ea0fbf65-19",
+       "f-125ebd95ea0fbf65-14"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "counterpart_position": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "attributed_account",
+      "text": "FWB requests additional assessments, reportedly for a donor requirement.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-12"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_reasons": [
+     {
+      "force": "concern",
+      "evidence_kind": "explicit_statement",
+      "text": "Delays from conducting the assessment safely could increase tensions.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-15"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "counterpart_reasons": [
+     {
+      "force": "rule",
+      "evidence_kind": "attributed_account",
+      "text": "Donor requirement (reported, not verified).",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-12"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "conditions": [],
+    "previous_alternatives": [],
+    "dependencies": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "Linked to 'FWB access and movement in camp'.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-13"
+      ],
+      "status": "inferred",
+      "source_passage_ids": []
+     }
+    ],
+    "questions": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "What scope and method does the donor actually require, and can registration data satisfy part of it?",
+      "claim_ids": [],
+      "status": "unknown",
+      "source_passage_ids": []
+     }
+    ],
+    "possible_arrangements": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "Combine existing registration data with a limited, escorted assessment. Feasibility is unverified.",
+      "claim_ids": [
+       "f-125ebd95ea0fbf65-14"
+      ],
+      "status": "inferred",
+      "source_passage_ids": []
+     }
+    ]
+   },
+   {
+    "id": "I5",
+    "title": "Duration of aid and how to approach the deal",
+    "decision": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "explicit_statement",
+      "text": "Whether to pursue ongoing aid through a deal, hold firm or resort to seizure.",
+      "claim_ids": [
+       "f-1343fdbf6c7acdba-12",
+       "f-1343fdbf6c7acdba-13",
+       "f-1343fdbf6c7acdba-14"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_position": [
+     {
+      "force": "concern",
+      "evidence_kind": "explicit_statement",
+      "text": "The role card says a deal with ongoing food aid could be very appealing.",
+      "claim_ids": [
+       "f-1343fdbf6c7acdba-13"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "counterpart_position": [],
+    "our_reasons": [
+     {
+      "force": "concern",
+      "evidence_kind": "explicit_statement",
+      "text": "Guards are hard to pay in currency that is not worthless. Food keeps refugees in the camp.",
+      "claim_ids": [
+       "f-1343fdbf6c7acdba-13",
+       "f-1343fdbf6c7acdba-9"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "counterpart_reasons": [],
+    "conditions": [
+     {
+      "force": "concern",
+      "evidence_kind": "explicit_statement",
+      "text": "The role card says seizure would risk an international incident that might draw in foreign troops and would end all aid.",
+      "claim_ids": [
+       "f-1343fdbf6c7acdba-12"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "previous_alternatives": [
+     {
+      "force": "concern",
+      "evidence_kind": "explicit_statement",
+      "text": "Accepting FWB's terms and then seizing the food is rejected in the role card. Holding firm is noted as a temptation for leverage.",
+      "claim_ids": [
+       "f-1343fdbf6c7acdba-12",
+       "f-1343fdbf6c7acdba-14"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "dependencies": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "Depends on 'Food for guards and their families'.",
+      "claim_ids": [
+       "f-1343fdbf6c7acdba-0"
+      ],
+      "status": "inferred",
+      "source_passage_ids": []
+     }
+    ],
+    "questions": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "What duration and volume of aid can FWB commit to?",
+      "claim_ids": [],
+      "status": "unknown",
+      "source_passage_ids": []
+     }
+    ],
+    "possible_arrangements": []
+   }
+  ],
+  "preparation_context": {
+   "immediate_decision": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "The commander must respond to a new FWB negotiator after the prior meeting deadlocked.",
+     "claim_ids": [
+      "f-125ebd95ea0fbf65-0",
+      "f-125ebd95ea0fbf65-5"
+     ],
+     "status": "supported",
+     "source_passage_ids": [
+      "passage-1343fdbf6c7acdba-9"
+     ]
+    }
+   ],
+   "background": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "Refugees fled Omega's unrest. The commander previously served in the militia on the border with Omega.",
+     "claim_ids": [],
+     "status": "supported",
+     "source_passage_ids": [
+      "passage-1343fdbf6c7acdba-1",
+      "passage-1343fdbf6c7acdba-2"
+     ]
+    }
+   ],
+   "people_interests_power": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "SML instructs and trusts the commander. CC fears SML would send a hitman if CC appears to crack.",
+     "claim_ids": [
+      "f-fdb24b80ae5cc849-14",
+      "f-c124474ab100cd79-2"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "pressures_disagreements": [
+    {
+     "force": "concern",
+     "evidence_kind": "explicit_statement",
+     "text": "Failing generator, unpaid fuel and food scarcity for staff. The Mayor's Office presses for local prioritization.",
+     "claim_ids": [
+      "f-c124474ab100cd79-3",
+      "f-c124474ab100cd79-7",
+      "f-9681bb3bf4541680-5"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "no_agreement_consequences": [
+    {
+     "force": "concern",
+     "evidence_kind": "explicit_statement",
+     "text": "The commander fears riots and legal action. The camp side implied an impasse would be FWB's fault. Officials warn of political cost from unrest.",
+     "claim_ids": [
+      "f-c124474ab100cd79-5",
+      "f-c124474ab100cd79-6",
+      "f-125ebd95ea0fbf65-17",
+      "f-1343fdbf6c7acdba-11"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "team_questions": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "inference",
+     "text": "What terms has SML authorized, and can the commander agree to any arrangement without SML?",
+     "claim_ids": [],
+     "status": "unknown",
+     "source_passage_ids": []
+    }
+   ],
+   "counterpart_questions": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "inference",
+     "text": "Which distribution roles and escort arrangements can FWB accept within its neutrality policy?",
+     "claim_ids": [],
+     "status": "unknown",
+     "source_passage_ids": []
+    }
+   ]
+  },
+  "coverage_gaps": [
+   "No explicit authority limits, outside option or aid quantities are documented.",
+   "Several shared documents have omitted claims, including incident-log details and parts of the SML/CC transcripts."
+  ],
+  "evidence_selection": {
+   "selected": 128,
+   "total": 182
+  }
+ },
+ "rewording": {
+  "id": "source:paraphrase_doc:moderate:0:0",
+  "level": "moderate",
+  "d_emb": 0.0023937225341796875,
+  "nli_fwd": 0.9557663202285767,
+  "nli_bwd": 0.9557663202285767,
+  "seed": 0
+ }
+}

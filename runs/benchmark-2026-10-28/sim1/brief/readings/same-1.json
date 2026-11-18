@@ -1,0 +1,865 @@
+{
+ "tag": "same-1",
+ "condition": "same",
+ "brief": {
+  "opening": "Role-neutral approach: confirm the represented side first. In any case, frame talks within the council office around a sequenced package that links staff release to a defined minimal health-service and measles commitment, and acknowledge the community's grievance over the abrupt exit.",
+  "fallback": "If funding is unconfirmed, explore a time-bound commitment to pursue Swiss special funds via Bern rather than promising services outright.",
+  "objective": "",
+  "our_side": null,
+  "alternatives": [
+   "Use FWB's and CPI's pledged rapport with tribal leaders as intermediary channels."
+  ],
+  "red_lines": [],
+  "our_constraints": [],
+  "issues": [
+   "Sequencing of staff release versus agreement on health services",
+   "Scope and funding of continued health services in Beta Town",
+   "Ransom and cash demands",
+   "Compensation for guards' families and widows",
+   "Negotiation venue and access to detained staff"
+  ],
+  "tradeoffs": [
+   "Minimal hospital services, such as measles support, funded by Swiss special funds, in exchange for release",
+   "Maintain Beta Town health programs for the coming months",
+   "Handover to government-led framework with suitable partners"
+  ],
+  "facts": 526
+ },
+ "caseCacheHit": false,
+ "seconds": 98,
+ "caseAnalysis": {
+  "title": "Detention of nine HfA surgeons in Beta Town over HfA's planned exit",
+  "summary": "Tribespeople in Beta Town are confining nine Swiss Health for All (HfA) surgeons to their residence after HfA announced it would close operations there and move to Gamma. HfA reports the staff cannot leave until an agreement on health service maintenance is reached with tribal leaders. HfA states that its immediate goal is safe release. It also cites a strict no-ransom policy, depleted funds and donor mandates from Germany and Switzerland for redeployment. The Beta government, police and guard representatives say the decision rests with tribal leaders. The Swiss Ambassador committed only to ask Bern about special funds for minimal services such as measles support. The German Ambassador defers compromises to Berlin. The tribal chief restricts talks to the council office. The package contains only shared materials and no role card, so our side is unconfirmed.",
+  "our_side": null,
+  "opponent": null,
+  "objective": null,
+  "outside_option": null,
+  "red_lines": [],
+  "issues": [
+   {
+    "text": "No role card was supplied. The case overview addresses both an HfA-supporting negotiator and the Tribal Leader, so the represented side cannot be established.",
+    "claim_ids": [
+     "f-338562dd4d81659e-1",
+     "f-7e0f7521d1ee4f52-4"
+    ]
+   },
+   {
+    "text": "HfA states that its long-term presence is not viable and that donors mandated moving all resources to Gamma. HfA also says Germany and Switzerland mandated the transition. Yet HfA showed willingness to seek a compromise, and the Swiss Ambassador will ask Bern about special funds. How much flexibility exists is unresolved.",
+    "claim_ids": [
+     "f-23db951fde5134bf-16",
+     "f-7b5d7e7ebe97f22e-15",
+     "f-427435d4ec5c5e3e-27",
+     "f-38ec5e53c646417e-28",
+     "f-89f252f32c2d671c-12"
+    ]
+   },
+   {
+    "text": "HfA insists on release before discussing the sources of the dispute. HfA also reports that staff cannot leave until an agreement on health service maintenance is reached. The sequencing positions conflict.",
+    "claim_ids": [
+     "f-427435d4ec5c5e3e-21",
+     "f-89f252f32c2d671c-6"
+    ]
+   }
+  ],
+  "situation": {
+   "immediate": {
+    "force": "descriptive",
+    "evidence_kind": "attributed_account",
+    "text": "HfA reports that its staff are confined to their residence until an agreement on health service maintenance is reached with tribal leaders. The tribal chief has told the delegation to await guidance at its hotel.",
+    "claim_ids": [
+     "f-89f252f32c2d671c-6",
+     "f-8987392a7fa213a0-12"
+    ],
+    "status": "supported",
+    "source_passage_ids": []
+   },
+   "actors": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "HfA's Geneva delegation states that safe release of staff is its immediate goal. It says it is now keen on dialogue with tribal leaders.",
+     "claim_ids": [
+      "f-23db951fde5134bf-0",
+      "f-4f240c165bc6e45b-0"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "rule",
+     "evidence_kind": "explicit_statement",
+     "text": "The tribal chief requires that all discussions stay in the council office. He advises against contacting the detained staff until an amicable resolution is reached.",
+     "claim_ids": [
+      "f-8987392a7fa213a0-2",
+      "f-8987392a7fa213a0-4"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "Beta's Minister of Health says the matter largely rests with tribal leaders and that government interference might escalate tensions.",
+     "claim_ids": [
+      "f-e676be3de751d5db-25",
+      "f-e676be3de751d5db-26"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "The local police chief says police will not intervene, fearing clashes. He says police will restore peace once a health services agreement is reached.",
+     "claim_ids": [
+      "f-0cc7099b06de93e9-8",
+      "f-0cc7099b06de93e9-10"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "The Swiss Ambassador committed to ask Bern about special funds for minimal health services, such as measles support, aimed at a compromise for release. The German Ambassador says compromises are beyond her authority and must go to Berlin.",
+     "claim_ids": [
+      "f-38ec5e53c646417e-28",
+      "f-38ec5e53c646417e-29",
+      "f-89f252f32c2d671c-12"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "Guard representatives defer the release decision to tribal leaders. They want HfA to recognize the distress and unfairness its departure caused.",
+     "claim_ids": [
+      "f-275b904a3f036a7a-19",
+      "f-275b904a3f036a7a-20"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "tension": {
+    "force": "concern",
+    "evidence_kind": "attributed_account",
+    "text": "HfA stands firm on redeployment to Gamma under a no-ransom policy. Local actors tie release to agreement on maintaining health services.",
+    "claim_ids": [
+     "f-23db951fde5134bf-15",
+     "f-23db951fde5134bf-24",
+     "f-89f252f32c2d671c-6"
+    ],
+    "status": "supported",
+    "source_passage_ids": []
+   },
+   "background": {
+    "force": "descriptive",
+    "evidence_kind": "explicit_statement",
+    "text": "HfA publicly announced that it was transferring the Beta Country Director and Beta Town personnel to Gamma City.",
+    "claim_ids": [
+     "f-995072cb0c0f9cba-8",
+     "f-995072cb0c0f9cba-11"
+    ],
+    "status": "supported",
+    "source_passage_ids": []
+   },
+   "uncertainty": [
+    {
+     "force": "concern",
+     "evidence_kind": "attributed_account",
+     "text": "HfA fears ransom demands and unpredictable action by local guards if no solution is found promptly.",
+     "claim_ids": [
+      "f-38ec5e53c646417e-24"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "The Swiss special funds are not approved. The Ambassador has committed only to communicate with Bern.",
+     "claim_ids": [
+      "f-1002aff91656f0ac-10"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    },
+    {
+     "force": "descriptive",
+     "evidence_kind": "inference",
+     "text": "Our represented side is unknown. The team must confirm whether it represents HfA or the Tribal Leader.",
+     "claim_ids": [],
+     "status": "unknown",
+     "source_passage_ids": []
+    }
+   ]
+  },
+  "objective_claim_ids": [],
+  "outside_option_claim_ids": [],
+  "brief": {
+   "opening": {
+    "force": "negotiating_position",
+    "evidence_kind": "inference",
+    "text": "Role-neutral approach: confirm the represented side first. In any case, frame talks within the council office around a sequenced package that links staff release to a defined minimal health-service and measles commitment, and acknowledge the community's grievance over the abrupt exit.",
+    "claim_ids": [
+     "f-8987392a7fa213a0-2",
+     "f-89f252f32c2d671c-6",
+     "f-275b904a3f036a7a-20"
+    ],
+    "status": "inferred",
+    "source_passage_ids": []
+   },
+   "fallback": {
+    "force": "negotiating_position",
+    "evidence_kind": "inference",
+    "text": "If funding is unconfirmed, explore a time-bound commitment to pursue Swiss special funds via Bern rather than promising services outright.",
+    "claim_ids": [
+     "f-38ec5e53c646417e-28",
+     "f-1002aff91656f0ac-10"
+    ],
+    "status": "inferred",
+    "source_passage_ids": []
+   },
+   "alternatives": [
+    {
+     "force": "negotiating_position",
+     "evidence_kind": "inference",
+     "text": "Use FWB's and CPI's pledged rapport with tribal leaders as intermediary channels.",
+     "claim_ids": [
+      "f-4f240c165bc6e45b-21",
+      "f-1002aff91656f0ac-19"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    }
+   ],
+   "response_branches": [
+    {
+     "force": "concern",
+     "evidence_kind": "inference",
+     "text": "If a ransom-like cash demand arises, note that HfA's no-ransom policy and the Swiss warning against ransoms would bar it. Redirect toward service-based terms.",
+     "claim_ids": [
+      "f-23db951fde5134bf-24",
+      "f-38ec5e53c646417e-26"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    },
+    {
+     "force": "concern",
+     "evidence_kind": "inference",
+     "text": "If release-first is refused, consider simultaneous steps, since the police say they will act once a health services agreement is reached.",
+     "claim_ids": [
+      "f-427435d4ec5c5e3e-21",
+      "f-0cc7099b06de93e9-10"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    },
+    {
+     "force": "concern",
+     "evidence_kind": "inference",
+     "text": "If guard compensation is raised, record that HfA committed only to consult headquarters on the widows' claims.",
+     "claim_ids": [
+      "f-275b904a3f036a7a-17"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    }
+   ],
+   "critical_assumptions": [
+    {
+     "force": "concern",
+     "evidence_kind": "inference",
+     "text": "This assumes tribal leaders hold effective release authority, as the Minister and the guards state.",
+     "claim_ids": [
+      "f-e676be3de751d5db-25",
+      "f-275b904a3f036a7a-19"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    },
+    {
+     "force": "concern",
+     "evidence_kind": "inference",
+     "text": "This assumes donor capitals (Bern, Berlin) could approve limited minimal-service funding. Approval is unconfirmed.",
+     "claim_ids": [
+      "f-38ec5e53c646417e-28",
+      "f-89f252f32c2d671c-12"
+     ],
+     "status": "inferred",
+     "source_passage_ids": []
+    },
+    {
+     "force": "descriptive",
+     "evidence_kind": "inference",
+     "text": "Unknown: which side we represent and what authority we hold.",
+     "claim_ids": [],
+     "status": "unknown",
+     "source_passage_ids": []
+    }
+   ],
+   "critical_claim_ids": [
+    "f-89f252f32c2d671c-6",
+    "f-38ec5e53c646417e-28",
+    "f-23db951fde5134bf-24"
+   ],
+   "our_constraints": [],
+   "opponent_demands": [
+    {
+     "force": "rule",
+     "evidence_kind": "demand",
+     "text": "The tribal chief requires talks to be held only in the council office and no contact with detained staff before resolution.",
+     "claim_ids": [
+      "f-8987392a7fa213a0-2",
+      "f-8987392a7fa213a0-4"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "decision_authority": {
+    "force": "approval_requirement",
+    "evidence_kind": "explicit_statement",
+    "text": "Release reportedly rests with tribal leaders. Donor compromises need approval from Berlin and Bern.",
+    "claim_ids": [
+     "f-e676be3de751d5db-25",
+     "f-89f252f32c2d671c-12",
+     "f-1002aff91656f0ac-10"
+    ],
+    "status": "supported",
+    "source_passage_ids": []
+   },
+   "tradeoffs": [
+    {
+     "proposal": "Minimal hospital services, such as measles support, funded by Swiss special funds, in exchange for release",
+     "benefit": "The Swiss Ambassador explicitly framed these funds as a release compromise.",
+     "risk": "Bern approval is not confirmed. The Swiss Ambassador doubts scaling down helps.",
+     "claim_ids": [
+      "f-38ec5e53c646417e-28",
+      "f-38ec5e53c646417e-29",
+      "f-38ec5e53c646417e-18"
+     ]
+    },
+    {
+     "proposal": "Maintain Beta Town health programs for the coming months",
+     "benefit": "HfA itself raised this with the German Ambassador.",
+     "risk": "She deferred it to Berlin, and she opposes diverting humanitarian aid to development.",
+     "claim_ids": [
+      "f-89f252f32c2d671c-13",
+      "f-89f252f32c2d671c-12",
+      "f-89f252f32c2d671c-9"
+     ]
+    },
+    {
+     "proposal": "Handover to government-led framework with suitable partners",
+     "benefit": "The district administrator supports HfA's transition and is ready to collaborate.",
+     "risk": "He wants tribal leaders excluded, and the Minister fears the government cannot fill the void.",
+     "claim_ids": [
+      "f-23ba8345f9844083-14",
+      "f-e90222a647fa1a2d-4",
+      "f-e676be3de751d5db-22"
+     ]
+    }
+   ]
+  },
+  "negotiation_issues": [
+   {
+    "id": "I1",
+    "title": "Sequencing of staff release versus agreement on health services",
+    "decision": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "attributed_account",
+      "text": "The issue is whether release precedes or follows agreement on health service maintenance.",
+      "claim_ids": [
+       "f-89f252f32c2d671c-6",
+       "f-427435d4ec5c5e3e-21"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_position": [],
+    "counterpart_position": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "explicit_statement",
+      "text": "The HfA delegation insists on safe release before discussing the sources of the dispute.",
+      "claim_ids": [
+       "f-427435d4ec5c5e3e-21"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     },
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "attributed_account",
+      "text": "HfA reports that staff cannot leave until an agreement on health service maintenance is reached with tribal leaders.",
+      "claim_ids": [
+       "f-89f252f32c2d671c-6"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_reasons": [],
+    "counterpart_reasons": [
+     {
+      "force": "concern",
+      "evidence_kind": "explicit_statement",
+      "text": "HfA says it is hard to address concerns while staff are confined. It says release would let the hospital resume operations and allow longer-term solutions.",
+      "claim_ids": [
+       "f-e71129b8253274b2-1",
+       "f-e71129b8253274b2-5"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "conditions": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "explicit_statement",
+      "text": "Staff have been detained for several days. One member may go out daily for necessities.",
+      "claim_ids": [
+       "f-89f252f32c2d671c-6",
+       "f-7b5d7e7ebe97f22e-9"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     },
+     {
+      "force": "descriptive",
+      "evidence_kind": "explicit_statement",
+      "text": "Police will restore peace once a health services agreement is reached.",
+      "claim_ids": [
+       "f-0cc7099b06de93e9-10"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "previous_alternatives": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "attributed_account",
+      "text": "The delegation's unscheduled visit to the residence was blocked. The commander demanded that they leave.",
+      "claim_ids": [
+       "f-e71129b8253274b2-12",
+       "f-e71129b8253274b2-18"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "dependencies": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "Depends on: Scope and funding of continued health services in Beta Town.",
+      "claim_ids": [
+       "f-89f252f32c2d671c-6"
+      ],
+      "status": "inferred",
+      "source_passage_ids": []
+     }
+    ],
+    "questions": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "Would tribal leaders accept simultaneous release and a service commitment?",
+      "claim_ids": [],
+      "status": "unknown",
+      "source_passage_ids": []
+     }
+    ],
+    "possible_arrangements": []
+   },
+   {
+    "id": "I2",
+    "title": "Scope and funding of continued health services in Beta Town",
+    "decision": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "attributed_account",
+      "text": "The issue is whether minimal hospital or measles services continue, and how they would be funded.",
+      "claim_ids": [
+       "f-38ec5e53c646417e-28"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_position": [],
+    "counterpart_position": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "explicit_statement",
+      "text": "HfA says its long-term presence is not viable because of decisions already made and funding constraints.",
+      "claim_ids": [
+       "f-e90222a647fa1a2d-21"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_reasons": [],
+    "counterpart_reasons": [
+     {
+      "force": "concern",
+      "evidence_kind": "explicit_statement",
+      "text": "HfA cites depleted funds and donor mandates to move all medical resources and staff to Gamma.",
+      "claim_ids": [
+       "f-23db951fde5134bf-15",
+       "f-23db951fde5134bf-16"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "conditions": [
+     {
+      "force": "approval_requirement",
+      "evidence_kind": "explicit_statement",
+      "text": "Swiss funds depend on Bern. German compromise depends on Berlin.",
+      "claim_ids": [
+       "f-1002aff91656f0ac-10",
+       "f-89f252f32c2d671c-12"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "previous_alternatives": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "attributed_account",
+      "text": "HfA asked the German Ambassador about maintaining programs for the coming months. She deferred the question to Berlin.",
+      "claim_ids": [
+       "f-38ec5e53c646417e-6",
+       "f-38ec5e53c646417e-7"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     },
+     {
+      "force": "descriptive",
+      "evidence_kind": "attributed_account",
+      "text": "The Swiss Ambassador doubted that scaling down helps, saying it merely postpones withdrawal.",
+      "claim_ids": [
+       "f-38ec5e53c646417e-18"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "dependencies": [],
+    "questions": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "What amount and duration of Swiss special funds would Bern approve?",
+      "claim_ids": [],
+      "status": "unknown",
+      "source_passage_ids": []
+     }
+    ],
+    "possible_arrangements": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "attributed_account",
+      "text": "The Swiss Ambassador proposes minimal services, including measles support, funded by special funds as a release compromise. These funds are unapproved.",
+      "claim_ids": [
+       "f-38ec5e53c646417e-28",
+       "f-38ec5e53c646417e-29"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ]
+   },
+   {
+    "id": "I3",
+    "title": "Ransom and cash demands",
+    "decision": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "attributed_account",
+      "text": "The issue is how to handle any monetary demand.",
+      "claim_ids": [
+       "f-38ec5e53c646417e-24"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_position": [],
+    "counterpart_position": [
+     {
+      "force": "rule",
+      "evidence_kind": "explicit_statement",
+      "text": "HfA has a strict no-ransom policy.",
+      "claim_ids": [
+       "f-23db951fde5134bf-24"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_reasons": [],
+    "counterpart_reasons": [
+     {
+      "force": "concern",
+      "evidence_kind": "explicit_statement",
+      "text": "HfA says paying in one region might prompt demands elsewhere and compromise its principles.",
+      "claim_ids": [
+       "f-23db951fde5134bf-25"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "conditions": [
+     {
+      "force": "concern",
+      "evidence_kind": "explicit_statement",
+      "text": "The Swiss Ambassador cautioned against paying ransoms to local mafias.",
+      "claim_ids": [
+       "f-38ec5e53c646417e-26"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "previous_alternatives": [],
+    "dependencies": [],
+    "questions": [],
+    "possible_arrangements": []
+   },
+   {
+    "id": "I4",
+    "title": "Compensation for guards' families and widows",
+    "decision": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "attributed_account",
+      "text": "The issue is HfA's response to the widows' compensation claims.",
+      "claim_ids": [
+       "f-275b904a3f036a7a-17"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_position": [],
+    "counterpart_position": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "attributed_account",
+      "text": "Guards blame HfA's sudden departure and defer the release decision to tribal leaders.",
+      "claim_ids": [
+       "f-275b904a3f036a7a-19",
+       "f-275b904a3f036a7a-20"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_reasons": [],
+    "counterpart_reasons": [],
+    "conditions": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "explicit_statement",
+      "text": "Guards fall under the purview of tribal leaders.",
+      "claim_ids": [
+       "f-275b904a3f036a7a-7"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "previous_alternatives": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "attributed_account",
+      "text": "The HfA delegation acknowledged the oversight and sought the guards' support for release.",
+      "claim_ids": [
+       "f-275b904a3f036a7a-17"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "dependencies": [],
+    "questions": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "inference",
+      "text": "What compensation amount is claimed? None is specified.",
+      "claim_ids": [],
+      "status": "unknown",
+      "source_passage_ids": []
+     }
+    ],
+    "possible_arrangements": []
+   },
+   {
+    "id": "I5",
+    "title": "Negotiation venue and access to detained staff",
+    "decision": [
+     {
+      "force": "rule",
+      "evidence_kind": "explicit_statement",
+      "text": "The tribal chief restricts talks to the council office and bars contact with staff.",
+      "claim_ids": [
+       "f-8987392a7fa213a0-2",
+       "f-8987392a7fa213a0-4"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_position": [],
+    "counterpart_position": [
+     {
+      "force": "negotiating_position",
+      "evidence_kind": "explicit_statement",
+      "text": "The chief cites safety risks of informal visits.",
+      "claim_ids": [
+       "f-8987392a7fa213a0-3"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "our_reasons": [],
+    "counterpart_reasons": [],
+    "conditions": [
+     {
+      "force": "rule",
+      "evidence_kind": "explicit_statement",
+      "text": "The delegation must await guidance at its hotel.",
+      "claim_ids": [
+       "f-8987392a7fa213a0-12"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "previous_alternatives": [
+     {
+      "force": "descriptive",
+      "evidence_kind": "attributed_account",
+      "text": "An unscheduled visit was rejected because the commander had no directives from the tribal leaders.",
+      "claim_ids": [
+       "f-e71129b8253274b2-15"
+      ],
+      "status": "supported",
+      "source_passage_ids": []
+     }
+    ],
+    "dependencies": [],
+    "questions": [],
+    "possible_arrangements": []
+   }
+  ],
+  "preparation_context": {
+   "immediate_decision": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "attributed_account",
+     "text": "The parties await council guidance on terms tying release to health services.",
+     "claim_ids": [
+      "f-8987392a7fa213a0-12",
+      "f-89f252f32c2d671c-6"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "background": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "HfA announced the transfer of its Country Director and personnel to Gamma City. WHO notes that access can be hampered by reliance on tribespeople for security.",
+     "claim_ids": [
+      "f-995072cb0c0f9cba-8",
+      "f-e676be3de751d5db-16"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "people_interests_power": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "explicit_statement",
+     "text": "Security in rural areas is managed by tribal chiefs, with minimal government intervention.",
+     "claim_ids": [
+      "f-60b92342dc6934a7-13"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "pressures_disagreements": [
+    {
+     "force": "concern",
+     "evidence_kind": "explicit_statement",
+     "text": "The UN cautions that local guards and some tribespeople can be unpredictable and dangerous.",
+     "claim_ids": [
+      "f-23db951fde5134bf-21"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "no_agreement_consequences": [
+    {
+     "force": "concern",
+     "evidence_kind": "attributed_account",
+     "text": "HfA fears ransom demands and unpredictable guard actions if there is no prompt solution.",
+     "claim_ids": [
+      "f-1002aff91656f0ac-6"
+     ],
+     "status": "supported",
+     "source_passage_ids": []
+    }
+   ],
+   "team_questions": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "inference",
+     "text": "Confirm which side we represent: HfA's negotiator or the Tribal Leader.",
+     "claim_ids": [],
+     "status": "unknown",
+     "source_passage_ids": []
+    }
+   ],
+   "counterpart_questions": [
+    {
+     "force": "descriptive",
+     "evidence_kind": "inference",
+     "text": "Which specific service levels and durations would satisfy the council's conditions?",
+     "claim_ids": [],
+     "status": "unknown",
+     "source_passage_ids": []
+    }
+   ]
+  },
+  "coverage_gaps": [
+   "The tribal chief's full conditions (restart hospital activities, continue operations in Beta Town, compensate guards' families, strengthen the measles response) appear only in document summaries, not as extracted claims, and no passage IDs were supplied.",
+   "The informant-relayed tribespeople message (Source 24), which reportedly suggests they intend to extract maximum support, is not extracted as a claim.",
+   "No role card or private instructions were supplied."
+  ],
+  "evidence_selection": {
+   "selected": 128,
+   "total": 526
+  }
+ }
+}
