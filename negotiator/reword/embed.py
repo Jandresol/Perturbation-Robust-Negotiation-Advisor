@@ -27,7 +27,8 @@ def sentences(text: str, min_words: int = 3) -> list[str]:
 
 @lru_cache(maxsize=None)
 def encoder(name: str) -> SentenceTransformer:
-    return SentenceTransformer(name)
+    # token=False: a saved Hugging Face token that has expired must not block these public models.
+    return SentenceTransformer(name, token=False)
 
 
 def embed(texts: list[str], name: str):

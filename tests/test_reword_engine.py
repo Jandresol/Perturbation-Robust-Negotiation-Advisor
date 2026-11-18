@@ -1,5 +1,6 @@
 """Operators, engine and cache, with the model call stubbed out (no network)."""
 
+import json
 from types import SimpleNamespace
 
 from negotiator import llm
@@ -64,6 +65,7 @@ def test_independent_candidates_are_separate_calls_with_their_own_seeds(monkeypa
 
 def test_cache_hit_makes_no_model_call(monkeypatch, tmp_path):
     monkeypatch.setattr(llm, "CACHE_DIR", tmp_path)
+    monkeypatch.setenv("HUIT_PROVIDER", "bedrock")
     calls = []
 
     def create(**kw):
@@ -80,3 +82,42 @@ def test_cache_hit_makes_no_model_call(monkeypatch, tmp_path):
     assert first == second and len(calls) == 1
     llm.complete_json(*args, **kw, seed=1)                        # new seed = fresh sample
     assert len(calls) == 2
+
+
+def test_openai_provider_uses_huit_model(monkeypatch, tmp_path):
+    monkeypatch.setattr(llm, "CACHE_DIR", tmp_path)
+    monkeypatch.setenv("HUIT_PROVIDER", "openai")
+    monkeypatch.setenv("HUIT_API_KEY", "test-key")
+    monkeypatch.setenv("HUIT_MODEL", "gpt-4.1-mini")
+    calls = []
+
+    class Response:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return False
+
+        def read(self):
+            return json.dumps({
+                "model": "gpt-4.1-mini",
+                "choices": [{"finish_reason": "stop", "message": {"content": '{"applicable": true}'}}],
+            }).encode()
+
+    def urlopen(request, timeout=30):
+        calls.append(request)
+        return Response()
+
+    monkeypatch.setattr(llm.urllib.request, "urlopen", urlopen)
+    data, meta = llm.complete_json(
+        "prompt", {"type": "object"}, model="us.anthropic.claude-opus-5-5", base_url="https://bedrock.example")
+    assert data == {"applicable": True}
+    assert meta["model"] == "gpt-4.1-mini"
+    body = json.loads(calls[0].data.decode())
+    assert body["model"] == "gpt-4.1-mini"
+    assert calls[0].full_url == llm.OPENAI_URL
+    assert calls[0].get_header("Api-key") == "test-key"
+    assert "schema" in json.loads(calls[0].data.decode())["messages"][1]["content"]
+    llm.complete_json(
+        "prompt", {"type": "object"}, model="us.anthropic.claude-opus-5-5", base_url="https://bedrock.example")
+    assert len(calls) == 1

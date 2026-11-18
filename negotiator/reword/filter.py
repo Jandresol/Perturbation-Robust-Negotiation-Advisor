@@ -110,7 +110,7 @@ def hard_facts_ok(original: str, new: str) -> bool:
 
 @lru_cache(maxsize=None)
 def _nli(name: str):
-    model = CrossEncoder(name)
+    model = CrossEncoder(name, token=False)
     labels = {v.lower(): int(k) for k, v in model.model.config.id2label.items()}
     return model, labels["entailment"]
 

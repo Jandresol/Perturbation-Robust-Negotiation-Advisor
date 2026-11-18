@@ -15,9 +15,7 @@ re-run is free; --cap stops before the next build once gateway spend passes it (
 
 import argparse
 import json
-import os
 import sys
-import urllib.request
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -27,21 +25,18 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from negotiator import llm  # noqa: E402
 from negotiator.game import compare  # noqa: E402
 from negotiator.game import sentence_test as st  # noqa: E402
+from negotiator.game.cases import materialize  # noqa: E402
 
-QUOTA = "https://apis.huit.harvard.edu/ais-bedrock-llm/apigee/quota"
 DATABASE = ROOT / ".data" / "analysis.sqlite"
 BUILD_COST = 3.5      # USD per build, rough: the Sim 2 rewording comparison
 EXTRACT_COST = 0.15   # USD per document extraction, rough
 
 
-def remaining():
-    request = urllib.request.Request(QUOTA, headers={"x-api-key": os.environ["ANTHROPIC_API_KEY"]})
-    return float(json.loads(urllib.request.urlopen(request, timeout=30).read())["remaining_limit"])
-
-
 def load(path, case_filter, passage_filter):
+    materialize(path, ROOT)
     spec = json.loads(Path(path).read_text())
     cases = {}
     for name, c in spec["cases"].items():
@@ -144,10 +139,7 @@ def run(args, cfg, cases, passages):
     from backend.inference import AnalysisService, load_env
     load_env(ROOT / ".env")
     service = AnalysisService(DATABASE)
-    start = remaining()
-
-    def spent():
-        return start - remaining()
+    spent = llm.spend_meter()
 
     def atomise(source):
         return service.document(source)["analysis"]["claims"]
